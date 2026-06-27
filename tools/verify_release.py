@@ -93,6 +93,19 @@ def verify_text_clean():
         fail("blocked release text:\n" + "\n".join(hits))
 
 
+def verify_browser_storage():
+    html = (ROOT / "web/index.html").read_text(encoding="utf-8")
+    if "sessionStorage" in html:
+        fail("sessionStorage is not allowed for WebApp release")
+    if "sc_token" in html or "localStorage.token" in html or "localStorage.sc_token" in html:
+        fail("session token must not be persisted in browser storage")
+    allowed = {"sc_lang", "sc_theme"}
+    used = set(re.findall(r"localStorage\.([A-Za-z0-9_]+)", html))
+    bad = sorted(used - allowed)
+    if bad:
+        fail("unexpected localStorage keys: " + ",".join(bad))
+
+
 def verify_required_files():
     required = [
         "web/index.html",
@@ -114,6 +127,7 @@ def main():
     verify_routes()
     verify_i18n()
     verify_text_clean()
+    verify_browser_storage()
     print(json.dumps({"release_static_gate": "ok"}, separators=(",", ":")))
 
 

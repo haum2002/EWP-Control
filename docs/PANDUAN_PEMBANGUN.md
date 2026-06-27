@@ -111,6 +111,11 @@ Polisi login:
 Token sesi dijana selepas login berjaya dan dihantar semula oleh UI melalui
 header `Authorization: Bearer <token>`.
 
+Token sesi hanya disimpan dalam memori tab WebApp. Ia tidak disimpan dalam
+browser storage. Refresh, tutup tab, atau buka tab baharu memerlukan login
+semula. `localStorage` hanya digunakan untuk pilihan bahasa dan tema kerana dua
+nilai itu bukan rahsia.
+
 ## Pemulihan Kata Laluan
 
 PIN pemulihan lalai ialah `747747`.
