@@ -1,0 +1,14 @@
+.pio/
+.vscode/
+docs/archive/
+
+*.bin
+*.elf
+*.map
+*.hex
+*.log
+*.tmp
+
+__pycache__/
+.pytest_cache/
+.cache/
