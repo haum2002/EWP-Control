@@ -63,6 +63,10 @@ def verify_i18n():
     en = set(re.findall(r'"([^"]+)":', match.group("en")))
     if ms != en:
         fail("I18N mismatch")
+    used = set(re.findall(r'data-i18n="([^"]+)"', html))
+    missing = sorted(used - ms)
+    if missing:
+        fail("I18N missing keys: " + ",".join(missing))
 
 
 def verify_text_clean():
@@ -78,6 +82,7 @@ def verify_text_clean():
         "SSID: " + "SmartCooling",
         "rec" + "Serial",
         "/" + "api/",
+        "ewp-" + "control",
         "SmartCooling " + "V" + "3",
         "Console " + "V" + "3",
         "-" + "v" + "3",
