@@ -16,7 +16,6 @@ di sini supaya UI awam dan firmware tidak menggunakan nama endpoint yang jelas.
 | `tools/pio_embed_assets.py` | Menyuntik route JSON ke UI dan menjana header |
 | `docs/MANUAL_PENGGUNAAN.md` | Manual pengguna |
 | `docs/PANDUAN_PEMBANGUN.md` | Rujukan pembangun |
-| `docs/archive/` | Fail lama untuk rujukan sejarah |
 
 ## Peta Endpoint Release
 
@@ -314,7 +313,7 @@ fungsi provisioning.
 Gunakan semakan ini sebelum release:
 
 ```powershell
-rg -n "[A]erospace|[A]utomotive HMI|SSID: [S]martCooling|[r]ecSerial" web src config docs README.md --glob "!docs/archive/**"
+rg -n "[A]erospace|[A]utomotive HMI|SSID: [S]martCooling|[r]ecSerial" web src config docs README.md
 rg -n "ROUTE_" include/routes.h src/main.cpp
 python tools/verify_release.py
 python tools/verify_control_math.py

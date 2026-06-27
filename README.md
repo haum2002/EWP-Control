@@ -1,6 +1,6 @@
-# SmartCooling V3
+# SmartCooling V2
 
-SmartCooling V3 ialah firmware dan WebApp untuk pengawal EWP, kipas radiator,
+SmartCooling V2 ialah firmware dan WebApp untuk pengawal EWP, kipas radiator,
 diagnostik suhu, keselamatan asas, dan tetapan operasi berasaskan ESP32-S3
 Super Mini HW-747.
 
@@ -13,6 +13,7 @@ Super Mini HW-747.
 
 | Perkara | Nilai |
 | --- | --- |
+| Repository | `https://github.com/haum2002/SmartCoolingv2.git` |
 | Board | ESP32-S3 Super Mini HW-747 |
 | Environment PlatformIO | `super_mini_esp32_s3_hw-747` |
 | SSID AP | `EWP-SYSTEM-PRO` |
@@ -38,12 +39,27 @@ Akses melalui IP ditolak oleh firmware. Gunakan domain rasmi
 | `docs/MANUAL_PENGGUNAAN.md` | Manual lengkap untuk pengguna |
 | `docs/PANDUAN_PEMBANGUN.md` | Nota pembangun dan peta endpoint |
 
-Fail lama disimpan di `docs/archive/` sebagai rujukan sejarah projek.
+Repository ini hanya mengandungi bahan projek utama yang diperlukan untuk build,
+flash, penggunaan, dan pembangunan.
 
 ## Build Dan Upload
 
+Clone:
+
+```powershell
+git clone https://github.com/haum2002/SmartCoolingv2.git
+cd SmartCoolingv2
+```
+
+Build:
+
 ```powershell
 pio run -e super_mini_esp32_s3_hw-747
+```
+
+Upload:
+
+```powershell
 pio run -e super_mini_esp32_s3_hw-747 -t upload
 ```
 
