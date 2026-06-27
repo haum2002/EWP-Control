@@ -78,6 +78,10 @@ def verify_text_clean():
         "SSID: " + "SmartCooling",
         "rec" + "Serial",
         "/" + "api/",
+        "SmartCooling " + "V" + "3",
+        "Console " + "V" + "3",
+        "-" + "v" + "3",
+        "smartcooling-" + "v" + "3",
     ]
     hits = []
     for path in active_files():

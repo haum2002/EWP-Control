@@ -123,7 +123,7 @@ static const char index_html[] PROGMEM = R"EWPHTML(
 
   <section id="appScreen" class="layout hidden">
     <aside class="side">
-      <div class="brand"><div class="mark">SC</div><div><b>SmartCooling</b><br><span class="hint">Console V3</span></div></div>
+      <div class="brand"><div class="mark">SC</div><div><b>SmartCooling</b><br><span class="hint">Console V2</span></div></div>
       <nav id="sideNav" class="nav" aria-label="Navigation"></nav>
       <div class="sideFoot">
         <div id="sideStatus" class="hint mono">--</div>
@@ -194,7 +194,7 @@ static const char index_html[] PROGMEM = R"EWPHTML(
 
   <script>
     const ROUTES = {"config":"/u4CwT7","device":"/m2VhK9","events":"/t9BaN2","login":"/A7xQm2","ota":"/K4qWs7","password":"/Pq3Rz8","preview":"/R6sJq1","reboot":"/N8jDv5","recover":"/g9LzT4","rgb":"/H3vXk6","save":"/d5YpM8","status":"/Z8nLp3","ws":"/x2FzQ9"};
-    const VERSION = "2026.06.26-v3";
+    const VERSION = "2026.06.26-v2";
     const HOSTNAME = "smartcooling.local";
     const DEFAULT_CFG = {
       mode:0, force_pump:0, force_fan:0, auto_target_c:80, auto_full_c:110, min_temp_c:70, window_s:30,

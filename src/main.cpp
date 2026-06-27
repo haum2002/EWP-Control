@@ -17,7 +17,7 @@
 #include <math.h>
 
 /*
- * SmartCooling Console V3
+ * SmartCooling Console V2
  * Target: ESP32-S3 Super Mini HW-747
  */
 
@@ -41,7 +41,7 @@
 #define SENSOR_SPIKE_LIMIT 3
 #define CONTROL_WDT_TIMEOUT_S 4
 
-static constexpr const char *APP_VERSION = "2026.06.26-v3";
+static constexpr const char *APP_VERSION = "2026.06.26-v2";
 static constexpr const char *AP_SSID = "EWP-SYSTEM-PRO";
 static constexpr const char *DOMAIN_HOST = "smartcooling.local";
 static constexpr const char *MDNS_HOST = "smartcooling";

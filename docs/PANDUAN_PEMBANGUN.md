@@ -1,4 +1,4 @@
-# Panduan Pembangun SmartCooling V3
+# Panduan Pembangun SmartCooling V2
 
 Dokumen ini ialah rujukan rasmi untuk pembangun. Peta endpoint release disimpan
 di sini supaya UI awam dan firmware tidak menggunakan nama endpoint yang jelas.

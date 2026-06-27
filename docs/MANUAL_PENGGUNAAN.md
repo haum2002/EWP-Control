@@ -1,6 +1,6 @@
-# Manual Penggunaan SmartCooling V3
+# Manual Penggunaan SmartCooling V2
 
-Dokumen ini menerangkan cara menggunakan WebApp dan firmware SmartCooling V3
+Dokumen ini menerangkan cara menggunakan WebApp dan firmware SmartCooling V2
 untuk ESP32-S3 Super Mini HW-747.
 
 ## Maklumat Asas

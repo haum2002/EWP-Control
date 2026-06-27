@@ -30,7 +30,7 @@ Akses melalui IP ditolak oleh firmware. Gunakan domain rasmi
 
 | Laluan | Fungsi |
 | --- | --- |
-| `web/index.html` | UI WebApp V3, termasuk bahasa `ms` dan `en` |
+| `web/index.html` | UI WebApp V2, termasuk bahasa `ms` dan `en` |
 | `src/main.cpp` | Firmware utama, AP, keselamatan, endpoint, kawalan EWP/kipas |
 | `include/web_assets.h` | Fail jana automatik daripada `web/index.html` |
 | `include/routes.h` | Fail jana automatik daripada `config/routes.json` |
