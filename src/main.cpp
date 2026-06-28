@@ -1,5 +1,6 @@
 #include "routes.h"
 #include "web_assets.h"
+#include "factory_config.h"
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
@@ -22,31 +23,31 @@
  */
 
 // Pinout
-#define PIN_NTC 1
-#define PIN_SSR 2
-#define PIN_PWM 4
-#define PIN_ECU 6
+#define PIN_NTC SC_FACTORY_PIN_NTC
+#define PIN_SSR SC_FACTORY_PIN_SSR
+#define PIN_PWM SC_FACTORY_PIN_PWM
+#define PIN_ECU SC_FACTORY_PIN_ECU
 
 // Timing and output
-#define TICK_MS 500UL
-#define PWM_FREQ 15000
-#define PWM_RES 8
-#define PWM_CHAN 0
-#define AP_IDLE_OFF_MS 300000UL
-#define STATUS_PUSH_MS 1000UL
-#define ADC_SAMPLE_COUNT 17
-#define ADC_TRIM_COUNT 3
-#define SENSOR_GOOD_LIMIT 2
-#define SENSOR_BAD_LIMIT 3
-#define SENSOR_SPIKE_LIMIT 3
-#define CONTROL_WDT_TIMEOUT_S 4
+#define TICK_MS SC_FACTORY_TICK_MS
+#define PWM_FREQ SC_FACTORY_PWM_FREQ
+#define PWM_RES SC_FACTORY_PWM_RES
+#define PWM_CHAN SC_FACTORY_PWM_CHAN
+#define AP_IDLE_OFF_MS SC_FACTORY_AP_IDLE_OFF_MS
+#define STATUS_PUSH_MS SC_FACTORY_STATUS_PUSH_MS
+#define ADC_SAMPLE_COUNT SC_FACTORY_ADC_SAMPLE_COUNT
+#define ADC_TRIM_COUNT SC_FACTORY_ADC_TRIM_COUNT
+#define SENSOR_GOOD_LIMIT SC_FACTORY_SENSOR_GOOD_LIMIT
+#define SENSOR_BAD_LIMIT SC_FACTORY_SENSOR_BAD_LIMIT
+#define SENSOR_SPIKE_LIMIT SC_FACTORY_SENSOR_SPIKE_LIMIT
+#define CONTROL_WDT_TIMEOUT_S SC_FACTORY_CONTROL_WDT_TIMEOUT_S
 
 static constexpr const char *APP_VERSION = "2026.06.26-v2";
-static constexpr const char *AP_SSID = "EWP-SYSTEM-PRO";
-static constexpr const char *DOMAIN_HOST = "smartcooling.local";
-static constexpr const char *MDNS_HOST = "smartcooling";
-static constexpr const char *DEFAULT_WEB_PASSWORD = "12345678";
-static constexpr const char *RECOVERY_PIN = "747747";
+static constexpr const char *AP_SSID = SC_FACTORY_AP_SSID;
+static constexpr const char *DOMAIN_HOST = SC_FACTORY_DOMAIN_HOST;
+static constexpr const char *MDNS_HOST = SC_FACTORY_MDNS_HOST;
+static constexpr const char *DEFAULT_WEB_PASSWORD = SC_FACTORY_DEFAULT_WEB_PASSWORD;
+static constexpr const char *RECOVERY_PIN = SC_FACTORY_RECOVERY_PIN;
 
 static const IPAddress AP_IP(10, 74, 7, 1);
 static const IPAddress AP_GW(10, 74, 7, 1);
@@ -519,6 +520,8 @@ void statusToJson(JsonDocument &doc) {
 
   doc["webapp_version"] = APP_VERSION;
   doc["firmware_version"] = APP_VERSION;
+  doc["factory_profile"] = SC_FACTORY_PROFILE;
+  doc["hardware_rev"] = SC_FACTORY_HARDWARE_REV;
   doc["uptime_ms"] = millis();
   doc["coolant_c"] = state.ema;
   doc["coolant_valid"] = state.coolantValid;
@@ -555,6 +558,7 @@ void statusToJson(JsonDocument &doc) {
   doc["config_recovered"] = configRecovered;
   doc["session_remaining_s"] = sessionExpiryMs > millis() ? (sessionExpiryMs - millis()) / 1000 : 0;
   doc["ssid"] = AP_SSID;
+  doc["ap_open"] = SC_FACTORY_AP_OPEN == 1;
   doc["ap_ip"] = AP_IP.toString();
   doc["wifi_ap_running"] = apRunning;
   doc["wifi_channel"] = SMARTCOOLING_WIFI_AP_CHANNEL;
@@ -954,10 +958,12 @@ void handleDevice(AsyncWebServerRequest *request) {
   doc["serial"] = boardSerial();
   doc["webapp_version"] = APP_VERSION;
   doc["firmware_version"] = APP_VERSION;
+  doc["factory_profile"] = SC_FACTORY_PROFILE;
+  doc["hardware_rev"] = SC_FACTORY_HARDWARE_REV;
   doc["domain"] = DOMAIN_HOST;
   doc["ssid"] = AP_SSID;
   doc["route_mode"] = "random";
-  doc["ap_open"] = true;
+  doc["ap_open"] = SC_FACTORY_AP_OPEN == 1;
   sendJson(request, doc);
 }
 

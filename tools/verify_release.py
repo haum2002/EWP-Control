@@ -94,6 +94,8 @@ def verify_text_clean():
         for term in blocked:
             if term in text:
                 hits.append(f"{path.relative_to(ROOT)}: {term}")
+        if re.search(r"[\U0001F300-\U0001FAFF]", text):
+            hits.append(f"{path.relative_to(ROOT)}: emoji")
     if hits:
         fail("blocked release text:\n" + "\n".join(hits))
 
@@ -115,6 +117,7 @@ def verify_required_files():
     required = [
         "web/index.html",
         "src/main.cpp",
+        "include/factory_config.h",
         "include/web_assets.h",
         "include/routes.h",
         "config/routes.json",
@@ -127,8 +130,52 @@ def verify_required_files():
         fail("missing files: " + ",".join(missing))
 
 
+def verify_gitignore():
+    text = (ROOT / ".gitignore").read_text(encoding="utf-8")
+    if "```" in text:
+        fail(".gitignore contains markdown fences")
+    required = [".pio/", ".vscode/", "docs/archive/", "*.bin", "*.elf", "*.map"]
+    missing = [item for item in required if item not in text]
+    if missing:
+        fail(".gitignore missing required entries: " + ",".join(missing))
+
+
+def verify_factory_config():
+    factory = (ROOT / "include/factory_config.h").read_text(encoding="utf-8")
+    src = (ROOT / "src/main.cpp").read_text(encoding="utf-8")
+    required = [
+        '#define SC_FACTORY_PROFILE "super_mini_esp32_s3_hw747"',
+        '#define SC_FACTORY_HARDWARE_REV "hw-747"',
+        '#define SC_FACTORY_AP_SSID "EWP-SYSTEM-PRO"',
+        "#define SC_FACTORY_AP_OPEN 1",
+        '#define SC_FACTORY_DEFAULT_WEB_PASSWORD "12345678"',
+        '#define SC_FACTORY_RECOVERY_PIN "747747"',
+        "#define SC_FACTORY_PIN_NTC 1",
+        "#define SC_FACTORY_PIN_SSR 2",
+        "#define SC_FACTORY_PIN_PWM 4",
+        "#define SC_FACTORY_PIN_ECU 6",
+        "#define SC_FACTORY_AP_IDLE_OFF_MS 300000UL",
+    ]
+    missing = [item for item in required if item not in factory]
+    if missing:
+        fail("factory config mismatch: " + ",".join(missing))
+    for needle in [
+        '#include "factory_config.h"',
+        "static constexpr const char *AP_SSID = SC_FACTORY_AP_SSID;",
+        "static constexpr const char *RECOVERY_PIN = SC_FACTORY_RECOVERY_PIN;",
+    ]:
+        if needle not in src:
+            fail("firmware not linked to factory config: " + needle)
+    rejected = ["PIN_NTC_COOLANT", "PIN_SSR_PUMP", "PIN_SSR_FAN", "SYSTEM_RECOVERY_PIN"]
+    hits = [needle for needle in rejected if needle in src]
+    if hits:
+        fail("unsafe factory branch symbols in firmware: " + ",".join(hits))
+
+
 def main():
     verify_required_files()
+    verify_gitignore()
+    verify_factory_config()
     verify_routes()
     verify_i18n()
     verify_text_clean()

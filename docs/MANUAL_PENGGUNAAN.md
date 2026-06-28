@@ -14,9 +14,14 @@ untuk ESP32-S3 Super Mini HW-747.
 | Bahasa UI | Melayu (`ms`) dan English (`en`) |
 | Kata laluan WebApp lalai | `12345678` |
 | PIN pemulihan lalai | `747747` |
+| Profil kilang firmware | `super_mini_esp32_s3_hw747` |
 
 Gunakan domain `http://smartcooling.local/` sahaja. Firmware menolak akses WebApp
 melalui IP supaya tabiat penggunaan kekal konsisten dan lebih mudah disokong.
+
+Profil kilang V2 mengekalkan pin HW-747 yang telah diuji, AP terbuka tanpa kata
+laluan, dan PIN pemulihan `747747`. Jika firmware dibina semula oleh pembangun,
+pastikan profil ini tidak diubah tanpa semakan hardware.
 
 ## Komponen Utama
 

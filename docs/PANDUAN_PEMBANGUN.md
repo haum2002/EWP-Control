@@ -9,6 +9,7 @@ di sini supaya UI awam dan firmware tidak menggunakan nama endpoint yang jelas.
 | --- | --- |
 | `web/index.html` | Sumber UI WebApp |
 | `src/main.cpp` | Firmware utama |
+| `include/factory_config.h` | Profil kilang V2 untuk HW-747, pin, AP, dan nilai lalai |
 | `config/routes.json` | Sumber tunggal laluan endpoint release |
 | `include/web_assets.h` | Jana automatik, jangan edit manual |
 | `include/routes.h` | Jana automatik, jangan edit manual |
@@ -56,6 +57,32 @@ Prosesnya:
 7. Jana `include/routes.h`.
 
 UI dan firmware mesti merujuk route daripada sumber yang sama.
+
+## Profil Kilang V2
+
+`include/factory_config.h` ialah fail rasmi untuk tetapan kilang build V2.
+Firmware membaca nilai AP, domain, PIN recovery, pin GPIO, masa AP timeout,
+tetapan PWM, dan had asas daripada fail ini.
+
+Nilai release HW-747 yang mesti kekal selari:
+
+| Tetapan | Nilai |
+| --- | --- |
+| Profil | `super_mini_esp32_s3_hw747` |
+| Hardware | `hw-747` |
+| SSID AP | `EWP-SYSTEM-PRO` |
+| AP terbuka | Ya |
+| PIN recovery | `747747` |
+| NTC | GPIO `1` |
+| SSR pam | GPIO `2` |
+| PWM kipas | GPIO `4` |
+| Input ECU | GPIO `6` |
+| AP idle timeout | `300000 ms` |
+
+Jangan ubah pin atau polisi AP dalam release tanpa ujian hardware sebenar,
+semakan dokumen, dan build bersih. Gate `tools/verify_release.py` akan
+menolak perubahan yang mengalihkan pin HW-747, menukar PIN recovery, atau
+menukar AP V2 kepada AP berpassword.
 
 ## Rangkaian
 
