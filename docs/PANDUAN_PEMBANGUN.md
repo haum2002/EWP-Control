@@ -326,6 +326,59 @@ urutan tertinggi. Jika kedua-dua slot rosak, firmware kembali kepada default
 selamat, menetapkan fault `FAULT_CONFIG_RECOVERED`, dan melaporkan
 `config_recovered=true`.
 
+## Ketahanan Kuasa & RTC Memory
+
+Firmware menggunakan RTC Memory untuk menyimpan keadaan sistem semasa kuasa putus.
+
+### Struktur RtcState
+
+```c
+typedef struct {
+  uint32_t magic;           // Magic number untuk validasi (0x52544353)
+  uint32_t version;         // Versi struktur (1)
+  float lastTemp;           // Suhu terakhir
+  int lastPump;             // Output pam terakhir
+  int lastFan;              // Output kipas terakhir
+  uint32_t lastFaults;      // Fault terakhir
+  uint8_t safetyState;      // Keadaan keselamatan
+  uint32_t rtcTimestamp;    // RTC timestamp
+  uint32_t checksum;        // Checksum untuk validasi
+} RtcState;
+```
+
+### Ciri-ciri
+
+- **Auto-save**: Keadaan disimpan setiap 500ms (TICK_MS) ke RTC Memory
+- **Checksum validation**: Data divalidasi dengan checksum sebelum restore
+- **Recovery automatik**: State dipulihkan semasa boot jika data RTC valid
+- **RTC boot counter**: Berasingan dari NVS boot counter, tidak hilang bila kuasa putus
+
+### Format Nombor Siri
+
+Nombor siri dijana automatik dengan format **VVMMYYK####**:
+
+| Komponen | Contoh | Penerangan |
+| --- | --- | --- |
+| VV | 01 | Versi firmware (2 digit) |
+| MM | 06 | Bulan pembuatan (2 digit) |
+| YY | 26 | Tahun pembuatan (2 digit) |
+| K | K | Kod spec hardware (1 huruf) |
+| #### | 0001 | Nombor unit (4 digit) |
+
+**Contoh**: `010626K0001` = Versi 01, Jun 2026, Kod K, Unit 0001
+
+Nombor siri penuh dalam firmware: `SC-VVMMYYK####-MACADDRESS`
+
+### Konfigurasi Nombor Siri
+
+Dalam `src/main.cpp`:
+
+```c
+static constexpr const char *SYSTEM_SERIAL_PREFIX = "01";  // Versi firmware
+static constexpr const char *SYSTEM_SPEC_CODE = "K";       // Kod spec hardware
+static constexpr uint16_t SYSTEM_UNIT_NUMBER = 1;          // Nombor unit (1-9999)
+```
+
 ## Watchdog Dan Reset
 
 Firmware mendaftarkan loop utama kepada task watchdog 4 saat. Jika loop utama

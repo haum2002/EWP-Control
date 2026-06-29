@@ -83,6 +83,26 @@ Jika telefon masih mematikan data mudah alih ketika tersambung kepada Wi-Fi:
 
 Tingkah laku ini bergantung kepada OS telefon dan polisi pengeluar.
 
+## Nombor Siri Sistem
+
+Setiap unit mempunyai nombor siri unik format **VVMMYYK####**:
+
+| Komponen | Contoh | Penerangan |
+| --- | --- | --- |
+| VV | 01 | Versi firmware (2 digit) |
+| MM | 06 | Bulan pembuatan (2 digit) |
+| YY | 26 | Tahun pembuatan (2 digit) |
+| K | K | Kod spec hardware (1 huruf) |
+| #### | 0001 | Nombor unit (4 digit) |
+
+**Contoh**: `010626K0001` = Versi 01, Jun 2026, Kod K, Unit 0001
+
+Nombor siri penuh dipaparkan dalam WebApp: `SC-VVMMYYK####-MACADDRESS`
+
+Nombor siri dijana automatik semasa firmware dibina berdasarkan tarikh compilation.
+Untuk menukar nombor unit, ubah nilai `SYSTEM_UNIT_NUMBER` dalam `src/main.cpp`
+sebelum membina firmware.
+
 ## AP Timeout
 
 AP hidup selepas boot, restart, power-cycle, atau ACC-ON kembali.
