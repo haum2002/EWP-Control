@@ -18,7 +18,7 @@ enum ThreatType {
     THREAT_LOGIC_INJECTION,      // Cubaan manipulasi logik melalui input
     THREAT_RATE_OVERFLOW,        // Permintaan terlalu laju (DoS)
     THREAT_MEMORY_CORRUPTION,    // Deteksi korupsi RAM/Stack
-    THREAT_SI_HALLUCINATION      // SI mencadangkan tindakan berbahaya
+    THREAT_UNSAFE_ACTION         // Cadangan output tidak selamat
 };
 
 // --- STRUKTUR STATUS SENTINEL ---
@@ -62,7 +62,7 @@ private:
     uint8_t _hist_idx;
     
     void _raiseThreat(ThreatType type);
-    bool _checkHallucination(float proposed, const SI_Context &ctx);
+    bool _checkUnsafeAction(float proposed, const SI_Context &ctx);
 };
 
 extern SISentinel Sentinel;

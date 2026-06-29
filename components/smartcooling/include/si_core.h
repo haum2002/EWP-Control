@@ -43,10 +43,10 @@ struct SI_Context {
 };
 
 // ============================================================================
-// MODEL PRALATIH SI (SIMULASI 3 TAHUN)
+// MODEL KAWALAN SI
 // ============================================================================
 
-struct SI_Pretrained_Model {
+struct SI_Control_Model {
     // Parameter PID Adaptif
     float kp_base, ki_base, kd_base;
     float kp_extreme, ki_extreme, kd_extreme;
@@ -71,10 +71,10 @@ struct SI_Pretrained_Model {
     float extreme_humidity_threshold;
     float voltage_drop_threshold;
     
-    // Data Statistik Simulasi
-    uint32_t simulation_scenarios;
-    float avg_stability_score;
-    float fault_detection_accuracy;
+    // Metadata kalibrasi dalaman
+    uint32_t calibration_revision;
+    float stability_weight;
+    float fault_weight;
 };
 
 // ============================================================================
@@ -121,14 +121,14 @@ public:
     void performFactoryReset();
     
     // Akses Model
-    const SI_Pretrained_Model& getModel() const { return _model; }
+    const SI_Control_Model& getModel() const { return _model; }
     
     // Status
     bool isHealthy() const { return _healthy; }
     uint32_t getCycleCount() const { return _cycle_count; }
 
 private:
-    SI_Pretrained_Model _model;
+    SI_Control_Model _model;
     bool _healthy;
     uint32_t _cycle_count;
     uint32_t _last_update_ms;

@@ -7,13 +7,19 @@ di sini supaya UI awam dan firmware tidak menggunakan nama endpoint yang jelas.
 
 | Laluan | Peranan |
 | --- | --- |
+| `CMakeLists.txt` | Root projek ESP-IDF |
+| `main/CMakeLists.txt` | Definisi main component ESP-IDF |
+| `main/main.cpp` | Firmware entry point |
+| `components/smartcooling/CMakeLists.txt` | Definisi component SmartCooling |
+| `components/smartcooling/library.json` | Metadata library untuk PlatformIO |
+| `components/smartcooling/include/factory_config.h` | Profil kilang V2 untuk HW-747, pin, AP, dan nilai lalai |
+| `components/smartcooling/include/web_assets.h` | Jana automatik, jangan edit manual |
+| `components/smartcooling/include/routes.h` | Jana automatik, jangan edit manual |
+| `components/smartcooling/include/wifi_provisioning/` | Shim kecil untuk build Arduino WiFi jika cache SDK PlatformIO rosak |
+| `components/smartcooling/src/si_core.cpp` | Modul SI |
+| `components/smartcooling/src/si_sentinel.cpp` | Sentinel keselamatan |
 | `web/index.html` | Sumber UI WebApp |
-| `src/main.cpp` | Firmware utama |
-| `include/factory_config.h` | Profil kilang V2 untuk HW-747, pin, AP, dan nilai lalai |
 | `config/routes.json` | Sumber tunggal laluan endpoint release |
-| `include/web_assets.h` | Jana automatik, jangan edit manual |
-| `include/routes.h` | Jana automatik, jangan edit manual |
-| `include/wifi_provisioning/` | Shim kecil untuk build Arduino WiFi jika cache SDK PlatformIO rosak |
 | `tools/pio_embed_assets.py` | Menyuntik route JSON ke UI dan menjana header |
 | `docs/MANUAL_PENGGUNAAN.md` | Manual pengguna |
 | `docs/PANDUAN_PEMBANGUN.md` | Rujukan pembangun |
@@ -53,14 +59,14 @@ Prosesnya:
 3. Sahkan semua route wajib wujud.
 4. Sahkan setiap route berbentuk rawak 6 aksara selepas `/`.
 5. Ganti token route `__SMARTCOOLING_ROUTES__` dalam UI.
-6. Jana `include/web_assets.h`.
-7. Jana `include/routes.h`.
+6. Jana `components/smartcooling/include/web_assets.h`.
+7. Jana `components/smartcooling/include/routes.h`.
 
 UI dan firmware mesti merujuk route daripada sumber yang sama.
 
 ## Profil Kilang V2 - Konfigurasi Perkakasan
 
-`include/factory_config.h` ialah fail rasmi untuk tetapan kilang build V2.
+`components/smartcooling/include/factory_config.h` ialah fail rasmi untuk tetapan kilang build V2.
 Firmware membaca nilai AP, domain, PIN recovery, pin GPIO, masa AP timeout,
 tetapan PWM, dan had asas daripada fail ini.
 
@@ -136,38 +142,51 @@ semakan dokumen, dan build bersih. Gate `tools/verify_release.py` akan
 menolak perubahan yang mengalihkan pin HW-747, menukar PIN recovery, atau
 menukar AP V2 kepada AP berpassword.
 
-### 4. Ketahanan Kuasa RTC Memory
+### 4. Diagnostik RTC Memory
 
-Sistem menggunakan RTC Memory untuk menyimpan keadaan operasi:
+Firmware menggunakan RTC slow memory untuk menyimpan diagnostik ringkas semasa
+warm reset dan beberapa keadaan brownout. Ia bukan storan konfigurasi utama dan
+bukan pengganti perlindungan bekalan kuasa fizikal.
 
 ```c
 typedef struct {
-    uint32_t magic;           // Magic number untuk validasi
-    uint32_t version;         // Versi struktur
-    system_state_t state;     // Keadaan sistem terakhir
-    uint32_t boot_counter;    // Boot counter RTC
-    uint32_t checksum;        // CRC16 checksum
+    uint32_t magic;
+    uint16_t version;
+    uint16_t checksum;
+    uint32_t uptime_ms;
+    uint32_t boot_counter;
+    uint8_t last_mode;
+    uint8_t safety_state;
+    int8_t last_target_c;
+    float last_temp_c;
+    float last_pred_temp;
+    float risk_score;
+    uint32_t faults;
+    uint32_t sequence;
+    uint8_t event_head;
 } RtcState;
 
 RTC_DATA_ATTR static RtcState rtc_state;
 ```
 
 **Ciri-ciri:**
-- Auto-save setiap 500ms ke RTC memory (non-blocking)
-- Checksum CRC16 untuk validasi integriti data
-- Recovery automatik semasa boot jika data valid
-- Boot counter berasingan dari NVS untuk ketahanan brownout
-- Buffer 8 peristiwa terakhir disimpan dalam RTC
-- Struktur 512 bytes dalam RTC_DATA_ATTR
+- Auto-save berkala setiap `RTC_SAVE_INTERVAL_MS` atau 5 saat.
+- Checksum CRC16 untuk validasi integriti data.
+- Boot counter RTC untuk diagnostik reset.
+- Status dipaparkan melalui field `rtc_boot_count` dan `rtc_recovered`.
+- Jika data RTC tidak sah, firmware menggunakan default selamat.
 
 **Proses Recovery:**
-1. Boot semula dan semak magic number & checksum
-2. Jika valid, pulihkan keadaan terakhir (mode, setpoint, output, dll.)
-3. Jika invalid, gunakan default selamat dan catat fault `FAULT_CONFIG_RECOVERED`
-4. Laporkan status recovery dalam diagnostik (`rtc_recovery_count`)
+1. Boot semula dan semak magic word, versi struktur, dan checksum.
+2. Jika valid, pulihkan diagnostik terakhir seperti mode, suhu, ramalan, fault,
+   safety state, dan sequence.
+3. Jika invalid, kekalkan konfigurasi NVS/default yang selamat dan catat fault
+   `FAULT_CONFIG_RECOVERED`.
+4. Laporkan status recovery dalam diagnostik WebApp.
 
-Ini memastikan sistem boleh beroperasi semula dengan cepat selepas gangguan
-kuasa tanpa kehilangan konfigurasi penting atau keadaan operasi.
+Untuk kehilangan kuasa sebenar, reka bentuk hardware masih perlu menyediakan
+perlindungan berasingan seperti bekalan stabil, fius, driver output yang sesuai,
+dan wiring yang disahkan.
 
 ### 5. Nombor Siri Automatik
 
@@ -184,7 +203,7 @@ String generateSerialNumber() {
 }
 ```
 
-**Contoh:** `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
+**Rujukan format:** `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
 
 **Penjanaan Automatik:**
 - Berdasarkan tarikh compilation firmware (`__DATE__`, `__TIME__`)
@@ -439,8 +458,8 @@ pio run -e super_mini_esp32_s3_hw-747
 
 Build wajib menjana semula:
 
-- `include/web_assets.h`
-- `include/routes.h`
+- `components/smartcooling/include/web_assets.h`
+- `components/smartcooling/include/routes.h`
 
 ## Nota Shim Wi-Fi Provisioning
 
@@ -450,8 +469,9 @@ sebagai rosak dan tidak boleh dibaca. Arduino WiFi core tetap memasukkan header
 tersebut walaupun provisioning tidak digunakan.
 
 Untuk memastikan build stabil, projek menyediakan shim minimum di
-`include/wifi_provisioning/`. `platformio.ini` menambah `-Iinclude` supaya shim
-ini digunakan juga semasa library Arduino WiFi dikompilasi. Shim ini hanya
+`components/smartcooling/include/wifi_provisioning/`. `platformio.ini` menambah
+`-Icomponents/smartcooling/include` supaya shim ini digunakan juga semasa
+library Arduino WiFi dikompilasi. Shim ini hanya
 mengandungi simbol yang diperlukan oleh Arduino WiFi core dan tidak mengaktifkan
 fungsi provisioning.
 
@@ -460,8 +480,8 @@ fungsi provisioning.
 Gunakan semakan ini sebelum release:
 
 ```powershell
-rg -n "[A]erospace|[A]utomotive HMI|SSID: [S]martCooling|[r]ecSerial" web src config docs README.md
-rg -n "ROUTE_" include/routes.h src/main.cpp
+rg -n "[A]erospace|[A]utomotive HMI|SSID: [S]martCooling|[r]ecSerial" web main components config docs README.md
+rg -n "ROUTE_" components/smartcooling/include/routes.h main/main.cpp
 python tools/verify_release.py
 python tools/verify_control_math.py
 pio run -e super_mini_esp32_s3_hw-747

@@ -1,0 +1,11 @@
+{
+  "name": "SmartCoolingCore",
+  "version": "2.0.0",
+  "description": "SmartCooling V2 core component for PlatformIO and ESP-IDF layout.",
+  "frameworks": ["arduino"],
+  "platforms": ["espressif32"],
+  "build": {
+    "srcDir": "src",
+    "includeDir": "include"
+  }
+}

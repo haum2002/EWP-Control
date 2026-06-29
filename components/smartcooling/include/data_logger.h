@@ -6,10 +6,10 @@
 #include "si_core.h"
 
 // ============================================================================
-// KONFIGURASI DATA LOGGER (OVER-ENGINEERED)
+// KONFIGURASI DATA LOGGER
 // ============================================================================
 
-#define LOG_BUFFER_SIZE 20           // Triple-buffering
+#define LOG_BUFFER_SIZE 20           // Buffer berkelompok
 #define LOG_FLUSH_INTERVAL_MS 2000   // Auto-flush setiap 2 saat
 #define MAX_RETRY_COUNT 3            // Retry jika gagal tulis
 #define FILE_ROTATION_SIZE_MB 5      // Rotate fail jika > 5MB

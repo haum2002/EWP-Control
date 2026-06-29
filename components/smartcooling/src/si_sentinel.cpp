@@ -20,9 +20,9 @@ void SISentinel::begin() {
 }
 
 bool SISentinel::validateAction(float proposed_output, const SI_Context &ctx) {
-    // 1. Cek Hallucination (SI mencadangkan perkara berbahaya)
-    if (_checkHallucination(proposed_output, ctx)) {
-        _raiseThreat(THREAT_SI_HALLUCINATION);
+    // 1. Semak cadangan output yang tidak selamat
+    if (_checkUnsafeAction(proposed_output, ctx)) {
+        _raiseThreat(THREAT_UNSAFE_ACTION);
         return false;
     }
 
@@ -37,9 +37,9 @@ bool SISentinel::validateAction(float proposed_output, const SI_Context &ctx) {
     // 3. Cek Risk Score Konteks
     if (ctx.risk_score > SENTINEL_RISK_THRESHOLD) {
         // Jika risiko sudah tinggi, hanya benarkan tindakan yang mengurangkan risiko
-        if (proposed_output > _prev_output && ctx.temp_current > ctx.temp_target) {
-             // Mencuba meningkatkan output bila suhu sudah tinggi & risiko tinggi = Bahaya
-             _raiseThreat(THREAT_SI_HALLUCINATION);
+        if (proposed_output < _prev_output && ctx.temp_current > ctx.temp_target) {
+             // Mengurangkan output ketika suhu tinggi dan risiko tinggi adalah berbahaya.
+             _raiseThreat(THREAT_UNSAFE_ACTION);
              return false;
         }
     }
@@ -138,8 +138,8 @@ void SISentinel::_raiseThreat(ThreatType type) {
     _status.sanity_score -= 0.2f;
     if (_status.sanity_score < 0.0f) _status.sanity_score = 0.0f;
 
-    Serial.printf("[SENTINEL ALERT] Threat Detected: %d | Count: %lu | Sanity: %.2f\n", 
-                  type, _status.threat_count, _status.sanity_score);
+    Serial.printf("[SENTINEL ALERT] Threat Detected: %d | Count: %lu | Sanity: %.2f\n",
+                  type, (unsigned long)_status.threat_count, _status.sanity_score);
     
     // Log ancaman ke Data Logger jika tersedia
     // DataLogger.logThreat(type); 
@@ -155,17 +155,16 @@ void SISentinel::clearThreat() {
     }
 }
 
-bool SISentinel::_checkHallucination(float proposed, const SI_Context &ctx) {
-    // Logik Heuristik untuk deteksi "halusinasi" SI
-    // Contoh: SI suruh panaskan bila suhu sudah 200°C?
-    
-    if (ctx.temp_current > 150.0f && proposed > 50.0f) {
-        // Suhu sangat tinggi tapi SI masih nak bagi output besar? Halusinasi.
+bool SISentinel::_checkUnsafeAction(float proposed, const SI_Context &ctx) {
+    // Logik heuristik untuk tindakan output yang tidak selamat.
+
+    if (ctx.temp_current > 150.0f && proposed < 80.0f) {
+        // Suhu sangat tinggi mesti memihak kepada penyejukan maksimum.
         return true;
     }
     
-    if (ctx.confidence_lvl < 0.3f && proposed > 80.0f) {
-        // Keyakinan rendah tapi output tinggi? Bahaya.
+    if (ctx.confidence_lvl < 0.3f && ctx.temp_current > ctx.temp_target && proposed < 80.0f) {
+        // Bila data tidak meyakinkan dan suhu tinggi, output rendah tidak selamat.
         return true;
     }
 

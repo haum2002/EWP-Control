@@ -1,112 +1,116 @@
-# SmartCooling
-### Super Intelligent Thermal Management System | ESP32-S3 Powered
+# SmartCooling V2
 
-![Status](https://img.shields.io/badge/status-stable-green)
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![License](https://img.shields.io/badge/license-MIT-orange)
-![Build](https://img.shields.io/badge/build-PlatformIO%20%26%20ESP--IDF-success)
-![Security](https://img.shields.io/badge/security-SI%20Sentinel%20Active-critical)
+Firmware dan WebApp untuk kawalan penyejukan SmartCooling pada board
+Super Mini ESP32-S3 HW-747.
 
-> **SmartCooling** bukan sekadar pengawal suhu. Ia adalah sistem **Super Intelligence (SI)** yang sedar situasi, mampu memprediksi kegagalan, menahan serangan siber-logik, dan beroperasi secara autonomi dalam persekitaran ekstrem. Dibina dengan arkitektur modular hibrid untuk kestabilan maksimum.
+Repositori ini disusun dalam gaya ESP-IDF component penuh dan masih boleh
+dibina melalui PlatformIO. Semua konfigurasi penting berada dalam fail yang
+jelas supaya perubahan boleh disemak sebelum firmware dimuat naik.
 
----
+## Ringkasan
 
-## 🚀 Ciri Utama & Keunikan
+| Perkara | Nilai release |
+| --- | --- |
+| Board | Super Mini ESP32-S3 HW-747 |
+| Environment PlatformIO | `super_mini_esp32_s3_hw-747` |
+| Wi-Fi AP | `EWP-SYSTEM-PRO` |
+| AP password | Tiada, AP terbuka |
+| Akses WebApp rasmi | `http://smartcooling.local/` |
+| IP AP | `10.74.7.1/24` untuk rangkaian dalaman sahaja |
+| Web password awal | `12345678` |
+| Recovery PIN awal | `747747` |
 
-### 🧠 Super Intelligence (SI) Core
-Bukan AI biasa. SI kami menggabungkan kawalan adaptif, model fizik termodinamik, dan analisis risiko masa nyata.
-- **Adaptive PID & Feed-Forward:** Menyesuaikan parameter secara dinamik berdasarkan beban haba.
-- **Predictive Fault Detection:** Mengesan anomali (cagaran sensor, kegagalan kipas) sebelum ia menjadi kritikal.
-- **Risk Score Engine:** Penilaian risiko berterusan (0.0 - 1.0) untuk membuat keputusan keselamatan proaktif.
-- **Sensor Fusion:** Menggabungkan data sensor fizik, input ECU/ECM, dan model dalaman untuk ketepatan mutlak.
-
-### 🛡️ SI Sentinel (Neural-Safe Core)
-Lapisan pertahanan aktif yang melindungi integriti sistem daripada "hallucination" SI dan serangan bukan fizikal.
-- **Behavioral Guard:** Memastikan setiap output SI berada dalam had fizikal yang selamat.
-- **Cyber-Logic Defense:** Sanitasi input, anti-injection, dan rate limiting untuk antaramuka web & data.
-- **Memory Integrity Watch:** Pemantauan heap/stack masa nyata dengan mekanisme *canary* untuk mencegah korupsi memori.
-- **Watchdog Bertingkat:** Pemulihan automatik daripada hang atau deadlock dalam milisaat.
-
-### 💾 Ketahanan Data & Kuasa
-- **RTC Memory Persistence:** Menyimpan keadaan sistem semasa gangguan kuasa; pemulihan <500ms.
-- **Robust Data Logger:** Triple-buffering, auto-rotation fail, dan validasi CRC32 untuk log pada MicroSD.
-- **Factory Reset Ganda:** Pilihan reset melalui Web UI (dilindungi PIN) atau Pin Jumper Fizikal.
-
-### 🏭 Konfigurasi Kilang Selamat (Secure Defaults)
-Untuk melindungi perkakasan pihak ketiga, semua output dimatikan secara lalai sehingga dikonfigurasi:
-- **Pam & Kipas:** `OFF` (Wajib konfigurasi manual PWM/SSR).
-- **Sensor Persekitaran:** `Tiada` (Pilihan: BME280, AHT30, dll).
-- **MicroSD:** `Tidak Aktif` (Aktifkan manually untuk logging).
-
----
-
-## 📦 Sokongan Dual-Framework
-
-Projek ini dibina untuk berjalan serasi pada kedua-dua ekosistem tanpa perubahan kod:
-
-| Framework | Status | Konfigurasi |
-| :--- | :---: | :--- |
-| **PlatformIO** | ✅ Stabil | Gunakan `platformio.ini` |
-| **ESP-IDF** | ✅ Stabil | Gunakan `CMakeLists.txt` & `sdkconfig` |
-
----
-
-## 📊 Dashboard & Antara Muka
-
-Web UI yang dibina semula sepenuhnya dengan prinsip **"Liquid & Minimalist"**:
-- **Navigasi Hamburger:** Menu sisi yang licin dengan indikator RGB status.
-- **Dashboard Real-Time:** Graf suhu, output, dan metrik SI (Risk/Stability).
-- **Kawalan Keselamatan:** Borang input dengan validasi had (bawah < atas) dan pengesahan PIN.
-- **Diagnostik Terintegrasi:** Log peristiwa, eksport data, dan status perkakasan dalam satu pandangan.
-
----
-
-## 🛠️ Struktur Projek Modular
+## Struktur Projek
 
 ```text
-SmartCooling/
-├── src/
-│   ├── core/           # Enjin SI utama (PID, Prediksi, Risk Score)
-│   ├── sentinel/       # Lapisan keselamatan & pemantauan integriti
-│   ├── hal/            # Hardware Abstraction Layer (Pin mapping dinamik)
-│   ├── storage/        # Pengurusan SD Card & RTC Memory
-│   ├── security/       # Auth, Sanitasi, & Factory Reset logic
-│   └── web/            # Server HTTP & Antaramuka Pengguna
-├── include/            # Header fail konfigurasi (factory_config.h)
-├── docs/               # Manual Pengguna & Panduan Pembangun
-├── platformio.ini      # Konfigurasi PlatformIO
-├── CMakeLists.txt      # Konfigurasi ESP-IDF
-└── README.md           # Dokumentasi ini
+CMakeLists.txt                                  Root project ESP-IDF
+main/CMakeLists.txt                             Main component CMake
+main/main.cpp                                   Firmware entry point
+components/smartcooling/CMakeLists.txt          SmartCooling component CMake
+components/smartcooling/library.json            Metadata library PlatformIO
+components/smartcooling/include/factory_config.h Konfigurasi kilang HW-747
+components/smartcooling/include/routes.h        Header endpoint rawak
+components/smartcooling/include/web_assets.h    WebApp terbenam yang dijana
+components/smartcooling/src/si_core.cpp         Modul SI
+components/smartcooling/src/si_sentinel.cpp     Sentinel keselamatan
+config/routes.json                              Laluan endpoint rawak release
+docs/MANUAL_PENGGUNAAN.md                       Manual pengguna
+docs/PANDUAN_PEMBANGUN.md                       Nota teknikal dan pemetaan endpoint
+tools/verify_release.py                         Gate statik release
+tools/verify_control_math.py                    Ujian simulasi math/kawalan
+web/index.html                                  Sumber UI WebApp
 ```
 
----
+## Konfigurasi Release HW-747
 
-## 📈 Status Pembangunan
+Release V2 menggunakan konfigurasi konservatif:
 
-| Fasa | Komponen | Status | Catatan |
-| :--- | :--- | :---: | :--- |
-| **Fasa 1** | Infrastruktur Data Logger | ✅ Selesai | Triple-buffering, Auto-rotate |
-| **Fasa 2** | Model SI & Adaptif | ✅ Selesai | Pralatih 2.5J simulasi |
-| **Fasa 3** | Web UI Rombakan | ✅ Selesai | Minimalis, RGB, Logout |
-| **Fasa 4** | Identiti & Keselamatan | ✅ Selesai | No. Siri Automatik, PIN |
-| **Fasa 5** | SI Sentinel | ✅ Selesai | Anti-hallucination, Cyber-defense |
-| **Fasa 6** | Dual-Framework Support | ✅ Selesai | PlatformIO + ESP-IDF |
+- Pam: SSR pada GPIO 2.
+- Kipas: PWM pada GPIO 4.
+- NTC: GPIO 1.
+- ECU input: GPIO 6.
+- Sensor persekitaran: belum aktif.
+- Micro SD: belum aktif.
+- AP terbuka tanpa kata laluan, mati selepas 5 minit hanya jika tiada pelanggan.
 
----
+Perubahan pada pin, sensor, SD, SSID, recovery PIN, atau polisi AP perlu
+melalui build dan ujian hardware sebenar sebelum diflash.
 
-## 📄 Dokumentasi Lanjut
+## Build
 
-- [📘 Manual Penggunaan](docs/MANUAL_PENGGUNAAN.md) - Panduan lengkap Web UI, konfigurasi AP, dan prosedur OTA.
-- [🛠️ Panduan Pembangun](docs/PANDUAN_PEMBANGUN.md) - Spesifikasi pin, protokol komunikasi, dan integrasi modul.
+Build rasmi harian masih melalui PlatformIO:
 
----
+```bash
+pio run -e super_mini_esp32_s3_hw-747
+```
 
-## ⚠️ Amaran Keselamatan
+Fail `CMakeLists.txt`, `main/`, dan `components/smartcooling/` disediakan supaya
+struktur projek selari dengan ESP-IDF. Kod firmware masih menggunakan Arduino
+core dan library Arduino, jadi PlatformIO kekal laluan build/flash yang
+disahkan dalam release ini.
 
-Sistem ini mengandungi ciri kawalan kuasa tinggi. Pastikan:
-1.  Konfigurasi kilang disemak sebelum membiarkan sistem beroperasi tanpa pengawasan.
-2.  Sensor dikalibrasi dengan betul untuk mengelakkan bacaan palsu.
-3.  Pin Jumper Factory Reset tidak tertekan secara tidak sengaja.
+## Semakan Release
 
-**Dibina dengan ketahanan ekstrem sebagai keutamaan.**
-© 2024 SmartCooling Project. All Rights Reserved.
+```bash
+python tools/verify_release.py
+python tools/verify_control_math.py
+```
+
+`verify_release.py` menyemak struktur, endpoint rawak, i18n `ms/en`, storage
+browser, naming V2, dan konfigurasi kilang. `verify_control_math.py` menjalankan
+simulasi kawalan untuk penapisan sensor, spike rejection, fail-safe sensor,
+fail-safe suhu kritikal, dan larian panjang.
+
+## Erase Dan Flash
+
+Gantikan `COM8` jika board muncul pada port lain.
+
+```bash
+pio run -e super_mini_esp32_s3_hw-747 -t erase --upload-port COM8
+pio run -e super_mini_esp32_s3_hw-747 -t upload --upload-port COM8
+```
+
+Selepas board hidup:
+
+1. Sambung ke Wi-Fi `EWP-SYSTEM-PRO`.
+2. Buka `http://smartcooling.local/`.
+3. Log masuk dengan password awal `12345678`.
+4. Tukar password selepas login.
+
+Akses melalui IP tidak dianggap laluan rasmi WebApp dan firmware release
+direka untuk menerima akses melalui domain/mDNS.
+
+## Ketahanan Reset Dan Brownout
+
+Firmware menyimpan diagnostik ringkas ke RTC slow memory secara berkala untuk
+warm reset dan beberapa keadaan brownout. Data ini membantu firmware melaporkan
+status boot, sebab reset, suhu terakhir, ramalan suhu, fault, dan boot counter.
+
+RTC memory bukan pengganti perlindungan elektrik fizikal. Untuk aplikasi
+keselamatan sebenar, sistem masih memerlukan bekalan kuasa, fius, wiring,
+driver pam/kipas, sensor, dan perlindungan hardware yang disahkan.
+
+## Dokumentasi
+
+- [Manual Penggunaan](docs/MANUAL_PENGGUNAAN.md)
+- [Panduan Pembangun](docs/PANDUAN_PEMBANGUN.md)

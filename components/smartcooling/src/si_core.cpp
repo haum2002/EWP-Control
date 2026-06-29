@@ -25,7 +25,7 @@ SuperIntelligence::SuperIntelligence()
 }
 
 // ============================================================================
-// INISIALISASI MODEL PRALATIH (SIMULASI 3 TAHUN)
+// INISIALISASI MODEL KAWALAN
 // ============================================================================
 void SuperIntelligence::_initializeModel() {
     _model.kp_base = 2.5f;
@@ -52,9 +52,9 @@ void SuperIntelligence::_initializeModel() {
     _model.extreme_humidity_threshold = 95.0f;
     _model.voltage_drop_threshold = 3.0f;
     
-    _model.simulation_scenarios = 2500000;
-    _model.avg_stability_score = 0.92f;
-    _model.fault_detection_accuracy = 0.97f;
+    _model.calibration_revision = 20260630UL;
+    _model.stability_weight = 0.92f;
+    _model.fault_weight = 0.97f;
     
     _healthy = true;
 }
@@ -64,8 +64,7 @@ void SuperIntelligence::_initializeModel() {
 // ============================================================================
 void SuperIntelligence::begin() {
     Serial.println("[SI] Initializing Super Intelligence Core...");
-    Serial.printf("[SI] Model loaded: %u scenarios simulated\n", _model.simulation_scenarios);
-    Serial.printf("[SI] Fault detection accuracy: %.1f%%\n", _model.fault_detection_accuracy * 100.0f);
+    Serial.printf("[SI] Control model revision: %lu\n", (unsigned long)_model.calibration_revision);
     
     if (checkPhysicalResetPin()) {
         Serial.println("[SI] WARNING: FACTORY RESET PIN DETECTED!");
@@ -376,8 +375,8 @@ uint16_t SuperIntelligence::detectFaults(const SI_Context &ctx) {
 // ============================================================================
 void SuperIntelligence::handleEmergency(SI_Context &ctx) {
     Serial.println("[SI] EMERGENCY MODE ACTIVATED!");
-    
-    ctx.output_pwm = applyRampRate(0.0f, ctx.output_pwm, 10.0f);
+
+    ctx.output_pwm = 100.0f;
     ctx.operation_mode = 3;
     
     Serial.printf("[SI] Risk: %.2f, Temp: %.1fC, Faults: 0x%04X\n", 
@@ -388,6 +387,9 @@ void SuperIntelligence::handleEmergency(SI_Context &ctx) {
 // CHECK PHYSICAL RESET PIN
 // ============================================================================
 bool SuperIntelligence::checkPhysicalResetPin() {
+#if SC_FACTORY_ENABLE_NVS_ERASE_RESET != 1
+    return false;
+#else
     pinMode(FACTORY_RESET_PIN, INPUT_PULLUP);
     delay(10);
     
@@ -396,12 +398,17 @@ bool SuperIntelligence::checkPhysicalResetPin() {
     }
     
     return false;
+#endif
 }
 
 // ============================================================================
 // PERFORM FACTORY RESET
 // ============================================================================
 void SuperIntelligence::performFactoryReset() {
+#if SC_FACTORY_ENABLE_NVS_ERASE_RESET != 1
+    Serial.println("[SI] NVS erase reset is disabled in this V2 release.");
+    return;
+#else
     Serial.println("[SI] Performing Factory Reset...");
     
     esp_err_t err = nvs_flash_erase();
@@ -414,6 +421,7 @@ void SuperIntelligence::performFactoryReset() {
     Serial.println("[SI] System will reboot with factory defaults");
     delay(2000);
     esp_restart();
+#endif
 }
 
 // ============================================================================
