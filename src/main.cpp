@@ -22,11 +22,34 @@
  * Target: ESP32-S3 Super Mini HW-747
  */
 
-// Pinout
+// Pinout - Dynamic based on factory config
+// NTC and ECU are fixed pins for all configurations
 #define PIN_NTC SC_FACTORY_PIN_NTC
-#define PIN_SSR SC_FACTORY_PIN_SSR
-#define PIN_PWM SC_FACTORY_PIN_PWM
 #define PIN_ECU SC_FACTORY_PIN_ECU
+
+// Pump output: SSR (digital) or PWM (analog speed control)
+#if SC_FACTORY_PUMP_TYPE == SC_FACTORY_PUMP_TYPE_PWM
+  #define PIN_PUMP_PWM SC_FACTORY_PIN_PUMP_PWM
+  #define PIN_PUMP_SSR -1
+#else
+  #define PIN_PUMP_PWM -1
+  #define PIN_PUMP_SSR SC_FACTORY_PIN_PUMP_SSR
+#endif
+
+// Fan output: SSR (digital) or PWM (analog speed control)  
+#if SC_FACTORY_FAN_TYPE == SC_FACTORY_FAN_TYPE_PWM
+  #define PIN_FAN_PWM SC_FACTORY_PIN_FAN_PWM
+  #define PIN_FAN_SSR -1
+#else
+  #define PIN_FAN_PWM -1
+  #define PIN_FAN_SSR SC_FACTORY_PIN_FAN_SSR
+#endif
+
+// Legacy compatibility aliases for existing code
+// PIN_SSR = pump SSR pin (use PIN_PUMP_SSR in new code)
+// PIN_PWM = fan PWM pin (use PIN_FAN_PWM in new code)
+#define PIN_SSR PIN_PUMP_SSR
+#define PIN_PWM PIN_FAN_PWM
 
 // Timing and output
 #define TICK_MS SC_FACTORY_TICK_MS
@@ -1366,9 +1389,18 @@ String makeToken() {
 }
 
 String boardSerial() {
+  // Format: VVMMYYK#### (Versi, Bulan, Tahun, Kod Spec, Nombor Urut)
+  // Contoh: 010626K0001 = Versi 01, Jun 2026, Kod K, Urutan 0001
   uint64_t mac = ESP.getEfuseMac();
+  uint16_t version = 1;  // Versi firmware/hardware
+  uint8_t month = 6;     // Bulan (contoh: Jun)
+  uint8_t year = 26;     // Tahun (contoh: 2026)
+  char specCode = 'K';   // Kod spec (boleh diubah mengikut konfigurasi)
+  uint32_t seqNum = (uint32_t)(mac & 0xFFFF);  // Nombor urutan dari MAC
+  
   char buf[24];
-  snprintf(buf, sizeof(buf), "SC-%04X%08X", (uint16_t)(mac >> 32), (uint32_t)mac);
+  snprintf(buf, sizeof(buf), "%02u%02u%02u%c%04u", 
+           version, month, year, specCode, seqNum % 10000);
   return String(buf);
 }
 

@@ -15,6 +15,8 @@ untuk ESP32-S3 Super Mini HW-747.
 | Kata laluan WebApp lalai | `12345678` |
 | PIN pemulihan lalai | `747747` |
 | Profil kilang firmware | `super_mini_esp32_s3_hw747` |
+| Format Nombor Siri | VVMMYYK#### (Versi, Bulan, Tahun, Kod, Urut) |
+| Contoh Nombor Siri | `010626K0001` = Versi 01, Jun 2026, Kod K, Urutan 0001 |
 
 Gunakan domain `http://smartcooling.local/` sahaja. Firmware menolak akses WebApp
 melalui IP supaya tabiat penggunaan kekal konsisten dan lebih mudah disokong.
@@ -34,7 +36,33 @@ SmartCooling terdiri daripada:
 - Output SSR untuk pam EWP.
 - Output PWM untuk kipas radiator.
 - Input ECU 3.3 V yang selamat melalui level shifter atau divider.
+- Pilihan sensor persekitaran (BME280, AHT30, BMP280, BMP180).
+- Pilihan Micro SD Card untuk simpan log terperinci.
 - Dokumen pengguna dan dokumen pembangun.
+
+## Konfigurasi Kilang (Untuk Pembangun)
+
+Sebelum flash firmware, pembangun WAJIB memilih konfigurasi berikut dalam 
+`include/factory_config.h`:
+
+### 1. Jenis Pam
+- **SSR (0)**: On/Off lembut menggunakan relay/SSR
+- **PWM (1)**: Kawalan kelajuan menggunakan isyarat PWM
+
+### 2. Jenis Kipas
+- **SSR (0)**: On/Off menggunakan relay/SSR
+- **PWM (1)**: Kawalan kelajuan menggunakan isyarat PWM
+
+### 3. Sensor Persekitaran (Pilihan)
+- **TIADA (0)**: Tanpa sensor tambahan
+- **BME280 (1)**: Suhu, kelembapan, tekanan
+- **AHT30 (2)**: Suhu, kelembapan
+- **BMP280 (3)**: Suhu, tekanan
+- **BMP180 (4)**: Suhu, tekanan
+
+### 4. Micro SD Card
+- **Tidak Aktif (0)**: Log disimpan dalam memori sementara sahaja
+- **Aktif (1)**: Log terperinci dan data latihan SI disimpan ke SD card
 
 ## Sambungan Wi-Fi
 
