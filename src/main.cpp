@@ -3,7 +3,6 @@
 #include "factory_config.h"
 #include "si_core.h"
 #include "si_sentinel.h"
-#include "data_logger.h"
 
 #include <Arduino.h>
 #include <ArduinoJson.h>

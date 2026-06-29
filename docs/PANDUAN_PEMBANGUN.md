@@ -136,38 +136,51 @@ semakan dokumen, dan build bersih. Gate `tools/verify_release.py` akan
 menolak perubahan yang mengalihkan pin HW-747, menukar PIN recovery, atau
 menukar AP V2 kepada AP berpassword.
 
-### 4. Ketahanan Kuasa RTC Memory
+### 4. Diagnostik RTC Memory
 
-Sistem menggunakan RTC Memory untuk menyimpan keadaan operasi:
+Firmware menggunakan RTC slow memory untuk menyimpan diagnostik ringkas semasa
+warm reset dan beberapa keadaan brownout. Ia bukan storan konfigurasi utama dan
+bukan pengganti perlindungan bekalan kuasa fizikal.
 
 ```c
 typedef struct {
-    uint32_t magic;           // Magic number untuk validasi
-    uint32_t version;         // Versi struktur
-    system_state_t state;     // Keadaan sistem terakhir
-    uint32_t boot_counter;    // Boot counter RTC
-    uint32_t checksum;        // CRC16 checksum
+    uint32_t magic;
+    uint16_t version;
+    uint16_t checksum;
+    uint32_t uptime_ms;
+    uint32_t boot_counter;
+    uint8_t last_mode;
+    uint8_t safety_state;
+    int8_t last_target_c;
+    float last_temp_c;
+    float last_pred_temp;
+    float risk_score;
+    uint32_t faults;
+    uint32_t sequence;
+    uint8_t event_head;
 } RtcState;
 
 RTC_DATA_ATTR static RtcState rtc_state;
 ```
 
 **Ciri-ciri:**
-- Auto-save setiap 500ms ke RTC memory (non-blocking)
-- Checksum CRC16 untuk validasi integriti data
-- Recovery automatik semasa boot jika data valid
-- Boot counter berasingan dari NVS untuk ketahanan brownout
-- Buffer 8 peristiwa terakhir disimpan dalam RTC
-- Struktur 512 bytes dalam RTC_DATA_ATTR
+- Auto-save berkala setiap `RTC_SAVE_INTERVAL_MS` atau 5 saat.
+- Checksum CRC16 untuk validasi integriti data.
+- Boot counter RTC untuk diagnostik reset.
+- Status dipaparkan melalui field `rtc_boot_count` dan `rtc_recovered`.
+- Jika data RTC tidak sah, firmware menggunakan default selamat.
 
 **Proses Recovery:**
-1. Boot semula dan semak magic number & checksum
-2. Jika valid, pulihkan keadaan terakhir (mode, setpoint, output, dll.)
-3. Jika invalid, gunakan default selamat dan catat fault `FAULT_CONFIG_RECOVERED`
-4. Laporkan status recovery dalam diagnostik (`rtc_recovery_count`)
+1. Boot semula dan semak magic word, versi struktur, dan checksum.
+2. Jika valid, pulihkan diagnostik terakhir seperti mode, suhu, ramalan, fault,
+   safety state, dan sequence.
+3. Jika invalid, kekalkan konfigurasi NVS/default yang selamat dan catat fault
+   `FAULT_CONFIG_RECOVERED`.
+4. Laporkan status recovery dalam diagnostik WebApp.
 
-Ini memastikan sistem boleh beroperasi semula dengan cepat selepas gangguan
-kuasa tanpa kehilangan konfigurasi penting atau keadaan operasi.
+Untuk kehilangan kuasa sebenar, reka bentuk hardware masih perlu menyediakan
+perlindungan berasingan seperti bekalan stabil, fius, driver output yang sesuai,
+dan wiring yang disahkan.
 
 ### 5. Nombor Siri Automatik
 
@@ -184,7 +197,7 @@ String generateSerialNumber() {
 }
 ```
 
-**Contoh:** `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
+**Rujukan format:** `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
 
 **Penjanaan Automatik:**
 - Berdasarkan tarikh compilation firmware (`__DATE__`, `__TIME__`)

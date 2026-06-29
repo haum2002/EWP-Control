@@ -282,25 +282,25 @@ SmartCooling SI menapis bacaan NTC dengan beberapa sampel ADC dan mengabaikan
 spike yang tidak munasabah. Jika bacaan sensor tiba-tiba jatuh secara palsu dan
 berulang, firmware akan menganggapnya sebagai fault dan memaksa output selamat.
 
-### Ketahanan Kuasa RTC Memory
+### Diagnostik RTC Memory
 
-Sistem menggunakan RTC Memory untuk menyimpan keadaan operasi setiap 500ms:
+Firmware menyimpan diagnostik ringkas ke RTC Memory secara berkala:
 
-- **Struktur Data**: 512 bytes dalam RTC_DATA_ATTR
-- **Auto-Save**: Setiap masa ke RTC memory (non-blocking)
-- **Checksum**: CRC16 validation untuk integriti data
-- **Recovery**: Pemulihan automatik semasa boot jika data valid
-- **Boot Counter**: Berasingan dari NVS untuk ketahanan brownout
-- **Event Buffer**: 8 peristiwa terakhir disimpan dalam RTC
+- **Auto-save**: Setiap 5 saat.
+- **Checksum**: CRC16 untuk mengesan data rosak.
+- **Boot counter**: Membantu mengenal pasti reset berulang.
+- **Recovery diagnostik**: Mode terakhir, suhu terakhir, ramalan suhu, fault,
+  safety state, dan sequence boleh dipulihkan jika data RTC masih sah.
 
-Jika kuasa terputus secara tiba-tiba, sistem akan:
-1. Boot semula dan semak checksum RTC
-2. Jika valid, pulihkan keadaan terakhir (mode, setpoint, dll.)
-3. Jika invalid, gunakan default selamat dan catat fault
-4. Laporkan status recovery dalam diagnostik
+Jika board reset atau mengalami brownout, sistem akan:
+1. Boot semula dan semak magic word, versi struktur, dan checksum RTC.
+2. Jika valid, pulihkan diagnostik terakhir.
+3. Jika invalid, gunakan keadaan selamat dan catat fault.
+4. Paparkan status melalui diagnostik WebApp.
 
-Ini memastikan sistem boleh beroperasi semula dengan cepat selepas gangguan
-kuasa tanpa kehilangan konfigurasi penting atau keadaan operasi.
+Nota penting: RTC Memory bukan perlindungan penuh untuk kehilangan kuasa sebenar.
+Sistem penyejukan yang kritikal masih memerlukan bekalan kuasa stabil, fius,
+driver pam/kipas yang sesuai, sensor yang disahkan, dan wiring yang kemas.
 
 ### Nombor Siri Automatik
 
@@ -312,7 +312,7 @@ Setiap board mempunyai nombor siri unik format `VVMMYYK####`:
 - **K**: Kod spec (1 huruf)
 - **####**: Nombor urut unit (4 digit)
 
-Contoh: `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
+Rujukan format: `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
 
 Nombor siri dijana automatik berdasarkan:
 - Tarikh compilation firmware

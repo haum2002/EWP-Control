@@ -2,136 +2,678 @@
 <html lang="ms" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="color-scheme" content="dark light">
 <title>SmartCooling v2</title>
 <style>
-:root{--bg:#0f172a;--panel:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--blue:#3b82f6;--cyan:#06b6d4;--green:#22c55e;--yellow:#f59e0b;--red:#ef4444;--r:16px}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);color:var(--text);min-height:100vh}
+:root{
+  --bg:#0b1120;--bg2:#111827;--panel:#172033;--panel2:#1f2a44;--card:#131c2f;
+  --text:#f8fafc;--muted:#a8b3c7;--soft:#d9e2f2;--line:#334155;--line2:#4b5d78;
+  --blue:#3b82f6;--cyan:#06b6d4;--green:#22c55e;--yellow:#f59e0b;--red:#ef4444;
+  --shadow:0 22px 60px rgba(0,0,0,.36);--r:18px;--rs:11px;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+[data-theme=light]{
+  --bg:#f8fafc;--bg2:#e8eef7;--panel:#ffffff;--panel2:#eef4fb;--card:#ffffff;
+  --text:#0f172a;--muted:#475569;--soft:#1e293b;--line:#d2dce8;--line2:#a9b8cc;
+  --blue:#1d4ed8;--cyan:#047a9c;--green:#15803d;--yellow:#a16207;--red:#b91c1c;
+  --shadow:0 18px 42px rgba(15,23,42,.12);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font:14px/1.55 var(--sans);background:var(--bg);color:var(--text)}
+body{background:radial-gradient(circle at top left,color-mix(in srgb,var(--blue) 22%,transparent),transparent 34%),linear-gradient(135deg,var(--bg),var(--bg2));min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer}
 .hidden{display:none!important}
-.btn{padding:10px 16px;border-radius:10px;border:0;background:var(--blue);color:#fff;font-weight:600;cursor:pointer}
-.btn.primary{background:linear-gradient(135deg,var(--blue),var(--cyan))}
-.btn.danger{background:rgba(239,68,68,.2);color:var(--red)}
-.input{width:100%;padding:10px;border-radius:10px;border:1px solid #334155;background:#1e293b;color:var(--text)}
-.card{background:rgba(255,255,255,.05);border-radius:var(--r);padding:16px;border:1px solid #334155}
+.mono{font-family:var(--mono)}
+.hint,.muted{color:var(--muted)}
+.small{font-size:.82rem}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.right{justify-content:flex-end}
+.grid{display:grid;gap:14px}
+.btn{border:1px solid var(--line2);background:var(--panel2);color:var(--text);border-radius:var(--rs);padding:10px 14px;font-weight:750;transition:transform .16s,filter .16s,border-color .16s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.primary{border:0;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff}
+.danger{background:color-mix(in srgb,var(--red) 12%,var(--panel));border-color:color-mix(in srgb,var(--red) 45%,var(--line));color:var(--red)}
+.ghost{background:transparent}
+.input,select{width:100%;background:var(--panel2);border:1px solid var(--line2);border-radius:var(--rs);color:var(--text);padding:10px 11px;outline:0}
+.input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 22%,transparent)}
+label{font-weight:750;font-size:.84rem;color:var(--soft)}
+.field{display:grid;gap:5px}
+.card{border:1px solid var(--line);border-radius:var(--r);background:color-mix(in srgb,var(--card) 88%,transparent);box-shadow:var(--shadow);padding:16px;min-width:0}
+.chip,.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line2);border-radius:999px;padding:5px 10px;background:color-mix(in srgb,var(--panel2) 82%,transparent);font-size:.76rem;font-weight:800}
+.good{color:var(--green);border-color:color-mix(in srgb,var(--green) 45%,var(--line));background:color-mix(in srgb,var(--green) 12%,transparent)}
+.warn{color:var(--yellow);border-color:color-mix(in srgb,var(--yellow) 45%,var(--line));background:color-mix(in srgb,var(--yellow) 12%,transparent)}
+.bad{color:var(--red);border-color:color-mix(in srgb,var(--red) 45%,var(--line));background:color-mix(in srgb,var(--red) 12%,transparent)}
 .auth{min-height:100vh;display:grid;place-items:center;padding:20px}
-.authCard{width:min(380px,100%);background:var(--panel);border-radius:22px;padding:26px;border:1px solid #334155}
-.mark{width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;display:grid;place-items:center;font-weight:900;margin:0 auto 12px}
-.sideNav{position:fixed;top:0;left:0;width:260px;height:100vh;background:var(--panel);border-right:1px solid #334155;transform:translateX(-100%);transition:transform .25s;z-index:50}
-.sideNav.active{transform:translateX(0)}
-.hamburgerBtn{width:40px;height:40px;border:0;background:#334155;border-radius:11px;display:grid;place-items:center;cursor:pointer}
-.header{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px;padding:12px;background:var(--panel);border-radius:var(--r)}
-.dashGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:12px}
-.statCard{background:rgba(255,255,255,.05);border-radius:var(--r);padding:14px;border:1px solid #334155}
-.statCard .label{font-size:.65rem;color:var(--muted);text-transform:uppercase}
-.statCard .value{font:800 1.6rem monospace;margin:5px 0}
-.nav button{width:100%;padding:10px;text-align:left;background:transparent;border:0;color:var(--muted);cursor:pointer}
-.nav button.active{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border-radius:10px}
-.rgbIndicator{width:14px;height:14px;border-radius:50%;background:#ccc;box-shadow:0 0 5px rgba(0,0,0,.3);transition:background .5s ease,box-shadow .5s ease}
-.rgbIndicator.ok{background:var(--green);box-shadow:0 0 10px var(--green)}
-.rgbIndicator.warn{background:var(--yellow);box-shadow:0 0 10px var(--yellow)}
-.rgbIndicator.fault{background:var(--red);box-shadow:0 0 12px var(--red);animation:pulseRgb 1s infinite}
-@keyframes pulseRgb{0%,100%{opacity:1}50%{opacity:.5}}
-.statusDot{width:7px;height:7px;border-radius:50%;background:var(--green)}
-.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:7px;background:rgba(255,255,255,.05);font-size:.65rem}
+.authCard{width:min(440px,100%);background:var(--panel);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:28px}
+.mark{width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;display:grid;place-items:center;font-weight:950;font-size:1.3rem;margin:0 auto 15px}
+.authHeader{text-align:center;margin-bottom:20px}
+.authHeader h1{margin:0 0 5px;font-size:1.45rem;letter-spacing:-.03em}
+.authHeader p{margin:0;color:var(--muted)}
+.authFooter{margin-top:18px;text-align:center;font-size:.78rem;color:var(--muted)}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+.side{position:sticky;top:0;height:100vh;padding:16px;border-right:1px solid var(--line);background:color-mix(in srgb,var(--panel) 94%,transparent);display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.brand .mark{width:42px;height:42px;border-radius:13px;font-size:1rem;margin:0}
+.brand b{display:block}.brand span{font-size:.76rem;color:var(--muted)}
+.nav{display:grid;gap:6px;align-content:start;flex:1}
+.nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:10px 12px;border-radius:11px;font-weight:800;transition:.15s}
+.nav button:hover{background:var(--panel2);color:var(--text)}
+.nav button.active{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff}
+.sideFoot{border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+.main{padding:16px 20px 82px;min-width:0}
+.top{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.top h2{margin:0;font-size:1.28rem}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.view{display:none;animation:fade .18s}.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.statGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:14px}
+.stat{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:16px}
+.stat .label{font-size:.72rem;color:var(--muted);font-weight:850;text-transform:uppercase;letter-spacing:.05em}
+.stat .value{font:900 1.9rem var(--mono);margin:5px 0}
+.stat.temp .value{color:var(--cyan)}.stat.pump .value{color:var(--blue)}.stat.fan .value{color:var(--green)}.stat.risk .value{color:var(--yellow)}
+.split{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+.formGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.manualGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stepBox{border:1px solid var(--line);border-radius:12px;padding:10px;background:color-mix(in srgb,var(--panel2) 58%,transparent)}
+canvas{display:block;width:100%;height:230px;border-radius:14px;background:color-mix(in srgb,var(--panel2) 58%,transparent)}
+pre{white-space:pre-wrap;word-break:break-word;background:color-mix(in srgb,#000 22%,transparent);border-radius:12px;padding:12px;max-height:46vh;overflow:auto;font-size:.82rem}
+.logList{display:grid;gap:8px;max-height:46vh;overflow:auto}
+.logItem{border:1px solid var(--line);border-radius:12px;padding:10px;background:color-mix(in srgb,var(--panel2) 60%,transparent)}
+.bottomNav{display:none;position:fixed;z-index:30;left:0;right:0;bottom:0;gap:5px;overflow-x:auto;padding:8px;background:var(--panel);border-top:1px solid var(--line)}
+.bottomNav button{flex:0 0 auto;border:0;border-radius:11px;padding:9px 13px;background:var(--panel2);color:var(--muted);font-weight:850}
+.bottomNav button.active{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff}
+.toastHost{position:fixed;right:16px;bottom:16px;z-index:80;display:grid;gap:8px}
+.toast{max-width:380px;border:1px solid var(--line2);border-radius:13px;background:var(--panel);box-shadow:var(--shadow);padding:12px 14px}
+.banner{position:fixed;z-index:90;top:0;left:0;right:0;text-align:center;padding:10px;background:var(--red);color:#fff;font-weight:850}
+.recoveryPanel{border-color:color-mix(in srgb,var(--yellow) 50%,var(--line))}
+@media(max-width:1024px){.layout{display:block}.side{display:none}.bottomNav{display:flex}.statGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}}
+@media(max-width:560px){.authCard{padding:22px}.main{padding:12px 12px 76px}.statGrid{grid-template-columns:1fr}.stat .value{font-size:1.55rem}.card{padding:13px}.top{align-items:flex-start;flex-direction:column}.chips{justify-content:flex-start}canvas{height:190px}}
 </style>
 </head>
 <body>
-<div id="sideNav" class="sideNav">
-  <div style="padding:16px;border-bottom:1px solid #334155;display:flex;align-items:center;gap:10px">
-    <div class="mark">SC</div>
-    <div><b>SmartCooling</b><br><span style="font-size:.65rem;color:var(--muted)">v2.0</span></div>
-  </div>
-  <nav class="nav" style="padding:10px" id="navMenu"></nav>
-  <div style="padding:12px;border-top:1px solid #334155">
-    <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;padding:7px;background:rgba(255,255,255,.03);border-radius:9px">
-      <div class="rgbIndicator" id="rgbLed"></div>
-      <span style="font-size:.7rem;color:var(--muted)" id="rgbLabel">Normal</span>
-    </div>
-    <button class="btn danger" style="width:100%" onclick="logout()">Log Keluar</button>
-  </div>
-</div>
+<div id="toastHost" class="toastHost"></div>
+<div id="connBanner" class="banner hidden" role="alert"></div>
 
 <section id="authScreen" class="auth">
   <div class="authCard">
-    <div style="text-align:center;margin-bottom:18px">
+    <div class="authHeader">
       <div class="mark">SC</div>
-      <h1 style="font-size:1.3rem;margin:0 0 4px">SmartCooling v2</h1>
-      <p style="color:var(--muted);font-size:.8rem">Sistem kawalan pintar</p>
+      <h1 data-i18n="auth.title">SmartCooling v2</h1>
+      <p data-i18n="auth.subtitle">Kawalan penyejukan pintar melalui domain tempatan.</p>
     </div>
-    <form id="loginForm">
-      <label style="display:block;margin-bottom:11px"><span>Kata laluan</span><input id="loginPass" class="input" type="password"></label>
-      <button class="btn primary" style="width:100%">Masuk</button>
-      <div style="display:flex;gap:7px;margin-top:5px">
-        <button type="button" class="btn" style="flex:1;background:transparent;color:var(--muted)" onclick="toggleTheme()">Tema</button>
-        <button type="button" class="btn" style="flex:1;background:transparent;color:var(--muted)" onclick="toggleLang()">BM/EN</button>
+    <form id="loginForm" class="grid">
+      <div id="loginPanel" class="grid">
+        <label class="field"><span data-i18n="auth.password">Kata laluan WebApp</span><input id="loginPass" class="input" type="password" autocomplete="current-password"></label>
+        <button class="btn primary" data-i18n="auth.enter">Masuk</button>
+        <button id="forgotBtn" type="button" class="btn ghost" data-i18n="auth.forgot">Lupa kata laluan?</button>
+      </div>
+      <div id="recoveryPanel" class="card recoveryPanel hidden">
+        <h3 data-i18n="recovery.title">Pemulihan kata laluan</h3>
+        <p class="hint" data-i18n="recovery.hint">Masukkan PIN pemulihan dan kata laluan baharu.</p>
+        <label class="field"><span data-i18n="recovery.pin">PIN pemulihan</span><input id="recPin" class="input" inputmode="numeric" autocomplete="one-time-code"></label>
+        <label class="field"><span data-i18n="recovery.password">Kata laluan baharu</span><input id="recPass" class="input" type="password" autocomplete="new-password"></label>
+        <div class="row">
+          <button id="recoverBtn" type="button" class="btn primary" data-i18n="recovery.reset">Tetapkan Semula</button>
+          <button id="cancelRecoveryBtn" type="button" class="btn" data-i18n="recovery.cancel">Batal</button>
+        </div>
+      </div>
+      <p id="loginMsg" class="hint small"></p>
+      <div class="row between">
+        <button type="button" class="btn ghost" data-act="theme" data-i18n="action.theme">Tema</button>
+        <button type="button" class="btn ghost" data-act="lang" data-i18n="action.lang">BM / EN</button>
       </div>
     </form>
-    <div style="margin-top:16px;text-align:center;font-size:.7rem;color:var(--muted);display:flex;justify-content:center;gap:10px">
+    <div class="authFooter">
       <span class="mono" id="serialLogin">SN: --</span>
-      <span class="chip">v2.0</span>
     </div>
   </div>
 </section>
 
-<section id="appScreen" class="hidden">
-  <main style="padding:14px;transition:margin-left .25s" id="mainContent">
-    <header class="header">
-      <div style="display:flex;align-items:center;gap:10px">
-        <button class="hamburgerBtn" onclick="toggleMenu()"><div style="width:18px;height:12px;display:flex;flex-direction:column;justify-content:space-between"><i style="width:100%;height:2px;background:#fff"></i><i style="width:100%;height:2px;background:#fff"></i><i style="width:100%;height:2px;background:#fff"></i></div></button>
-        <div><h2 id="pageTitle" style="font-size:1rem;margin:0">Dashboard</h2><div style="font-size:.7rem;color:var(--muted)">smartcooling.local</div></div>
+<section id="appScreen" class="layout hidden">
+  <aside class="side">
+    <div class="brand">
+      <div class="mark">SC</div>
+      <div><b>SmartCooling</b><span>v2</span></div>
+    </div>
+    <nav id="sideNav" class="nav" aria-label="Navigation"></nav>
+    <div class="sideFoot">
+      <div id="sideStatus" class="hint mono small">--</div>
+      <div class="row" style="margin:10px 0">
+        <span id="safeLed" class="pill">--</span>
       </div>
-      <div style="display:flex;gap:5px;flex-wrap:wrap">
-        <span class="chip"><span class="statusDot"></span>AP</span>
-        <span class="chip" id="chipMode">Mod: Auto</span>
-        <span class="chip"><span class="statusDot"></span>OK</span>
+      <button class="btn danger" style="width:100%" data-act="logout" data-i18n="action.logout">Log keluar</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div>
+        <h2 id="pageTitle" data-i18n="nav.dashboard">Papan pemuka</h2>
+        <div id="topSub" class="hint">smartcooling.local</div>
+      </div>
+      <div class="chips">
+        <span id="chipAp" class="chip warn">AP --</span>
+        <span id="chipConn" class="chip warn">WS --</span>
+        <span id="chipSafety" class="chip warn">--</span>
+        <span id="chipClients" class="chip">0</span>
       </div>
     </header>
 
     <section id="view-dashboard" class="view active">
-      <div class="dashGrid">
-        <div class="statCard"><div class="label">Suhu Target C</div><div class="value" id="mTemp">--°C</div><div style="font-size:.7rem;color:var(--muted)" id="mTempSub">--</div></div>
-        <div class="statCard"><div class="label">Output Pam %</div><div class="value" id="mPump">--%</div><div style="font-size:.7rem;color:var(--muted)" id="mPumpSub">--</div></div>
-        <div class="statCard"><div class="label">Output Kipas %</div><div class="value" id="mFan">--%</div><div style="font-size:.7rem;color:var(--muted)" id="mFanSub">--</div></div>
-        <div class="statCard"><div class="label">Voltan Bateri</div><div class="value" id="mBatt">--V</div><div style="font-size:.7rem;color:var(--muted)" id="mBattSub">--</div></div>
+      <div class="statGrid">
+        <div class="stat temp"><div class="label" data-i18n="metric.temp">Suhu</div><div id="mTemp" class="value">--</div><div id="mTempSub" class="hint small">--</div></div>
+        <div class="stat pump"><div class="label" data-i18n="metric.pump">Pam</div><div id="mPump" class="value">--</div><div id="mPumpSub" class="hint small">--</div></div>
+        <div class="stat fan"><div class="label" data-i18n="metric.fan">Kipas</div><div id="mFan" class="value">--</div><div id="mFanSub" class="hint small">--</div></div>
+        <div class="stat risk"><div class="label" data-i18n="metric.risk">Risiko</div><div id="mRisk" class="value">--</div><div id="mRiskSub" class="hint small">--</div></div>
       </div>
-      <div class="card" style="margin-top:12px"><h3>Telemetri Langsung</h3><canvas id="trendCanvas" style="width:100%;height:200px;margin-top:10px"></canvas></div>
+      <div class="split">
+        <div class="card">
+          <div class="row between"><h3 data-i18n="dashboard.trend">Trend operasi</h3><span id="qualityPill" class="pill">--</span></div>
+          <canvas id="trendCanvas" width="900" height="260"></canvas>
+        </div>
+        <div class="card">
+          <h3 data-i18n="dashboard.health">Kesihatan sistem</h3>
+          <div id="healthList" class="grid small"></div>
+        </div>
+      </div>
     </section>
 
-    <section id="view-control" class="view hidden">
-      <div class="card"><h3>Kawalan Operasi</h3><div id="controlForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px;margin-top:12px"></div></div>
+    <section id="view-control" class="view">
+      <div class="card">
+        <div class="row between"><h3 data-i18n="control.title">Kawalan operasi</h3><button id="reloadCfgBtn" class="btn" data-i18n="action.reload">Muat semula</button></div>
+        <div id="controlForm" class="formGrid"></div>
+        <div class="row right" style="margin-top:14px">
+          <button id="previewBtn" class="btn primary" data-i18n="action.preview">Pratonton</button>
+          <button id="saveBtn" class="btn" data-i18n="action.save">Simpan</button>
+        </div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h3 data-i18n="control.manual">Lengkung manual</h3>
+        <div id="manualForm" class="manualGrid"></div>
+      </div>
     </section>
 
-    <section id="view-safety" class="view hidden">
-      <div class="card"><h3>Keselamatan & Had</h3><div id="safetyForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px;margin-top:12px"></div></div>
+    <section id="view-safety" class="view">
+      <div class="card">
+        <h3 data-i18n="safety.title">Keselamatan dan had</h3>
+        <div id="safetyForm" class="formGrid"></div>
+      </div>
     </section>
 
-    <section id="view-settings" class="view hidden">
-      <div class="card"><h3>Tetapan</h3><div style="margin-top:12px"><label><span>PIN Unik</span><input class="input" type="password" id="webPin"></label><label style="display:block;margin-top:9px"><span>Kata Laluan Baharu</span><input class="input" type="password" id="webPass"></label><button class="btn primary" style="width:100%;margin-top:12px" onclick="changePass()">Tukar Kata Laluan</button></div></div>
+    <section id="view-settings" class="view">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div class="card">
+          <h3 data-i18n="settings.identity">Identiti board</h3>
+          <div id="identityList" class="grid small"></div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="settings.password">Tukar kata laluan</h3>
+          <label class="field"><span data-i18n="settings.newpass">Kata laluan baharu</span><input id="newPass" class="input" type="password" autocomplete="new-password"></label>
+          <button id="changePassBtn" class="btn primary" style="margin-top:12px" data-i18n="settings.applypass">Tukar kata laluan</button>
+        </div>
+        <div class="card">
+          <h3 data-i18n="settings.ota">OTA firmware</h3>
+          <input id="otaFile" class="input" type="file" accept=".bin">
+          <button id="otaBtn" class="btn" style="margin-top:12px" data-i18n="settings.upload">Muat naik OTA</button>
+        </div>
+        <div class="card">
+          <h3 data-i18n="settings.system">Sistem</h3>
+          <button id="rebootBtn" class="btn danger" data-i18n="settings.reboot">Mulakan semula board</button>
+        </div>
+      </div>
     </section>
 
-    <section id="view-diagnostics" class="view hidden">
-      <div class="card"><h3>Diagnostik & Log</h3><pre id="diagDump" style="background:rgba(0,0,0,.2);border-radius:10px;padding:10px;margin-top:10px;max-height:30vh;overflow:auto;font-size:.75rem">{}</pre></div>
+    <section id="view-diagnostics" class="view">
+      <div class="split">
+        <div class="card">
+          <div class="row between"><h3 data-i18n="diag.title">Diagnostik</h3><button id="refreshDiagBtn" class="btn" data-i18n="action.refresh">Segar semula</button></div>
+          <pre id="diagDump">{}</pre>
+        </div>
+        <div class="card">
+          <h3 data-i18n="diag.events">Log peristiwa</h3>
+          <div id="eventList" class="logList"></div>
+        </div>
+      </div>
     </section>
   </main>
 </section>
 
+<nav id="bottomNav" class="bottomNav" aria-label="Mobile navigation"></nav>
+
 <script>
+const ROUTES=__SMARTCOOLING_ROUTES__;
+const I18N = {
+ms:{
+"auth.title":"SmartCooling v2",
+"auth.subtitle":"Kawalan penyejukan pintar melalui domain tempatan.",
+"auth.password":"Kata laluan WebApp",
+"auth.enter":"Masuk",
+"auth.forgot":"Lupa kata laluan?",
+"recovery.title":"Pemulihan kata laluan",
+"recovery.hint":"Masukkan PIN pemulihan dan kata laluan baharu.",
+"recovery.pin":"PIN pemulihan",
+"recovery.password":"Kata laluan baharu",
+"recovery.reset":"Tetapkan Semula",
+"recovery.cancel":"Batal",
+"action.theme":"Tema",
+"action.lang":"BM / EN",
+"action.logout":"Log keluar",
+"action.reload":"Muat semula",
+"action.preview":"Pratonton",
+"action.save":"Simpan",
+"action.refresh":"Segar semula",
+"nav.dashboard":"Papan pemuka",
+"nav.control":"Kawalan",
+"nav.safety":"Keselamatan",
+"nav.settings":"Tetapan",
+"nav.diagnostics":"Diagnostik",
+"metric.temp":"Suhu",
+"metric.pump":"Pam",
+"metric.fan":"Kipas",
+"metric.risk":"Risiko",
+"dashboard.trend":"Trend operasi",
+"dashboard.health":"Kesihatan sistem",
+"control.title":"Kawalan operasi",
+"control.manual":"Lengkung manual",
+"safety.title":"Keselamatan dan had",
+"settings.identity":"Identiti board",
+"settings.password":"Tukar kata laluan",
+"settings.newpass":"Kata laluan baharu",
+"settings.applypass":"Tukar kata laluan",
+"settings.ota":"OTA firmware",
+"settings.upload":"Muat naik OTA",
+"settings.system":"Sistem",
+"settings.reboot":"Mulakan semula board",
+"diag.title":"Diagnostik",
+"diag.events":"Log peristiwa",
+"msg.loading":"Memuatkan data.",
+"msg.login_failed":"Log masuk gagal.",
+"msg.locked":"Terlalu banyak cubaan. Tunggu sebentar.",
+"msg.required":"Sila lengkapkan medan diperlukan.",
+"msg.saved":"Tetapan disimpan.",
+"msg.previewed":"Pratonton dihantar.",
+"msg.password_changed":"Kata laluan ditukar. Sila log masuk semula.",
+"msg.recovered":"Kata laluan telah ditetapkan semula.",
+"msg.network":"Sambungan terganggu.",
+"msg.ota":"OTA dihantar. Board akan dimulakan semula.",
+"msg.reboot":"Arahan mula semula dihantar.",
+"msg.domain":"Gunakan http://smartcooling.local/ untuk akses rasmi.",
+"label.serial":"Nombor siri",
+"label.version":"Versi",
+"label.profile":"Profil",
+"label.hardware":"Hardware",
+"label.domain":"Domain",
+"label.ssid":"Wi-Fi AP",
+"label.ap":"Status AP",
+"label.clients":"Pelanggan",
+"label.safety":"Keselamatan",
+"label.quality":"Kualiti sensor",
+"label.prediction":"Ramalan 60s",
+"label.noise":"Noise",
+"label.boot":"Boot",
+"label.reset":"Sebab reset",
+"label.heap":"Heap bebas",
+"label.rtc":"RTC",
+"field.mode":"Mod",
+"field.force_pump":"Paksa pam",
+"field.force_fan":"Paksa kipas",
+"field.min_temp_c":"Suhu mula",
+"field.auto_target_c":"Suhu sasaran",
+"field.auto_full_c":"Suhu penuh",
+"field.slew_pct_s":"Kadar lembut",
+"field.window_s":"Tetingkap SSR",
+"field.run_on_s":"Run-on",
+"field.run_on_stop_c":"Henti run-on",
+"field.warning_temp_c":"Suhu amaran",
+"field.critical_temp_c":"Suhu kritikal",
+"field.battery_cutoff_v":"Had voltan",
+"field.low_voltage_delay_ms":"Lengah voltan rendah",
+"field.ntc_series_ohm":"NTC series ohm",
+"field.ntc_nominal_ohm":"NTC nominal ohm",
+"field.ntc_beta_k":"NTC beta",
+"field.ntc_nominal_c":"NTC nominal C",
+"field.temp_offset_c":"Offset suhu",
+"field.temp_gain":"Gain suhu"
+},
+en:{
+"auth.title":"SmartCooling v2",
+"auth.subtitle":"Smart cooling control through the local domain.",
+"auth.password":"WebApp password",
+"auth.enter":"Sign in",
+"auth.forgot":"Forgot password?",
+"recovery.title":"Password recovery",
+"recovery.hint":"Enter the recovery PIN and a new password.",
+"recovery.pin":"Recovery PIN",
+"recovery.password":"New password",
+"recovery.reset":"Reset Password",
+"recovery.cancel":"Cancel",
+"action.theme":"Theme",
+"action.lang":"MS / EN",
+"action.logout":"Log out",
+"action.reload":"Reload",
+"action.preview":"Preview",
+"action.save":"Save",
+"action.refresh":"Refresh",
+"nav.dashboard":"Dashboard",
+"nav.control":"Control",
+"nav.safety":"Safety",
+"nav.settings":"Settings",
+"nav.diagnostics":"Diagnostics",
+"metric.temp":"Temperature",
+"metric.pump":"Pump",
+"metric.fan":"Fan",
+"metric.risk":"Risk",
+"dashboard.trend":"Operation trend",
+"dashboard.health":"System health",
+"control.title":"Operation control",
+"control.manual":"Manual curve",
+"safety.title":"Safety and limits",
+"settings.identity":"Board identity",
+"settings.password":"Change password",
+"settings.newpass":"New password",
+"settings.applypass":"Change password",
+"settings.ota":"OTA firmware",
+"settings.upload":"Upload OTA",
+"settings.system":"System",
+"settings.reboot":"Restart board",
+"diag.title":"Diagnostics",
+"diag.events":"Event log",
+"msg.loading":"Loading data.",
+"msg.login_failed":"Sign in failed.",
+"msg.locked":"Too many attempts. Please wait.",
+"msg.required":"Please complete the required fields.",
+"msg.saved":"Settings saved.",
+"msg.previewed":"Preview sent.",
+"msg.password_changed":"Password changed. Please sign in again.",
+"msg.recovered":"Password has been reset.",
+"msg.network":"Connection interrupted.",
+"msg.ota":"OTA sent. The board will restart.",
+"msg.reboot":"Restart command sent.",
+"msg.domain":"Use http://smartcooling.local/ for official access.",
+"label.serial":"Serial number",
+"label.version":"Version",
+"label.profile":"Profile",
+"label.hardware":"Hardware",
+"label.domain":"Domain",
+"label.ssid":"Wi-Fi AP",
+"label.ap":"AP status",
+"label.clients":"Clients",
+"label.safety":"Safety",
+"label.quality":"Sensor quality",
+"label.prediction":"60s prediction",
+"label.noise":"Noise",
+"label.boot":"Boot",
+"label.reset":"Reset reason",
+"label.heap":"Free heap",
+"label.rtc":"RTC",
+"field.mode":"Mode",
+"field.force_pump":"Force pump",
+"field.force_fan":"Force fan",
+"field.min_temp_c":"Start temperature",
+"field.auto_target_c":"Target temperature",
+"field.auto_full_c":"Full output temperature",
+"field.slew_pct_s":"Slew rate",
+"field.window_s":"SSR window",
+"field.run_on_s":"Run-on",
+"field.run_on_stop_c":"Run-on stop",
+"field.warning_temp_c":"Warning temperature",
+"field.critical_temp_c":"Critical temperature",
+"field.battery_cutoff_v":"Voltage limit",
+"field.low_voltage_delay_ms":"Low voltage delay",
+"field.ntc_series_ohm":"NTC series ohm",
+"field.ntc_nominal_ohm":"NTC nominal ohm",
+"field.ntc_beta_k":"NTC beta",
+"field.ntc_nominal_c":"NTC nominal C",
+"field.temp_offset_c":"Temperature offset",
+"field.temp_gain":"Temperature gain"
+}
+};
 const $=id=>document.getElementById(id);
-const state={token:"",lang:"ms",theme:"dark",cfg:null,status:null,device:null,history:[],active:"dashboard",menuOpen:false};
-const t=k=>({ms:{nav_dashboard:"Dashboard",nav_control:"Kawalan",nav_safety:"Keselamatan",nav_settings:"Tetapan",nav_diagnostics:"Diagnostik",metric_temp:"Suhu",metric_pump:"Pam",metric_fan:"Kipas",label_mode:"Mod"},en:{nav_dashboard:"Dashboard",nav_control:"Control",nav_safety:"Safety",nav_settings:"Settings",nav_diagnostics:"Diagnostics",metric_temp:"Temperature",metric_pump:"Pump",metric_fan:"Fan",label_mode:"Mode"}}[state.lang][k]||k);
-const toggleMenu=()=>{state.menuOpen=!state.menuOpen;$("sideNav").classList.toggle("active",state.menuOpen)};
-const toggleTheme=()=>{state.theme=state.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=state.theme};
-const toggleLang=()=>{state.lang=state.lang==="ms"?"en":"ms";renderNav()};
-const renderNav=()=>{$("navMenu").innerHTML=[["dashboard","nav_dashboard"],["control","nav_control"],["safety","nav_safety"],["settings","nav_settings"],["diagnostics","nav_diagnostics"]].map(([v,k])=>`<button data-view="${v}" class="${state.active===v?"active":""}">${t(k)}</button>`).join("")};
-const switchView=(v)=>{state.active=v;document.querySelectorAll(".view").forEach(e=>e.classList.toggle("hidden",e.id!=="view-"+v));$("pageTitle").textContent=t("nav_"+v)||v;renderNav();if(window.innerWidth<=768)toggleMenu()};
-const logout=()=>{state.token="";$("appScreen").classList.add("hidden");$("authScreen").classList.remove("hidden")};
-const fmt=(n,d=0)=>Number.isFinite(+n)?(+n).toFixed(d):"--";
-const updateRgb=(status)=>{let rgb=$("rgbLed"),lbl=$("rgbLabel");if(!rgb)return;rgb.className="rgbIndicator";if(status==="ok"||status===0){rgb.classList.add("ok");if(lbl)lbl.textContent="Normal"}else if(status==="warn"||status===1){rgb.classList.add("warn");if(lbl)lbl.textContent="Amaran"}else{rgb.classList.add("fault");if(lbl)lbl.textContent="Kesalahan"}};
-const renderStatus=(s)=>{if(!s)return;$("mTemp").textContent=fmt(s.coolant_c,1)+" C";$("mPump").textContent=fmt(s.pump_pct||0)+"%";$("mFan").textContent=fmt(s.fan_pct||0)+"%";$("mBatt").textContent=fmt(s.battery_v||0,2)+" V";$("chipMode").textContent=t("label_mode")+": "+(["Auto","Manual","Force"][s.mode||0]||"Auto");updateRgb(s.fault||"ok")};
-$("loginForm").onsubmit=(e)=>{e.preventDefault();state.token="demo";$("authScreen").classList.add("hidden");$("appScreen").classList.remove("hidden");renderNav();setInterval(()=>{let f=Math.random()>0.9?"fault":(Math.random()>0.8?"warn":"ok");renderStatus({coolant_c:75+Math.random()*10,pump_pct:50+Math.random()*20,fan_pct:60+Math.random()*15,battery_v:12.5+Math.random(),mode:0,fault:f})},2000)};
-document.body.onclick=(e)=>{let b=e.target.closest("button[data-view]");if(b)switchView(b.dataset.view)};
-renderNav();
+const state={token:"",lang:"ms",theme:"dark",device:null,cfg:null,status:null,events:[],history:[],active:"dashboard",ws:null,poll:0,eventsPoll:0};
+const nav=[["dashboard","nav.dashboard"],["control","nav.control"],["safety","nav.safety"],["settings","nav.settings"],["diagnostics","nav.diagnostics"]];
+const fieldsControl=["mode","force_pump","force_fan","min_temp_c","auto_target_c","auto_full_c","slew_pct_s","window_s","run_on_s","run_on_stop_c"];
+const fieldsSafety=["warning_temp_c","critical_temp_c","battery_cutoff_v","low_voltage_delay_ms","ntc_series_ohm","ntc_nominal_ohm","ntc_beta_k","ntc_nominal_c","temp_offset_c","temp_gain"];
+function txt(k){return (I18N[state.lang]&&I18N[state.lang][k])||I18N.ms[k]||k}
+function toast(k,bad){const el=document.createElement("div");el.className="toast"+(bad?" bad":"");el.textContent=txt(k)||k;$("toastHost").appendChild(el);setTimeout(()=>el.remove(),3600)}
+function setBusy(btn,on){if(btn)btn.disabled=!!on}
+function fmt(n,d=0,s=""){const v=Number(n);return Number.isFinite(v)?v.toFixed(d)+s:"--"}
+function modeText(v){return ["Auto","Manual","Force pump","Force fan","Force all"][Number(v)||0]||"Auto"}
+function boolText(v){return v? (state.lang==="ms"?"Ya":"Yes") : "No"}
+function loadPrefs(){try{state.lang=localStorage.sc_lang||"ms";state.theme=localStorage.sc_theme||"dark"}catch(e){}if(!I18N[state.lang])state.lang="ms";document.documentElement.lang=state.lang;document.documentElement.dataset.theme=state.theme}
+function savePrefs(){try{localStorage.sc_lang=state.lang;localStorage.sc_theme=state.theme}catch(e){}}
+function applyText(){document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=txt(el.dataset.i18n)});$("pageTitle").textContent=txt("nav."+state.active);renderNav();renderBottom()}
+async function api(name,opt={}){
+  const init={method:opt.method||"GET",headers:{"Accept":"application/json"}};
+  if(state.token)init.headers.Authorization="Bearer "+state.token;
+  if(opt.body!==undefined){init.headers["Content-Type"]="application/json";init.body=JSON.stringify(opt.body)}
+  const res=await fetch(ROUTES[name],init);
+  let data=null;try{data=await res.json()}catch(e){}
+  if(!res.ok){const err=(data&&data.error)||"request_failed";throw new Error(err)}
+  return data;
+}
+function normalizeError(err){const m=String(err&&err.message||err);if(m==="locked")return "msg.locked";if(m==="login_failed"||m==="recovery_failed"||m==="unauthorized")return "msg.login_failed";return "msg.network"}
+async function loadDevice(){
+  try{
+    state.device=await api("device");
+    $("serialLogin").textContent="SN: "+(state.device.serial||"--");
+    renderIdentity();
+  }catch(e){$("serialLogin").textContent="SN: --"}
+}
+async function login(){
+  const pass=$("loginPass").value.trim();
+  if(!pass){$("loginMsg").textContent=txt("msg.required");return}
+  try{
+    const res=await api("login",{method:"POST",body:{password:pass}});
+    state.token=res.token||"";
+    $("loginPass").value="";
+    $("loginMsg").textContent="";
+    $("authScreen").classList.add("hidden");
+    $("appScreen").classList.remove("hidden");
+    $("bottomNav").classList.remove("hidden");
+    await Promise.all([loadDevice(),loadConfig(),refreshStatus(),refreshEvents()]);
+    startLive();
+  }catch(e){$("loginMsg").textContent=txt(normalizeError(e))}
+}
+async function recoverPassword(){
+  const pin=$("recPin").value.trim();
+  const password=$("recPass").value;
+  if(!pin||password.length<8){$("loginMsg").textContent=txt("msg.required");return}
+  try{
+    await api("recover",{method:"POST",body:{pin,password}});
+    $("recPin").value="";$("recPass").value="";
+    showRecovery(false);
+    toast("msg.recovered");
+  }catch(e){$("loginMsg").textContent=txt(normalizeError(e))}
+}
+function showRecovery(show){$("recoveryPanel").classList.toggle("hidden",!show);$("loginPanel").classList.toggle("hidden",show);$("loginMsg").textContent=""}
+function logout(){
+  state.token="";
+  if(state.ws){state.ws.close();state.ws=null}
+  clearInterval(state.poll);clearInterval(state.eventsPoll);
+  $("appScreen").classList.add("hidden");$("bottomNav").classList.add("hidden");$("authScreen").classList.remove("hidden");
+}
+function renderNav(){
+  const html=nav.map(([id,key])=>`<button data-view="${id}" class="${state.active===id?"active":""}">${txt(key)}</button>`).join("");
+  $("sideNav").innerHTML=html;
+}
+function renderBottom(){
+  $("bottomNav").innerHTML=nav.map(([id,key])=>`<button data-view="${id}" class="${state.active===id?"active":""}">${txt(key)}</button>`).join("");
+}
+function switchView(id){
+  state.active=id;
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="view-"+id));
+  $("pageTitle").textContent=txt("nav."+id);
+  renderNav();renderBottom();
+}
+async function loadConfig(){
+  state.cfg=await api("config");
+  renderConfigForms();
+}
+function fieldInput(name,value){
+  const type=(name==="mode"||name==="force_pump"||name==="force_fan")?"select":"input";
+  const label=txt("field."+name);
+  if(type==="select"){
+    const max=name==="mode"?4:2;
+    let opts="";
+    for(let i=0;i<=max;i++)opts+=`<option value="${i}" ${Number(value)===i?"selected":""}>${name==="mode"?modeText(i):i}</option>`;
+    return `<label class="field"><span>${label}</span><select data-cfg="${name}">${opts}</select></label>`;
+  }
+  return `<label class="field"><span>${label}</span><input class="input" data-cfg="${name}" type="number" step="0.01" value="${value??""}"></label>`;
+}
+function renderConfigForms(){
+  const c=state.cfg||{};
+  $("controlForm").innerHTML=fieldsControl.map(k=>fieldInput(k,c[k])).join("");
+  $("safetyForm").innerHTML=fieldsSafety.map(k=>fieldInput(k,c[k])).join("");
+  const steps=Array.isArray(c.manual_steps)?c.manual_steps:[];
+  $("manualForm").innerHTML=steps.map((s,i)=>`<div class="stepBox">
+    <b>${i+1}. ${fmt(s.temperature_c,1," C")}</b>
+    <label class="field small"><span>${txt("metric.fan")} %</span><input class="input" data-step="${i}" data-step-key="fan_pct" type="number" value="${s.fan_pct}"></label>
+    <label class="field small"><span>${txt("metric.pump")} %</span><input class="input" data-step="${i}" data-step-key="pump_pct" type="number" value="${s.pump_pct}"></label>
+  </div>`).join("");
+}
+function collectConfig(){
+  const next=JSON.parse(JSON.stringify(state.cfg||{}));
+  document.querySelectorAll("[data-cfg]").forEach(el=>{const k=el.dataset.cfg;const v=Number(el.value);next[k]=Number.isFinite(v)?v:el.value});
+  document.querySelectorAll("[data-step]").forEach(el=>{const i=Number(el.dataset.step);const k=el.dataset.stepKey;if(next.manual_steps&&next.manual_steps[i])next.manual_steps[i][k]=Number(el.value)||0});
+  return next;
+}
+async function previewConfig(){
+  try{state.cfg=collectConfig();await api("preview",{method:"POST",body:state.cfg});toast("msg.previewed");await refreshStatus()}catch(e){toast(normalizeError(e),true)}
+}
+async function saveConfig(){
+  try{state.cfg=collectConfig();await api("preview",{method:"POST",body:state.cfg});await api("save",{method:"POST"});toast("msg.saved");await loadConfig()}catch(e){toast(normalizeError(e),true)}
+}
+async function refreshStatus(){
+  try{
+    const s=await api("status");
+    state.status=s;renderStatus(s);renderDiag();$("connBanner").classList.add("hidden");
+  }catch(e){$("connBanner").textContent=txt("msg.network");$("connBanner").classList.remove("hidden")}
+}
+async function refreshEvents(){
+  try{state.events=await api("events");renderEvents()}catch(e){}
+}
+function renderStatus(s){
+  state.history.push({t:Date.now(),temp:s.coolant_c,pump:s.pump_pct,fan:s.fan_pct});
+  if(state.history.length>140)state.history.shift();
+  $("mTemp").textContent=fmt(s.coolant_c,1," C");
+  $("mTempSub").textContent=(s.coolant_valid?txt("label.quality")+": "+fmt(s.sensor_quality_pct,0,"%"):txt("label.safety")+": fail-safe");
+  $("mPump").textContent=fmt(s.pump_pct,0,"%");$("mPumpSub").textContent=s.pump_power_enabled?"ON":"OFF";
+  $("mFan").textContent=fmt(s.fan_pct,0,"%");$("mFanSub").textContent=s.fan_power_enabled?"ON":"OFF";
+  $("mRisk").textContent=fmt(s.si_risk_score,0,"%");$("mRiskSub").textContent=txt("label.prediction")+": "+fmt(s.si_pred_temp_60_c,1," C");
+  $("chipAp").textContent=(s.wifi_ap_running?"AP ON":"AP OFF");
+  $("chipAp").className="chip "+(s.wifi_ap_running?"good":"warn");
+  $("chipClients").textContent=txt("label.clients")+": "+(s.wifi_clients||0);
+  const safe=(!s.security_faults&&!s.outputs_forced);
+  $("chipSafety").textContent=safe?"OK":String(s.safety_state||"FAULT");
+  $("chipSafety").className="chip "+(safe?"good":"bad");
+  $("safeLed").textContent=safe?"OK":String(s.safety_state||"FAULT");
+  $("safeLed").className="pill "+(safe?"good":"bad");
+  $("qualityPill").textContent=txt("label.quality")+": "+fmt(s.sensor_quality_pct,0,"%");
+  $("sideStatus").textContent="SN "+(s.serial||"--");
+  renderHealth(s);renderIdentity();drawTrend();
+}
+function pair(k,v){return `<div class="row between"><span class="hint">${k}</span><b>${v}</b></div>`}
+function renderHealth(s){
+  $("healthList").innerHTML=[
+    pair(txt("label.ap"),s.wifi_ap_running?"ON":"OFF"),
+    pair(txt("label.clients"),s.wifi_clients||0),
+    pair(txt("label.noise"),fmt(s.si_noise_c,2," C")),
+    pair(txt("label.boot"),(s.boot_count||0)+" / "+(s.rtc_boot_count||0)),
+    pair(txt("label.reset"),s.reset_reason||"--"),
+    pair(txt("label.heap"),fmt(s.heap_free,0," B")),
+    pair(txt("label.rtc"),boolText(s.rtc_recovered))
+  ].join("");
+}
+function renderIdentity(){
+  const d=state.device||{};const s=state.status||{};
+  $("identityList").innerHTML=[
+    pair(txt("label.serial"),s.serial||d.serial||"--"),
+    pair(txt("label.version"),d.firmware_version||s.firmware_version||"--"),
+    pair(txt("label.profile"),d.factory_profile||s.factory_profile||"--"),
+    pair(txt("label.hardware"),d.hardware_rev||s.hardware_rev||"--"),
+    pair(txt("label.domain"),d.domain||"smartcooling.local"),
+    pair(txt("label.ssid"),d.ssid||s.ssid||"--")
+  ].join("");
+  $("topSub").textContent=(d.domain||"smartcooling.local")+" | "+(d.ssid||s.ssid||"--");
+}
+function renderDiag(){if(state.status)$("diagDump").textContent=JSON.stringify(state.status,null,2)}
+function renderEvents(){
+  const levels=["info","warn","fault"];
+  $("eventList").innerHTML=(state.events||[]).slice().reverse().map(e=>`<div class="logItem"><div class="row between"><b>#${e.sequence}</b><span class="pill ${levels[e.level]||"warn"}">${levels[e.level]||"info"}</span></div><div>${e.message||"--"}</div><div class="hint small mono">${e.uptime_ms||0} ms</div></div>`).join("")||"<p class='hint'>--</p>";
+}
+function drawTrend(){
+  const c=$("trendCanvas"),ctx=c.getContext("2d"),w=c.width,h=c.height;
+  ctx.clearRect(0,0,w,h);ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--line");ctx.lineWidth=1;
+  for(let i=1;i<5;i++){ctx.beginPath();ctx.moveTo(0,h*i/5);ctx.lineTo(w,h*i/5);ctx.stroke()}
+  const items=state.history;if(items.length<2)return;
+  function plot(key,color,min,max){ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();items.forEach((p,i)=>{const x=i*(w/(items.length-1));const y=h-((Number(p[key])||0)-min)/(max-min)*h;if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y)});ctx.stroke()}
+  plot("temp",getComputedStyle(document.documentElement).getPropertyValue("--cyan"),20,140);
+  plot("pump",getComputedStyle(document.documentElement).getPropertyValue("--blue"),0,100);
+  plot("fan",getComputedStyle(document.documentElement).getPropertyValue("--green"),0,100);
+}
+function startLive(){
+  clearInterval(state.poll);clearInterval(state.eventsPoll);
+  state.poll=setInterval(refreshStatus,1000);
+  state.eventsPoll=setInterval(refreshEvents,5000);
+  startWs();
+}
+function startWs(){
+  if(state.ws)state.ws.close();
+  const proto=location.protocol==="https:"?"wss":"ws";
+  try{
+    state.ws=new WebSocket(proto+"://"+location.host+ROUTES.ws+"?token="+encodeURIComponent(state.token));
+    state.ws.onopen=()=>{$("chipConn").textContent="WS ON";$("chipConn").className="chip good"};
+    state.ws.onclose=()=>{$("chipConn").textContent="WS OFF";$("chipConn").className="chip warn"};
+    state.ws.onmessage=e=>{try{const s=JSON.parse(e.data);state.status=s;renderStatus(s);renderDiag()}catch(err){}};
+  }catch(e){$("chipConn").textContent="WS OFF";$("chipConn").className="chip warn"}
+}
+async function changePassword(){
+  const password=$("newPass").value;
+  if(password.length<8){toast("msg.required",true);return}
+  try{await api("password",{method:"POST",body:{password}});toast("msg.password_changed");logout()}catch(e){toast(normalizeError(e),true)}
+}
+async function uploadOta(){
+  const file=$("otaFile").files[0];if(!file){toast("msg.required",true);return}
+  const fd=new FormData();fd.append("firmware",file);
+  try{
+    const res=await fetch(ROUTES.ota,{method:"POST",headers:{Authorization:"Bearer "+state.token},body:fd});
+    if(!res.ok)throw new Error("ota");
+    toast("msg.ota");
+  }catch(e){toast("msg.network",true)}
+}
+async function rebootBoard(){try{await api("reboot",{method:"POST"});toast("msg.reboot")}catch(e){toast(normalizeError(e),true)}}
+function bind(){
+  $("loginForm").addEventListener("submit",e=>{e.preventDefault();login()});
+  $("forgotBtn").onclick=()=>showRecovery(true);
+  $("cancelRecoveryBtn").onclick=()=>showRecovery(false);
+  $("recoverBtn").onclick=recoverPassword;
+  $("reloadCfgBtn").onclick=loadConfig;
+  $("previewBtn").onclick=previewConfig;
+  $("saveBtn").onclick=saveConfig;
+  $("refreshDiagBtn").onclick=()=>{refreshStatus();refreshEvents()};
+  $("changePassBtn").onclick=changePassword;
+  $("otaBtn").onclick=uploadOta;
+  $("rebootBtn").onclick=rebootBoard;
+  document.body.addEventListener("click",e=>{
+    const act=e.target.closest("[data-act]");if(act){
+      if(act.dataset.act==="theme"){state.theme=state.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=state.theme;savePrefs();drawTrend()}
+      if(act.dataset.act==="lang"){state.lang=state.lang==="ms"?"en":"ms";document.documentElement.lang=state.lang;savePrefs();applyText();renderConfigForms();renderHealth(state.status||{});renderIdentity()}
+      if(act.dataset.act==="logout")logout();
+    }
+    const navBtn=e.target.closest("[data-view]");if(navBtn)switchView(navBtn.dataset.view);
+  });
+}
+function boot(){
+  loadPrefs();bind();applyText();loadDevice();
+  if(/^\d+\.\d+\.\d+\.\d+$/.test(location.hostname))toast("msg.domain",true);
+}
+boot();
 </script>
 </body>
 </html>

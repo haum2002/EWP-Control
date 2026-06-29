@@ -2,10 +2,12 @@ import json
 import re
 from pathlib import Path
 
-Import("env")
+try:
+    Import("env")
+    project_dir = Path(env.subst("$PROJECT_DIR"))
+except NameError:
+    project_dir = Path(__file__).resolve().parents[1]
 
-
-project_dir = Path(env.subst("$PROJECT_DIR"))
 source_path = project_dir / "web" / "index.html"
 routes_path = project_dir / "config" / "routes.json"
 web_target_path = project_dir / "include" / "web_assets.h"
