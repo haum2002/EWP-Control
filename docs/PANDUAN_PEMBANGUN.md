@@ -136,6 +136,69 @@ semakan dokumen, dan build bersih. Gate `tools/verify_release.py` akan
 menolak perubahan yang mengalihkan pin HW-747, menukar PIN recovery, atau
 menukar AP V2 kepada AP berpassword.
 
+### 4. Ketahanan Kuasa RTC Memory
+
+Sistem menggunakan RTC Memory untuk menyimpan keadaan operasi:
+
+```c
+typedef struct {
+    uint32_t magic;           // Magic number untuk validasi
+    uint32_t version;         // Versi struktur
+    system_state_t state;     // Keadaan sistem terakhir
+    uint32_t boot_counter;    // Boot counter RTC
+    uint32_t checksum;        // CRC16 checksum
+} RtcState;
+
+RTC_DATA_ATTR static RtcState rtc_state;
+```
+
+**Ciri-ciri:**
+- Auto-save setiap 500ms ke RTC memory (non-blocking)
+- Checksum CRC16 untuk validasi integriti data
+- Recovery automatik semasa boot jika data valid
+- Boot counter berasingan dari NVS untuk ketahanan brownout
+- Buffer 8 peristiwa terakhir disimpan dalam RTC
+- Struktur 512 bytes dalam RTC_DATA_ATTR
+
+**Proses Recovery:**
+1. Boot semula dan semak magic number & checksum
+2. Jika valid, pulihkan keadaan terakhir (mode, setpoint, output, dll.)
+3. Jika invalid, gunakan default selamat dan catat fault `FAULT_CONFIG_RECOVERED`
+4. Laporkan status recovery dalam diagnostik (`rtc_recovery_count`)
+
+Ini memastikan sistem boleh beroperasi semula dengan cepat selepas gangguan
+kuasa tanpa kehilangan konfigurasi penting atau keadaan operasi.
+
+### 5. Nombor Siri Automatik
+
+Setiap board mempunyai nombor siri unik format `VVMMYYK####`:
+
+```c
+String generateSerialNumber() {
+    // Format: VVMMYYK####
+    // VV = Versi (2 digit)
+    // MM = Bulan (2 digit)
+    // YY = Tahun (2 digit)
+    // K = Kod spec (1 huruf)
+    // #### = Nombor urut (4 digit)
+}
+```
+
+**Contoh:** `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
+
+**Penjanaan Automatik:**
+- Berdasarkan tarikh compilation firmware (`__DATE__`, `__TIME__`)
+- MAC address unik ESP32 untuk variasi unit
+- Konfigurasi kilang untuk kod spec
+- Disimpan dalam NVS untuk kekalan antara boot
+
+**Kegunaan:**
+- Pengesahan OTA (hanya firmware serasi boleh diupload)
+- Identiti sistem dalam WebApp (paparan login & settings)
+- Log diagnostik dan tracking
+- Validasi konfigurasi dan profil kilang
+- Popup pengesahan kedua sebelum upload OTA
+
 ## Rangkaian
 
 | Tetapan | Nilai |

@@ -264,7 +264,7 @@ Diagnostik membantu menyemak:
 - Heap bebas.
 - Uptime.
 - Sebab reset terakhir.
-- Bilangan boot.
+- Bilangan boot (NVS dan RTC).
 - Status AP.
 - Bilangan pelanggan.
 - Status lockout.
@@ -272,13 +272,58 @@ Diagnostik membantu menyemak:
 - Kualiti sensor, noise suhu, ramalan suhu 60 saat, dan skor risiko.
 - Sama ada output sedang dipaksa ke keadaan selamat.
 - Sama ada config pernah dipulihkan daripada storan terlindung.
+- Status RTC Memory (valid/invalid, recovery count).
+- Nombor siri automatik sistem.
 
 Log peristiwa merekod peristiwa seperti boot, login, pemulihan, simpan tetapan,
-OTA, AP dimatikan, dan fault keselamatan.
+OTA, AP dimatikan, fault keselamatan, dan recovery RTC.
 
 SmartCooling SI menapis bacaan NTC dengan beberapa sampel ADC dan mengabaikan
 spike yang tidak munasabah. Jika bacaan sensor tiba-tiba jatuh secara palsu dan
 berulang, firmware akan menganggapnya sebagai fault dan memaksa output selamat.
+
+### Ketahanan Kuasa RTC Memory
+
+Sistem menggunakan RTC Memory untuk menyimpan keadaan operasi setiap 500ms:
+
+- **Struktur Data**: 512 bytes dalam RTC_DATA_ATTR
+- **Auto-Save**: Setiap masa ke RTC memory (non-blocking)
+- **Checksum**: CRC16 validation untuk integriti data
+- **Recovery**: Pemulihan automatik semasa boot jika data valid
+- **Boot Counter**: Berasingan dari NVS untuk ketahanan brownout
+- **Event Buffer**: 8 peristiwa terakhir disimpan dalam RTC
+
+Jika kuasa terputus secara tiba-tiba, sistem akan:
+1. Boot semula dan semak checksum RTC
+2. Jika valid, pulihkan keadaan terakhir (mode, setpoint, dll.)
+3. Jika invalid, gunakan default selamat dan catat fault
+4. Laporkan status recovery dalam diagnostik
+
+Ini memastikan sistem boleh beroperasi semula dengan cepat selepas gangguan
+kuasa tanpa kehilangan konfigurasi penting atau keadaan operasi.
+
+### Nombor Siri Automatik
+
+Setiap board mempunyai nombor siri unik format `VVMMYYK####`:
+
+- **VV**: Versi firmware (2 digit)
+- **MM**: Bulan pembuatan (2 digit)
+- **YY**: Tahun pembuatan (2 digit)
+- **K**: Kod spec (1 huruf)
+- **####**: Nombor urut unit (4 digit)
+
+Contoh: `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
+
+Nombor siri dijana automatik berdasarkan:
+- Tarikh compilation firmware
+- MAC address unik ESP32
+- Konfigurasi kilang
+
+Nombor siri digunakan untuk:
+- Pengesahan OTA (hanya firmware serasi boleh diupload)
+- Identiti sistem dalam WebApp
+- Log diagnostik dan tracking
+- Validasi konfigurasi
 
 ## Build Dan Flash
 
