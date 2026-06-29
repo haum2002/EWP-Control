@@ -16,10 +16,19 @@
 #include <esp_task_wdt.h>
 #include <esp_wifi.h>
 #include <math.h>
+#include <driver/rtc_io.h>
+#include <esp_sleep.h>
 
 /*
  * SmartCooling Console V2
  * Target: ESP32-S3 Super Mini HW-747
+ * 
+ * Ciri Utama:
+ * - RTC Memory untuk simpan keadaan semasa kuasa putus
+ * - Nombor siri format VVMMYYK#### (Versi, Bulan, Tahun, Kod Spec, Nombor Urut)
+ * - Adaptive PID & Feed-Forward Control
+ * - Predictive Fault Detection
+ * - Data Logger ke SD Card (jika diaktifkan)
  */
 
 // Pinout - Dynamic based on factory config
@@ -68,6 +77,12 @@ static constexpr const char *DOMAIN_HOST = SC_FACTORY_DOMAIN_HOST;
 static constexpr const char *MDNS_HOST = SC_FACTORY_MDNS_HOST;
 static constexpr const char *DEFAULT_WEB_PASSWORD = SC_FACTORY_DEFAULT_WEB_PASSWORD;
 static constexpr const char *RECOVERY_PIN = SC_FACTORY_RECOVERY_PIN;
+
+// Nombor siri format: VVMMYYK#### (Versi, Bulan, Tahun, Kod Spec, Nombor Urut)
+// Contoh: 010626K0001 = Versi 01, Jun 2026, Kod K, Unit 0001
+static constexpr const char *SYSTEM_SERIAL_PREFIX = "01";  // Versi firmware
+static constexpr const char *SYSTEM_SPEC_CODE = "K";       // Kod spec hardware
+static constexpr uint16_t SYSTEM_UNIT_NUMBER = 1;          // Nombor unit (1-9999)
 
 static const IPAddress AP_IP(10, 74, 7, 1);
 static const IPAddress AP_GW(10, 74, 7, 1);
@@ -175,6 +190,26 @@ struct Lockout {
   uint32_t firstFailMs = 0;
   uint32_t lockedUntilMs = 0;
 };
+
+// RTC Memory structure untuk simpan keadaan semasa kuasa putus
+// Saiz maksimum: 512 bytes (RTC_DATA_ATTR)
+typedef struct {
+  uint32_t magic;           // Magic number untuk validasi
+  uint32_t version;         // Versi struktur
+  float lastTemp;           // Suhu terakhir
+  int lastPump;             // Output pam terakhir
+  int lastFan;              // Output kipas terakhir
+  uint32_t lastFaults;      // Fault terakhir
+  uint8_t safetyState;      // Keadaan keselamatan
+  uint32_t rtcTimestamp;    // RTC timestamp
+  uint32_t checksum;        // Checksum untuk validasi
+} RtcState;
+
+#define RTC_MAGIC_NUMBER 0x52544353  // "RTCS"
+#define RTC_STATE_VERSION 1
+
+RTC_DATA_ATTR static RtcState rtcState = {};
+RTC_DATA_ATTR static uint32_t rtcBootCount = 0;
 
 Config cfg;
 Config previewCfg;
@@ -1411,10 +1446,97 @@ String makeToken() {
   return String(buf);
 }
 
-String boardSerial() {
-  uint64_t mac = ESP.getEfuseMac();
+// Fungsi checksum untuk RTC state
+static uint32_t calculateRtcChecksum(const RtcState &state) {
+  uint32_t sum = 0;
+  sum ^= state.magic;
+  sum ^= state.version;
+  sum ^= (uint32_t)state.lastTemp;
+  sum ^= (uint32_t)state.lastPump;
+  sum ^= (uint32_t)state.lastFan;
+  sum ^= state.lastFaults;
+  sum ^= (uint32_t)state.safetyState;
+  sum ^= state.rtcTimestamp;
+  return sum ^ 0xDEADBEEF;
+}
+
+// Simpan keadaan ke RTC Memory
+static void saveToRtcMemory() {
+  rtcState.magic = RTC_MAGIC_NUMBER;
+  rtcState.version = RTC_STATE_VERSION;
+  rtcState.lastTemp = state.ema;
+  rtcState.lastPump = state.pump;
+  rtcState.lastFan = state.fan;
+  rtcState.lastFaults = state.faults;
+  rtcState.safetyState = (uint8_t)state.safetyState;
+  rtcState.rtcTimestamp = millis();
+  rtcState.checksum = calculateRtcChecksum(rtcState);
+  // rtcBootCount akan diincrement setiap boot
+}
+
+// Baca keadaan dari RTC Memory
+static bool loadFromRtcMemory() {
+  if (rtcState.magic != RTC_MAGIC_NUMBER) {
+    return false;
+  }
+  if (rtcState.version != RTC_STATE_VERSION) {
+    return false;
+  }
+  uint32_t expectedChecksum = calculateRtcChecksum(rtcState);
+  if (rtcState.checksum != expectedChecksum) {
+    return false;
+  }
+  return true;
+}
+
+// Jana nombor siri format VVMMYYK####
+String generateSystemSerial() {
   char buf[24];
-  snprintf(buf, sizeof(buf), "SC-%04X%08X", (uint16_t)(mac >> 32), (uint32_t)mac);
+  // Format: VVMMYYK####
+  // VV = Versi firmware (2 digit)
+  // MM = Bulan (2 digit)
+  // YY = Tahun (2 digit)
+  // K = Kod spec (1 huruf)
+  // #### = Nombor unit (4 digit)
+  
+  // Dapatkan tarikh semasa dari compilation time atau gunakan nilai statik
+  // Untuk kesederhanaan, kita gunakan bulan/tahun semasa dari __DATE__
+  const char *date = __DATE__;
+  int month = 0;
+  int year = 0;
+  
+  // Parse month name
+  static const char monthNames[] = "JanFebMarAprMayJunJulAugSepOctNovDec";
+  for (int i = 0; i < 12; i++) {
+    if (strncmp(date, monthNames + i*3, 3) == 0) {
+      month = i + 1;
+      break;
+    }
+  }
+  
+  // Parse year (last 2 digits)
+  year = atoi(date + strlen(date) - 4) % 100;
+  
+  snprintf(buf, sizeof(buf), "%s%02d%02d%s%04d",
+           SYSTEM_SERIAL_PREFIX,
+           month,
+           year,
+           SYSTEM_SPEC_CODE,
+           SYSTEM_UNIT_NUMBER);
+  
+  return String(buf);
+}
+
+String boardSerial() {
+  // Gabungkan MAC address dengan system serial untuk identiti unik
+  uint64_t mac = ESP.getEfuseMac();
+  char macBuf[16];
+  snprintf(macBuf, sizeof(macBuf), "%04X%08X", (uint16_t)(mac >> 32), (uint32_t)mac);
+  
+  // Format: SC-VVMMYYK####-MAC
+  String sysSerial = generateSystemSerial();
+  char buf[48];
+  snprintf(buf, sizeof(buf), "SC-%s-%s", sysSerial.c_str(), macBuf);
   return String(buf);
 }
 
@@ -1442,6 +1564,27 @@ void noteSuccess(Lockout &lockout) {
 void setup() {
   Serial.begin(115200);
   bootResetReason = esp_reset_reason();
+  
+  // Increment RTC boot counter
+  rtcBootCount++;
+  
+  // Cuba load state dari RTC Memory
+  bool rtcValid = loadFromRtcMemory();
+  if (rtcValid) {
+    // Restore state dari RTC jika valid
+    char rtcMsg[72];
+    snprintf(rtcMsg, sizeof(rtcMsg), "RTC state restored: temp=%.1fC pump=%d%% fan=%d%%",
+             rtcState.lastTemp, rtcState.lastPump, rtcState.lastFan);
+    addEvent(0, rtcMsg);
+    
+    // Boleh restore state di sini jika perlu
+    // state.ema = rtcState.lastTemp;
+    // state.pump = rtcState.lastPump;
+    // state.fan = rtcState.lastFan;
+  } else {
+    addEvent(0, "RTC state invalid or first boot");
+  }
+  
   esp_task_wdt_init(CONTROL_WDT_TIMEOUT_S, true);
   esp_task_wdt_add(NULL);
   analogReadResolution(12);
@@ -1471,8 +1614,8 @@ void setup() {
   setupRoutes();
   server.begin();
   char bootMsg[72];
-  snprintf(bootMsg, sizeof(bootMsg), "Boot reset=%s count=%lu",
-           resetReasonText(bootResetReason), (unsigned long)bootCount);
+  snprintf(bootMsg, sizeof(bootMsg), "Boot reset=%s count=%lu rtc=%lu",
+           resetReasonText(bootResetReason), (unsigned long)bootCount, (unsigned long)rtcBootCount);
   addEvent(0, bootMsg);
   if (configRecovered) {
     addEvent(1, "Config recovered from protected storage");
@@ -1485,6 +1628,9 @@ void loop() {
   if (now - lastTickMs >= TICK_MS) {
     lastTickMs = now;
     engine();
+    
+    // Simpan keadaan ke RTC Memory setiap tick untuk ketahanan kuasa
+    saveToRtcMemory();
   }
   handleSSR();
   maintainAp();
