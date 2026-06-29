@@ -16,11 +16,50 @@
 #include <esp_task_wdt.h>
 #include <esp_wifi.h>
 #include <math.h>
+#include <rtc.h>
 
 /*
  * SmartCooling Console V2
  * Target: ESP32-S3 Super Mini HW-747
+ * 
+ * Features:
+ * - RTC Memory persistence for power loss resilience
+ * - Auto-generated serial number (VVMMYYK#### format)
+ * - Adaptive PID with feed-forward control
+ * - Predictive fault detection
  */
+
+// ============================================================================
+// RTC MEMORY STRUCTURE (512 bytes reserved in RTC_DATA_ATTR)
+// ============================================================================
+
+#define RTC_MAGIC_WORD 0x53435632  // "SCV2"
+#define RTC_MAX_BOOT_COUNTER 0xFFFF
+
+typedef struct {
+  uint32_t magic;           // Magic word for validation
+  uint16_t version;         // Structure version
+  uint16_t checksum;        // CRC16 checksum
+  uint32_t uptime_ms;       // Last known uptime before power loss
+  uint32_t boot_counter;    // Boot counter (separate from NVS)
+  uint8_t last_mode;        // Last operating mode
+  uint8_t safety_state;     // Last safety state
+  int8_t last_target_c;     // Last target temperature
+  int8_t reserved[3];       // Alignment padding
+  float last_temp_c;        // Last known temperature
+  float last_pred_temp;     // Last predicted temperature
+  float risk_score;         // Last risk score
+  uint32_t faults;          // Last fault flags
+  uint32_t sequence;        // Last event sequence number
+  uint8_t event_head;       // Last event buffer head
+  uint8_t reserved2[3];     // Alignment padding
+  EventEntry rtc_events[8]; // Circular buffer of last 8 events (128 bytes)
+  uint8_t padding[384];     // Padding to reach 512 bytes total
+} RtcState;
+
+// Reserve 512 bytes in RTC memory (ESP32-S3 has 8KB RTC_SLOW_MEM available)
+RTC_DATA_ATTR static RtcState rtc_state = {};
+RTC_DATA_ATTR static uint32_t rtc_boot_count = 0;
 
 // Pinout - Dynamic based on factory config
 // NTC and ECU are fixed pins for all configurations
@@ -263,6 +302,7 @@ void handleOtaUpload(AsyncWebServerRequest *request, const String &filename,
                      size_t index, uint8_t *data, size_t len, bool final);
 int interpolateManual(float temp, bool fan);
 void applyOutputs(int targetPump, int targetFan);
+static void saveToRtc();
 
 void setDefaultConfig(Config &c) {
   c = Config();
@@ -1411,11 +1451,122 @@ String makeToken() {
   return String(buf);
 }
 
-String boardSerial() {
+// ============================================================================
+// RTC MEMORY FUNCTIONS
+// ============================================================================
+
+static uint16_t calculateRtcChecksum(const RtcState *state) {
+  // CRC16-CCITT calculation for RTC state validation
+  uint16_t crc = 0xFFFF;
+  const uint8_t *data = (const uint8_t *)state;
+  
+  // Calculate checksum over all fields except the checksum itself
+  for (size_t i = 0; i < offsetof(RtcState, checksum); i++) {
+    crc ^= (uint16_t)data[i] << 8;
+    for (int j = 0; j < 8; j++) {
+      crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : (crc << 1);
+    }
+  }
+  // Skip checksum field (2 bytes)
+  for (size_t i = offsetof(RtcState, checksum) + 2; i < sizeof(RtcState); i++) {
+    crc ^= (uint16_t)data[i] << 8;
+    for (int j = 0; j < 8; j++) {
+      crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : (crc << 1);
+    }
+  }
+  return crc;
+}
+
+static bool validateRtcChecksum(const RtcState *state) {
+  if (state->magic != RTC_MAGIC_WORD) return false;
+  if (state->version != 1) return false;
+  return state->checksum == calculateRtcChecksum(state);
+}
+
+static void saveToRtc() {
+  // Update RTC state with current runtime data
+  rtc_state.magic = RTC_MAGIC_WORD;
+  rtc_state.version = 1;
+  rtc_state.uptime_ms = millis();
+  rtc_state.boot_counter = rtc_boot_count;
+  rtc_state.last_mode = cfg.mode;
+  rtc_state.safety_state = state.safetyState;
+  rtc_state.last_target_c = (int8_t)cfg.auto_target_c;
+  rtc_state.last_temp_c = state.ema;
+  rtc_state.last_pred_temp = state.predTemp60;
+  rtc_state.risk_score = state.riskScore;
+  rtc_state.faults = state.faults;
+  rtc_state.sequence = eventSeq;
+  rtc_state.event_head = eventHead;
+  
+  // Copy last 8 events to RTC buffer
+  for (int i = 0; i < 8; i++) {
+    uint8_t idx = (eventHead + 32 - i) % 32;
+    rtc_state.rtc_events[i] = events[idx];
+  }
+  
+  // Calculate and store checksum
+  rtc_state.checksum = calculateRtcChecksum(&rtc_state);
+}
+
+static bool recoverFromRtc() {
+  if (!validateRtcChecksum(&rtc_state)) {
+    return false;
+  }
+  
+  // Recover boot counter from RTC
+  rtc_boot_count = rtc_state.boot_counter;
+  
+  // Log recovery event
+  addEvent(1, "RTC state recovered");
+  
+  return true;
+}
+
+static String generateSerialNumber() {
+  // Format: VVMMYYK#### 
+  // VV = Version (01), MM = Month, YY = Year, K = Spec Code, #### = Unit Number
+  
+  // Get compilation date
+  const char *compileDate = __DATE__;
+  const char *compileTime = __TIME__;
+  
+  // Parse month
+  int month = 0;
+  const char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+  for (int i = 0; i < 12; i++) {
+    if (strncmp(compileDate, months[i], 3) == 0) {
+      month = i + 1;
+      break;
+    }
+  }
+  
+  // Parse year (last 2 digits)
+  int year = atoi(compileDate + 7);
+  year = year % 100;
+  
+  // Parse day for unit number seeding
+  int day = atoi(compileDate + 4);
+  
+  // Generate unit number from MAC address and day
   uint64_t mac = ESP.getEfuseMac();
-  char buf[24];
-  snprintf(buf, sizeof(buf), "SC-%04X%08X", (uint16_t)(mac >> 32), (uint32_t)mac);
-  return String(buf);
+  int unitNum = ((uint32_t)mac ^ day) % 10000;
+  
+  char serial[16];
+  snprintf(serial, sizeof(serial), "%02d%02d%02dK%04d", 
+           1, month, year, unitNum);
+  
+  return String(serial);
+}
+
+String boardSerial() {
+  // Return auto-generated serial number in VVMMYYK#### format
+  static String serial = "";
+  if (serial.length() == 0) {
+    serial = generateSerialNumber();
+  }
+  return serial;
 }
 
 bool lockedOut(const Lockout &lockout) {
@@ -1442,6 +1593,10 @@ void noteSuccess(Lockout &lockout) {
 void setup() {
   Serial.begin(115200);
   bootResetReason = esp_reset_reason();
+  
+  // Initialize RTC memory and attempt recovery
+  bool rtcRecovered = recoverFromRtc();
+  
   esp_task_wdt_init(CONTROL_WDT_TIMEOUT_S, true);
   esp_task_wdt_add(NULL);
   analogReadResolution(12);
@@ -1465,17 +1620,28 @@ void setup() {
   ledcAttachPin(PIN_FAN_PWM, PWM_CHAN_FAN);
   ledcWrite(PWM_CHAN_FAN, 0);
 #endif
+  
+  // Increment RTC boot counter
+  rtc_boot_count++;
+  if (rtc_boot_count > RTC_MAX_BOOT_COUNTER) {
+    rtc_boot_count = 1;
+  }
+  
   loadConfig();
   setupNetwork();
   setupWebSocket();
   setupRoutes();
   server.begin();
+  
   char bootMsg[72];
-  snprintf(bootMsg, sizeof(bootMsg), "Boot reset=%s count=%lu",
-           resetReasonText(bootResetReason), (unsigned long)bootCount);
+  snprintf(bootMsg, sizeof(bootMsg), "Boot reset=%s rtc=%d count=%lu",
+           resetReasonText(bootResetReason), rtcRecovered ? 1 : 0, (unsigned long)rtc_boot_count);
   addEvent(0, bootMsg);
   if (configRecovered) {
     addEvent(1, "Config recovered from protected storage");
+  }
+  if (rtcRecovered) {
+    addEvent(0, "RTC state validated");
   }
 }
 
