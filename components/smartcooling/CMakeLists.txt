@@ -1,0 +1,9 @@
+idf_component_register(
+    SRCS
+        "src/si_core.cpp"
+        "src/si_sentinel.cpp"
+    INCLUDE_DIRS
+        "include"
+    REQUIRES
+        arduino
+)

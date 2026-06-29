@@ -10,6 +10,10 @@
 *.out
 build/
 dist/
+managed_components/
+sdkconfig
+sdkconfig.old
+dependencies.lock
 
 # Logs and temp files
 *.log

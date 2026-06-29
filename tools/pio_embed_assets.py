@@ -10,8 +10,9 @@ except NameError:
 
 source_path = project_dir / "web" / "index.html"
 routes_path = project_dir / "config" / "routes.json"
-web_target_path = project_dir / "include" / "web_assets.h"
-routes_target_path = project_dir / "include" / "routes.h"
+component_include_path = project_dir / "components" / "smartcooling" / "include"
+web_target_path = component_include_path / "web_assets.h"
+routes_target_path = component_include_path / "routes.h"
 delimiter = "EWPHTML"
 
 if not source_path.is_file():

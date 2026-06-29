@@ -5,6 +5,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ACTIVE_SUFFIXES = {".cpp", ".h", ".html", ".json", ".md", ".py", ".ini", ".csv"}
+COMPONENT_INCLUDE = Path("components/smartcooling/include")
+FIRMWARE_MAIN = Path("main/main.cpp")
 REQUIRED_ROUTES = {
     "login", "recover", "password", "device", "status", "config", "preview",
     "save", "rgb", "events", "ota", "ws", "reboot",
@@ -23,7 +25,7 @@ def active_files():
         parts = set(rel.parts)
         if ".pio" in parts or ".vscode" in parts or "archive" in parts:
             continue
-        if rel.as_posix() in {"include/web_assets.h", "tools/verify_release.py"}:
+        if rel.as_posix() in {"components/smartcooling/include/web_assets.h", "tools/verify_release.py"}:
             continue
         yield path
 
@@ -40,13 +42,13 @@ def verify_routes():
     if bad:
         fail("non-random route path: " + ",".join(bad))
 
-    header = (ROOT / "include/routes.h").read_text(encoding="utf-8")
+    header = (ROOT / COMPONENT_INCLUDE / "routes.h").read_text(encoding="utf-8")
     for name, value in routes.items():
         needle = f'ROUTE_{name.upper()} = "{value}"'
         if needle not in header:
             fail("route header mismatch: " + name)
 
-    assets = (ROOT / "include/web_assets.h").read_text(encoding="utf-8")
+    assets = (ROOT / COMPONENT_INCLUDE / "web_assets.h").read_text(encoding="utf-8")
     if "__SMARTCOOLING_ROUTES__" in assets:
         fail("web asset route token still present")
     for value in values:
@@ -115,15 +117,24 @@ def verify_browser_storage():
 
 def verify_required_files():
     required = [
+        "CMakeLists.txt",
+        "main/CMakeLists.txt",
+        "main/main.cpp",
+        "components/smartcooling/CMakeLists.txt",
+        "components/smartcooling/library.json",
         "web/index.html",
-        "src/main.cpp",
-        "include/factory_config.h",
-        "include/web_assets.h",
-        "include/routes.h",
+        "components/smartcooling/include/factory_config.h",
+        "components/smartcooling/include/web_assets.h",
+        "components/smartcooling/include/routes.h",
+        "components/smartcooling/include/si_core.h",
+        "components/smartcooling/include/si_sentinel.h",
+        "components/smartcooling/src/si_core.cpp",
+        "components/smartcooling/src/si_sentinel.cpp",
         "config/routes.json",
         "docs/MANUAL_PENGGUNAAN.md",
         "docs/PANDUAN_PEMBANGUN.md",
         "tools/verify_control_math.py",
+        "sdkconfig.defaults",
     ]
     missing = [item for item in required if not (ROOT / item).is_file()]
     if missing:
@@ -134,15 +145,15 @@ def verify_gitignore():
     text = (ROOT / ".gitignore").read_text(encoding="utf-8")
     if "```" in text:
         fail(".gitignore contains markdown fences")
-    required = [".pio/", ".vscode/", "docs/archive/", "*.bin", "*.elf", "*.map"]
+    required = [".pio/", ".vscode/", "docs/archive/", "*.bin", "*.elf", "*.map", "sdkconfig", "managed_components/"]
     missing = [item for item in required if item not in text]
     if missing:
         fail(".gitignore missing required entries: " + ",".join(missing))
 
 
 def verify_factory_config():
-    factory = (ROOT / "include/factory_config.h").read_text(encoding="utf-8")
-    src = (ROOT / "src/main.cpp").read_text(encoding="utf-8")
+    factory = (ROOT / COMPONENT_INCLUDE / "factory_config.h").read_text(encoding="utf-8")
+    src = (ROOT / FIRMWARE_MAIN).read_text(encoding="utf-8")
     required = [
         '#define SC_FACTORY_PROFILE "super_mini_esp32_s3_hw747"',
         '#define SC_FACTORY_HARDWARE_REV "hw-747"',

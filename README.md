@@ -3,9 +3,9 @@
 Firmware dan WebApp untuk kawalan penyejukan SmartCooling pada board
 Super Mini ESP32-S3 HW-747.
 
-Repositori ini disusun untuk build PlatformIO, audit release, dan flashing
-terus ke board pembangunan. Semua konfigurasi penting berada dalam fail
-yang jelas supaya perubahan boleh disemak sebelum firmware dimuat naik.
+Repositori ini disusun dalam gaya ESP-IDF component penuh dan masih boleh
+dibina melalui PlatformIO. Semua konfigurasi penting berada dalam fail yang
+jelas supaya perubahan boleh disemak sebelum firmware dimuat naik.
 
 ## Ringkasan
 
@@ -23,16 +23,22 @@ yang jelas supaya perubahan boleh disemak sebelum firmware dimuat naik.
 ## Struktur Projek
 
 ```text
-config/routes.json           Laluan endpoint rawak release
-docs/MANUAL_PENGGUNAAN.md    Manual pengguna
-docs/PANDUAN_PEMBANGUN.md    Nota teknikal dan pemetaan endpoint
-include/factory_config.h     Konfigurasi kilang HW-747
-include/routes.h             Header laluan endpoint
-include/web_assets.h         WebApp terbenam yang dijana
-src/main.cpp                 Firmware utama
-tools/verify_release.py      Gate statik release
-tools/verify_control_math.py Ujian simulasi math/kawalan
-web/index.html               Sumber UI WebApp
+CMakeLists.txt                                  Root project ESP-IDF
+main/CMakeLists.txt                             Main component CMake
+main/main.cpp                                   Firmware entry point
+components/smartcooling/CMakeLists.txt          SmartCooling component CMake
+components/smartcooling/library.json            Metadata library PlatformIO
+components/smartcooling/include/factory_config.h Konfigurasi kilang HW-747
+components/smartcooling/include/routes.h        Header endpoint rawak
+components/smartcooling/include/web_assets.h    WebApp terbenam yang dijana
+components/smartcooling/src/si_core.cpp         Modul SI
+components/smartcooling/src/si_sentinel.cpp     Sentinel keselamatan
+config/routes.json                              Laluan endpoint rawak release
+docs/MANUAL_PENGGUNAAN.md                       Manual pengguna
+docs/PANDUAN_PEMBANGUN.md                       Nota teknikal dan pemetaan endpoint
+tools/verify_release.py                         Gate statik release
+tools/verify_control_math.py                    Ujian simulasi math/kawalan
+web/index.html                                  Sumber UI WebApp
 ```
 
 ## Konfigurasi Release HW-747
@@ -52,9 +58,16 @@ melalui build dan ujian hardware sebenar sebelum diflash.
 
 ## Build
 
+Build rasmi harian masih melalui PlatformIO:
+
 ```bash
 pio run -e super_mini_esp32_s3_hw-747
 ```
+
+Fail `CMakeLists.txt`, `main/`, dan `components/smartcooling/` disediakan supaya
+struktur projek selari dengan ESP-IDF. Kod firmware masih menggunakan Arduino
+core dan library Arduino, jadi PlatformIO kekal laluan build/flash yang
+disahkan dalam release ini.
 
 ## Semakan Release
 

@@ -39,7 +39,7 @@ SmartCooling terdiri daripada:
 ## Konfigurasi Kilang (Untuk Pembangun)
 
 Sebelum flash firmware, pembangun boleh memilih konfigurasi output berikut dalam
-`include/factory_config.h` selepas semakan hardware:
+`components/smartcooling/include/factory_config.h` selepas semakan hardware:
 
 ### 1. Jenis Pam
 - **SSR (0)**: On/Off lembut menggunakan relay/SSR
