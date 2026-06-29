@@ -1,6 +1,9 @@
 #include "routes.h"
 #include "web_assets.h"
 #include "factory_config.h"
+#include "si_core.h"
+#include "si_sentinel.h"
+#include "data_logger.h"
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
@@ -18,6 +21,7 @@
 #include <esp_wifi.h>
 #include <math.h>
 #include <stddef.h>
+#include <nvs_flash.h>
 
 /*
  * SmartCooling Console V2
