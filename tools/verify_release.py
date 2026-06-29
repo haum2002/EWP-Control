@@ -150,11 +150,19 @@ def verify_factory_config():
         "#define SC_FACTORY_AP_OPEN 1",
         '#define SC_FACTORY_DEFAULT_WEB_PASSWORD "12345678"',
         '#define SC_FACTORY_RECOVERY_PIN "747747"',
+        "#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_SSR",
+        "#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_PWM",
+        "#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE",
+        "#define SC_FACTORY_SD_CARD_ENABLED 0",
         "#define SC_FACTORY_PIN_NTC 1",
-        "#define SC_FACTORY_PIN_SSR 2",
-        "#define SC_FACTORY_PIN_PWM 4",
         "#define SC_FACTORY_PIN_ECU 6",
+        "#define SC_FACTORY_PIN_PUMP_SSR 2",
+        "#define SC_FACTORY_PIN_FAN_PWM 4",
+        "#define SC_FACTORY_PIN_SSR SC_FACTORY_PIN_PUMP_SSR",
+        "#define SC_FACTORY_PIN_PWM SC_FACTORY_PIN_FAN_PWM",
         "#define SC_FACTORY_AP_IDLE_OFF_MS 300000UL",
+        '#error "Micro SD belum aktif dalam firmware V2 release."',
+        '#error "Sensor persekitaran belum aktif dalam firmware V2 release."',
     ]
     missing = [item for item in required if item not in factory]
     if missing:
@@ -163,10 +171,13 @@ def verify_factory_config():
         '#include "factory_config.h"',
         "static constexpr const char *AP_SSID = SC_FACTORY_AP_SSID;",
         "static constexpr const char *RECOVERY_PIN = SC_FACTORY_RECOVERY_PIN;",
+        "#define PIN_PUMP_SSR SC_FACTORY_PIN_PUMP_SSR",
+        "#define PIN_FAN_PWM SC_FACTORY_PIN_FAN_PWM",
+        "ledcAttachPin(PIN_FAN_PWM, PWM_CHAN_FAN);",
     ]:
         if needle not in src:
             fail("firmware not linked to factory config: " + needle)
-    rejected = ["PIN_NTC_COOLANT", "PIN_SSR_PUMP", "PIN_SSR_FAN", "SYSTEM_RECOVERY_PIN"]
+    rejected = ["PIN_NTC_COOLANT", "PIN_SSR_PUMP", "PIN_SSR_FAN", "SYSTEM_RECOVERY_PIN", "#define PIN_SSR", "#define PIN_PWM"]
     hits = [needle for needle in rejected if needle in src]
     if hits:
         fail("unsafe factory branch symbols in firmware: " + ",".join(hits))

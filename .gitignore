@@ -1,17 +1,24 @@
-# Compiled and binary files
+.pio/
+.vscode/
+docs/archive/
+
+*.bin
+*.elf
+*.map
+*.hex
 *.o
 *.obj
 *.out
-
-# Dependencies
-build/
-dist/
-
-# Logs and temp files
 *.log
 *.tmp
 
-# Environment
+build/
+dist/
+
 .env
 .env.local
 *.env.*
+
+__pycache__/
+.pytest_cache/
+.cache/

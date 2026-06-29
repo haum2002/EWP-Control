@@ -4,12 +4,11 @@
  * Fail ini ialah pusat tetapan kilang untuk varian hardware HW-747.
  * Nilai di sini sengaja konservatif supaya build lalai kekal sama seperti
  * firmware V2 yang telah diuji pada Super Mini ESP32-S3.
- * 
+ *
  * KONFIGURASI WAJIB SEBELUM FLASH:
  * - Pilih jenis pam: PWM (kawalan kelajuan) atau SSR (On/Off lembut)
  * - Pilih jenis kipas: PWM (kawalan kelajuan) atau SSR (On/Off)
- * - Pilih sensor persekitaran: BME280, AHT30, BMP280, BMP180, atau TIADA
- * - Micro SD Card: Aktif/Tidak untuk simpan log & data latihan SI
+ * - Sensor persekitaran dan Micro SD masih reserved untuk varian akan datang.
  */
 #ifndef SMARTCOOLING_FACTORY_CONFIG_H
 #define SMARTCOOLING_FACTORY_CONFIG_H
@@ -31,17 +30,17 @@
 #define SC_FACTORY_FAN_TYPE_PWM 1
 #define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_PWM  // <-- UBAH DI SINI
 
-// Sensor Persekitaran (Pilihan Kilang):
+// Sensor Persekitaran (reserved untuk varian akan datang):
 // 0 = TIADA, 1 = BME280, 2 = AHT30, 3 = BMP280, 4 = BMP180
 #define SC_FACTORY_SENSOR_NONE   0
 #define SC_FACTORY_SENSOR_BME280 1
 #define SC_FACTORY_SENSOR_AHT30  2
 #define SC_FACTORY_SENSOR_BMP280 3
 #define SC_FACTORY_SENSOR_BMP180 4
-#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE  // <-- UBAH DI SINI
+#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE
 
-// Micro SD Card: 0 = Tidak Aktif, 1 = Aktif (untuk log & data latihan SI)
-#define SC_FACTORY_SD_CARD_ENABLED 0  // <-- UBAH DI SINI
+// Micro SD Card: reserved. Kekalkan 0 sehingga driver dan ujian release ada.
+#define SC_FACTORY_SD_CARD_ENABLED 0
 
 // ============================================================================
 // 2. PENGURUSAN PIN (Pemetaan pin dinamik mengikut konfigurasi)
@@ -68,6 +67,11 @@
   #define SC_FACTORY_PIN_FAN_PWM -1   // Tidak digunakan
   #define SC_FACTORY_PIN_FAN_SSR 5    // GPIO untuk SSR kipas
 #endif
+
+// Alias konservatif untuk gate release dan kod lama. Nilai lalai V2 ialah
+// pam SSR pada GPIO 2 dan kipas PWM pada GPIO 4.
+#define SC_FACTORY_PIN_SSR SC_FACTORY_PIN_PUMP_SSR
+#define SC_FACTORY_PIN_PWM SC_FACTORY_PIN_FAN_PWM
 
 // Pin untuk SD Card (jika diaktifkan)
 #if SC_FACTORY_SD_CARD_ENABLED == 1
@@ -117,6 +121,14 @@
 #endif
 
 // Validate pin conflicts
+#if SC_FACTORY_PUMP_TYPE != SC_FACTORY_PUMP_TYPE_SSR && SC_FACTORY_PUMP_TYPE != SC_FACTORY_PUMP_TYPE_PWM
+#error "Jenis pam kilang tidak sah."
+#endif
+
+#if SC_FACTORY_FAN_TYPE != SC_FACTORY_FAN_TYPE_SSR && SC_FACTORY_FAN_TYPE != SC_FACTORY_FAN_TYPE_PWM
+#error "Jenis kipas kilang tidak sah."
+#endif
+
 #if SC_FACTORY_PIN_NTC == SC_FACTORY_PIN_ECU
 #error "Pin NTC bercanggah dengan pin ECU."
 #endif
@@ -143,6 +155,7 @@
 
 // Validate SD card pins if enabled
 #if SC_FACTORY_SD_CARD_ENABLED == 1
+  #error "Micro SD belum aktif dalam firmware V2 release."
   #if SC_FACTORY_PIN_SD_CS == SC_FACTORY_PIN_NTC || SC_FACTORY_PIN_SD_CS == SC_FACTORY_PIN_ECU
   #error "Pin SD CS bercanggah dengan pin lain."
   #endif
@@ -150,6 +163,7 @@
 
 // Validate I2C pins if sensor enabled
 #if SC_FACTORY_ENV_SENSOR_TYPE != SC_FACTORY_SENSOR_NONE
+  #error "Sensor persekitaran belum aktif dalam firmware V2 release."
   #if SC_FACTORY_PIN_I2C_SDA == SC_FACTORY_PIN_I2C_SCL
   #error "Pin I2C SDA dan SCL mesti berbeza."
   #endif

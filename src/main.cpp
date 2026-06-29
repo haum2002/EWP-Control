@@ -36,7 +36,7 @@
   #define PIN_PUMP_SSR SC_FACTORY_PIN_PUMP_SSR
 #endif
 
-// Fan output: SSR (digital) or PWM (analog speed control)  
+// Fan output: SSR (digital) or PWM (analog speed control)
 #if SC_FACTORY_FAN_TYPE == SC_FACTORY_FAN_TYPE_PWM
   #define PIN_FAN_PWM SC_FACTORY_PIN_FAN_PWM
   #define PIN_FAN_SSR -1
@@ -45,17 +45,14 @@
   #define PIN_FAN_SSR SC_FACTORY_PIN_FAN_SSR
 #endif
 
-// Legacy compatibility aliases for existing code
-// PIN_SSR = pump SSR pin (use PIN_PUMP_SSR in new code)
-// PIN_PWM = fan PWM pin (use PIN_FAN_PWM in new code)
-#define PIN_SSR PIN_PUMP_SSR
-#define PIN_PWM PIN_FAN_PWM
-
 // Timing and output
 #define TICK_MS SC_FACTORY_TICK_MS
 #define PWM_FREQ SC_FACTORY_PWM_FREQ
 #define PWM_RES SC_FACTORY_PWM_RES
 #define PWM_CHAN SC_FACTORY_PWM_CHAN
+#define PWM_CHAN_PUMP SC_FACTORY_PWM_CHAN
+#define PWM_CHAN_FAN (SC_FACTORY_PWM_CHAN + 1)
+#define PWM_MAX_DUTY ((1 << PWM_RES) - 1)
 #define AP_IDLE_OFF_MS SC_FACTORY_AP_IDLE_OFF_MS
 #define STATUS_PUSH_MS SC_FACTORY_STATUS_PUSH_MS
 #define ADC_SAMPLE_COUNT SC_FACTORY_ADC_SAMPLE_COUNT
@@ -239,6 +236,7 @@ float clampFloat(float value, float low, float high);
 float smoothStep01(float value);
 float smoothRange(float edge0, float edge1, float value);
 int approachInt(int current, int target, int upStep, int downStep);
+int pwmDuty(int percent);
 float readAdcStable();
 float adcToTemp(float raw);
 float readTemp();
@@ -1095,6 +1093,10 @@ int approachInt(int current, int target, int upStep, int downStep) {
   return current + constrain(delta, -limit, limit);
 }
 
+int pwmDuty(int percent) {
+  return map(constrain(percent, 0, 100), 0, 100, 0, PWM_MAX_DUTY);
+}
+
 float readAdcStable() {
   uint16_t samples[ADC_SAMPLE_COUNT];
   for (uint8_t i = 0; i < ADC_SAMPLE_COUNT; ++i) {
@@ -1265,7 +1267,12 @@ void applyOutputs(int targetPump, int targetFan) {
     state.outputsForced = true;
     state.pump = 100;
     state.fan = 100;
-    ledcWrite(PWM_CHAN, 255);
+#if PIN_PUMP_PWM >= 0
+    ledcWrite(PWM_CHAN_PUMP, pwmDuty(state.pump));
+#endif
+#if PIN_FAN_PWM >= 0
+    ledcWrite(PWM_CHAN_FAN, pwmDuty(state.fan));
+#endif
     return;
   }
   targetPump = constrain(targetPump, 0, 100);
@@ -1274,7 +1281,12 @@ void applyOutputs(int targetPump, int targetFan) {
   int downStep = max(1, (int)roundf(previewCfg.slew_pct_s * 0.55f * (TICK_MS / 1000.0f)));
   state.pump = approachInt(state.pump, targetPump, upStep, downStep);
   state.fan = approachInt(state.fan, targetFan, upStep, downStep);
-  ledcWrite(PWM_CHAN, map(state.fan, 0, 100, 0, 255));
+#if PIN_PUMP_PWM >= 0
+  ledcWrite(PWM_CHAN_PUMP, pwmDuty(state.pump));
+#endif
+#if PIN_FAN_PWM >= 0
+  ledcWrite(PWM_CHAN_FAN, pwmDuty(state.fan));
+#endif
 }
 
 void engine() {
@@ -1347,22 +1359,33 @@ void engine() {
 }
 
 void handleSSR() {
-  if (state.pump <= 0) {
-    state.ssrActive = false;
-    digitalWrite(PIN_SSR, LOW);
-    return;
-  }
-  if (state.pump >= 99) {
-    state.ssrActive = true;
-    digitalWrite(PIN_SSR, HIGH);
-    return;
-  }
   unsigned long now = millis();
   unsigned long window = (unsigned long)max(10, previewCfg.window_s) * 1000UL;
   unsigned long elapsed = now % window;
-  unsigned long onTime = (unsigned long)((state.pump / 100.0f) * window);
-  state.ssrActive = state.pump > 0 && elapsed < onTime;
-  digitalWrite(PIN_SSR, state.ssrActive ? HIGH : LOW);
+  bool pumpSsrOn = false;
+  bool fanSsrOn = false;
+
+#if PIN_PUMP_SSR >= 0
+  if (state.pump >= 99) {
+    pumpSsrOn = true;
+  } else if (state.pump > 0) {
+    unsigned long pumpOnTime = (unsigned long)((state.pump / 100.0f) * window);
+    pumpSsrOn = elapsed < pumpOnTime;
+  }
+  digitalWrite(PIN_PUMP_SSR, pumpSsrOn ? HIGH : LOW);
+#endif
+
+#if PIN_FAN_SSR >= 0
+  if (state.fan >= 99) {
+    fanSsrOn = true;
+  } else if (state.fan > 0) {
+    unsigned long fanOnTime = (unsigned long)((state.fan / 100.0f) * window);
+    fanSsrOn = elapsed < fanOnTime;
+  }
+  digitalWrite(PIN_FAN_SSR, fanSsrOn ? HIGH : LOW);
+#endif
+
+  state.ssrActive = pumpSsrOn || fanSsrOn;
 }
 
 void pushStatus() {
@@ -1389,18 +1412,9 @@ String makeToken() {
 }
 
 String boardSerial() {
-  // Format: VVMMYYK#### (Versi, Bulan, Tahun, Kod Spec, Nombor Urut)
-  // Contoh: 010626K0001 = Versi 01, Jun 2026, Kod K, Urutan 0001
   uint64_t mac = ESP.getEfuseMac();
-  uint16_t version = 1;  // Versi firmware/hardware
-  uint8_t month = 6;     // Bulan (contoh: Jun)
-  uint8_t year = 26;     // Tahun (contoh: 2026)
-  char specCode = 'K';   // Kod spec (boleh diubah mengikut konfigurasi)
-  uint32_t seqNum = (uint32_t)(mac & 0xFFFF);  // Nombor urutan dari MAC
-  
   char buf[24];
-  snprintf(buf, sizeof(buf), "%02u%02u%02u%c%04u", 
-           version, month, year, specCode, seqNum % 10000);
+  snprintf(buf, sizeof(buf), "SC-%04X%08X", (uint16_t)(mac >> 32), (uint32_t)mac);
   return String(buf);
 }
 
@@ -1432,11 +1446,25 @@ void setup() {
   esp_task_wdt_add(NULL);
   analogReadResolution(12);
   analogSetPinAttenuation(PIN_NTC, ADC_11db);
-  pinMode(PIN_SSR, OUTPUT);
-  digitalWrite(PIN_SSR, LOW);
   pinMode(PIN_ECU, INPUT_PULLDOWN);
-  ledcSetup(PWM_CHAN, PWM_FREQ, PWM_RES);
-  ledcAttachPin(PIN_PWM, PWM_CHAN);
+#if PIN_PUMP_SSR >= 0
+  pinMode(PIN_PUMP_SSR, OUTPUT);
+  digitalWrite(PIN_PUMP_SSR, LOW);
+#endif
+#if PIN_FAN_SSR >= 0
+  pinMode(PIN_FAN_SSR, OUTPUT);
+  digitalWrite(PIN_FAN_SSR, LOW);
+#endif
+#if PIN_PUMP_PWM >= 0
+  ledcSetup(PWM_CHAN_PUMP, PWM_FREQ, PWM_RES);
+  ledcAttachPin(PIN_PUMP_PWM, PWM_CHAN_PUMP);
+  ledcWrite(PWM_CHAN_PUMP, 0);
+#endif
+#if PIN_FAN_PWM >= 0
+  ledcSetup(PWM_CHAN_FAN, PWM_FREQ, PWM_RES);
+  ledcAttachPin(PIN_FAN_PWM, PWM_CHAN_FAN);
+  ledcWrite(PWM_CHAN_FAN, 0);
+#endif
   loadConfig();
   setupNetwork();
   setupWebSocket();

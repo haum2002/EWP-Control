@@ -82,21 +82,27 @@ Sebelum membina firmware, anda WAJIB memilih konfigurasi berikut dalam `factory_
 #define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_PWM  // <-- Pilih di sini
 ```
 
-#### Sensor Persekitaran (Pilihan)
+#### Sensor Persekitaran (Reserved)
 ```c
 #define SC_FACTORY_SENSOR_NONE   0  // Tiada sensor
 #define SC_FACTORY_SENSOR_BME280 1  // BME280 (suhu, kelembapan, tekanan)
 #define SC_FACTORY_SENSOR_AHT30  2  // AHT30 (suhu, kelembapan)
 #define SC_FACTORY_SENSOR_BMP280 3  // BMP280 (suhu, tekanan)
 #define SC_FACTORY_SENSOR_BMP180 4  // BMP180 (suhu, tekanan)
-#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE  // <-- Pilih di sini
+#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE
 ```
 
-#### Micro SD Card
+Pilihan selain `SC_FACTORY_SENSOR_NONE` belum aktif dalam release V2. Build akan
+ditolak sehingga driver, dependency, status JSON, dan ujian hardware rasmi
+ditambah.
+
+#### Micro SD Card (Reserved)
 ```c
-#define SC_FACTORY_SD_CARD_ENABLED 0  // 0 = Tidak aktif, 1 = Aktif
-// Jika aktif, log terperinci dan data latihan SI akan disimpan ke SD card
+#define SC_FACTORY_SD_CARD_ENABLED 0
 ```
+
+Nilai `1` belum aktif dalam release V2. Build akan ditolak supaya firmware tidak
+mendakwa mempunyai logging SD tanpa implementasi sebenar.
 
 ### 2. Pengurusan Pin Dinamik
 
@@ -108,12 +114,6 @@ Pin dipetakan secara automatik berdasarkan konfigurasi di atas:
 | ECU Input | 6 | 6 |
 | Pam | 2 (SSR) | 3 (PWM) |
 | Kipas | 5 (SSR) | 4 (PWM) |
-| SD Card CS | 7 (jika aktif) |
-| SD Card MOSI | 11 (jika aktif) |
-| SD Card MISO | 13 (jika aktif) |
-| SD Card SCK | 12 (jika aktif) |
-| I2C SDA | 8 (jika sensor aktif) |
-| I2C SCL | 9 (jika sensor aktif) |
 
 ### 3. Validasi Automatik
 
