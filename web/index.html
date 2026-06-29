@@ -27,7 +27,11 @@ body{font-family:system-ui,sans-serif;background:linear-gradient(135deg,#0f172a,
 .statCard .value{font:800 1.6rem monospace;margin:5px 0}
 .nav button{width:100%;padding:10px;text-align:left;background:transparent;border:0;color:var(--muted);cursor:pointer}
 .nav button.active{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;border-radius:10px}
-.rgbIndicator{width:11px;height:11px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green)}
+.rgbIndicator{width:14px;height:14px;border-radius:50%;background:#ccc;box-shadow:0 0 5px rgba(0,0,0,.3);transition:background .5s ease,box-shadow .5s ease}
+.rgbIndicator.ok{background:var(--green);box-shadow:0 0 10px var(--green)}
+.rgbIndicator.warn{background:var(--yellow);box-shadow:0 0 10px var(--yellow)}
+.rgbIndicator.fault{background:var(--red);box-shadow:0 0 12px var(--red);animation:pulseRgb 1s infinite}
+@keyframes pulseRgb{0%,100%{opacity:1}50%{opacity:.5}}
 .statusDot{width:7px;height:7px;border-radius:50%;background:var(--green)}
 .chip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:7px;background:rgba(255,255,255,.05);font-size:.65rem}
 </style>
@@ -123,8 +127,9 @@ const renderNav=()=>{$("navMenu").innerHTML=[["dashboard","nav_dashboard"],["con
 const switchView=(v)=>{state.active=v;document.querySelectorAll(".view").forEach(e=>e.classList.toggle("hidden",e.id!=="view-"+v));$("pageTitle").textContent=t("nav_"+v)||v;renderNav();if(window.innerWidth<=768)toggleMenu()};
 const logout=()=>{state.token="";$("appScreen").classList.add("hidden");$("authScreen").classList.remove("hidden")};
 const fmt=(n,d=0)=>Number.isFinite(+n)?(+n).toFixed(d):"--";
-const renderStatus=(s)=>{if(!s)return;$("mTemp").textContent=fmt(s.coolant_c,1)+" C";$("mPump").textContent=fmt(s.pump_pct||0)+"%";$("mFan").textContent=fmt(s.fan_pct||0)+"%";$("mBatt").textContent=fmt(s.battery_v||0,2)+" V";$("chipMode").textContent=t("label_mode")+": "+(["Auto","Manual","Force"][s.mode||0]||"Auto")};
-$("loginForm").onsubmit=(e)=>{e.preventDefault();state.token="demo";$("authScreen").classList.add("hidden");$("appScreen").classList.remove("hidden");renderNav();setInterval(()=>renderStatus({coolant_c:75+Math.random()*10,pump_pct:50+Math.random()*20,fan_pct:60+Math.random()*15,battery_v:12.5+Math.random(),mode:0}),2000)};
+const updateRgb=(status)=>{let rgb=$("rgbLed"),lbl=$("rgbLabel");if(!rgb)return;rgb.className="rgbIndicator";if(status==="ok"||status===0){rgb.classList.add("ok");if(lbl)lbl.textContent="Normal"}else if(status==="warn"||status===1){rgb.classList.add("warn");if(lbl)lbl.textContent="Amaran"}else{rgb.classList.add("fault");if(lbl)lbl.textContent="Kesalahan"}};
+const renderStatus=(s)=>{if(!s)return;$("mTemp").textContent=fmt(s.coolant_c,1)+" C";$("mPump").textContent=fmt(s.pump_pct||0)+"%";$("mFan").textContent=fmt(s.fan_pct||0)+"%";$("mBatt").textContent=fmt(s.battery_v||0,2)+" V";$("chipMode").textContent=t("label_mode")+": "+(["Auto","Manual","Force"][s.mode||0]||"Auto");updateRgb(s.fault||"ok")};
+$("loginForm").onsubmit=(e)=>{e.preventDefault();state.token="demo";$("authScreen").classList.add("hidden");$("appScreen").classList.remove("hidden");renderNav();setInterval(()=>{let f=Math.random()>0.9?"fault":(Math.random()>0.8?"warn":"ok");renderStatus({coolant_c:75+Math.random()*10,pump_pct:50+Math.random()*20,fan_pct:60+Math.random()*15,battery_v:12.5+Math.random(),mode:0,fault:f})},2000)};
 document.body.onclick=(e)=>{let b=e.target.closest("button[data-view]");if(b)switchView(b.dataset.view)};
 renderNav();
 </script>
