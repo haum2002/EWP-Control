@@ -1,7 +1,6 @@
+# Build artifacts
 .pio/
 .vscode/
-docs/archive/
-
 *.bin
 *.elf
 *.map
@@ -9,32 +8,26 @@ docs/archive/
 *.o
 *.obj
 *.out
+build/
+dist/
+
+# Logs and temp files
 *.log
 *.tmp
 *.swp
 *.swo
 
-build/
-dist/
-target/
-
+# Environment
 .env
 .env.local
-*.env.*
-
-venv/
 .venv/
+venv/
 __pycache__/
-.mypy_cache/
-.pytest_cache/
-.cache/
-node_modules/
-.gradle/
 
+# IDE
 .idea/
 .DS_Store
 Thumbs.db
 
-coverage/
-htmlcov/
-.coverage
+# Archive
+docs/archive/
