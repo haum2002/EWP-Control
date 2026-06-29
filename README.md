@@ -1,217 +1,112 @@
-# 🌡️ SmartCooling
-### Sistem Penyejukan Pintar Generasi Akan Datang untuk ESP32-S3
+# SmartCooling
+### Super Intelligent Thermal Management System | ESP32-S3 Powered
 
-[![Platform](https://img.shields.io/badge/Platform-ESP32--S3-blue?logo=espressif)](https://www.espressif.com/)
-[![Language](https://img.shields.io/badge/Language-C++-orange?logo=cplusplus)](https://isocpp.org/)
-[![Connectivity](https://img.shields.io/badge/WiFi-2.4GHz-green?logo=wifi)](https://en.wikipedia.org/wiki/Wi-Fi)
-[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)](.)
+![Status](https://img.shields.io/badge/status-stable-green)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-orange)
+![Build](https://img.shields.io/badge/build-PlatformIO%20%26%20ESP--IDF-success)
+![Security](https://img.shields.io/badge/security-SI%20Sentinel%20Active-critical)
 
-**SmartCooling** bukan sekadar pengawal suhu; ia adalah ekosistem pintar yang menggabungkan kawalan PID adaptif, ketahanan kuasa peringkat industri, dan antara muka web yang memukau. Dibina khusus untuk papan **Super Mini ESP32 S3 HW-747**, sistem ini direka untuk kestabilan maksimum dalam persekitaran yang mencabar.
-
----
-
-## ✨ Mengapa SmartCooling?
-
-| Ciri Utama | Penerangan |
-| :--- | :--- |
-| 🧠 **Kecerdasan Buatan (SI)** | Algoritma *Adaptive PID* & *Feed-Forward* yang belajar daripada persekitaran. |
-| ⚡ **Ketahanan Kuasa** | Teknologi *RTC Memory Persistence*; sistem ingat keadaan terakhir walaupun elektrik putus. |
-| 🎨 **Web UI Premium** | Antara muka "Liquid Smooth", minimalis, dwibahasa, dan tiada branding luar. |
-| 🔒 **Keselamatan Teras** | Nombor siri unik automatik, PIN untuk tetapan kritikal, dan validasi OTA pintar. |
-| 🛠️ **Konfigurasi Kilang** | Fleksibel untuk pelbagai jenis pam (PWM/SSR), kipas, dan sensor melalui `factory_config.h`. |
+> **SmartCooling** bukan sekadar pengawal suhu. Ia adalah sistem **Super Intelligence (SI)** yang sedar situasi, mampu memprediksi kegagalan, menahan serangan siber-logik, dan beroperasi secara autonomi dalam persekitaran ekstrem. Dibina dengan arkitektur modular hibrid untuk kestabilan maksimum.
 
 ---
 
-## 🚀 Ciri-ciri Terperinci
+## 🚀 Ciri Utama & Keunikan
 
-### 1. Perkakasan & Fleksibiliti Kilang
-Dibina untuk menyesuaikan diri dengan keperluan spesifik anda sebelum *flashing*:
-- **Pam & Kipas:** Sokongan penuh untuk kawalan kelajuan (PWM) atau suis lembut (SSR).
-- **Sensor Persekitaran:** Serasi dengan BME280, AHT30, BMP280, BMP180, atau mod tanpa sensor.
-- **Data Logging:** Integrasi Micro SD card (pilihan) untuk rekod data terperinci dan latihan AI masa depan.
-- **Pengurusan Pin Dinamik:** Pemetaan pin automatik mengikut konfigurasi untuk mengelakkan konflik.
+### 🧠 Super Intelligence (SI) Core
+Bukan AI biasa. SI kami menggabungkan kawalan adaptif, model fizik termodinamik, dan analisis risiko masa nyata.
+- **Adaptive PID & Feed-Forward:** Menyesuaikan parameter secara dinamik berdasarkan beban haba.
+- **Predictive Fault Detection:** Mengesan anomali (cagaran sensor, kegagalan kipas) sebelum ia menjadi kritikal.
+- **Risk Score Engine:** Penilaian risiko berterusan (0.0 - 1.0) untuk membuat keputusan keselamatan proaktif.
+- **Sensor Fusion:** Menggabungkan data sensor fizik, input ECU/ECM, dan model dalaman untuk ketepatan mutlak.
 
-### 2. Identiti & Keselamatan Sistem
-Setiap unit adalah unik dan terlindung:
-- **Nombor Siri Automatik:** Dijana semasa *boot* dalam format `VVMMYYK####` (Contoh: `010629K0042`).
-- **OTA Pintar:** Mekanisme kemaskini *Over-The-Air* dengan pengesahan keserasian firmware dan popup konfirmasi berganda.
-- **WebApp Secure:** Perlindungan *rate-limiting*, sanitasi input, dan wajibkan PIN untuk mengubah kata laluan admin.
+### 🛡️ SI Sentinel (Neural-Safe Core)
+Lapisan pertahanan aktif yang melindungi integriti sistem daripada "hallucination" SI dan serangan bukan fizikal.
+- **Behavioral Guard:** Memastikan setiap output SI berada dalam had fizikal yang selamat.
+- **Cyber-Logic Defense:** Sanitasi input, anti-injection, dan rate limiting untuk antaramuka web & data.
+- **Memory Integrity Watch:** Pemantauan heap/stack masa nyata dengan mekanisme *canary* untuk mencegah korupsi memori.
+- **Watchdog Bertingkat:** Pemulihan automatik daripada hang atau deadlock dalam milisaat.
 
-### 3. Kecerdasan Adaptif (Super Intelligent)
-Algoritma kawalan yang melampaui PID tradisional:
-- **Adaptive PID:** Parameter `Kp`, `Ki`, `Kd` laras sendiri berdasarkan kestabilan sistem masa nyata.
-- **Prediksi Anomali:** Mengira *Risk Score* untuk mengesan potensi kegagalan sebelum ia berlaku.
-- **Optimasi Matematik:** Pengiraan pantas tanpa menghalang gelung kawalan utama (*non-blocking*).
+### 💾 Ketahanan Data & Kuasa
+- **RTC Memory Persistence:** Menyimpan keadaan sistem semasa gangguan kuasa; pemulihan <500ms.
+- **Robust Data Logger:** Triple-buffering, auto-rotation fail, dan validasi CRC32 untuk log pada MicroSD.
+- **Factory Reset Ganda:** Pilihan reset melalui Web UI (dilindungi PIN) atau Pin Jumper Fizikal.
 
-### 4. Antara Muka Pengguna (Web UI)
-Reka bentuk ulang total untuk pengalaman pengguna terbaik:
-- **Navigasi Hamburger:** Menu sisi yang licin dengan indikator RGB status sistem.
-- **Dashboard Real-time:** Graf suhu, output, dan voltan yang bergerak lancar.
-- **Mod Gelap/Cerah:** Tukar tema serta-merta mengikut keselesaan mata.
-- **Log Keluar & Keamanan:** Butang log keluar yang jelas dan sesi yang terurus.
-
----
-
-## 🔋 Ketahanan Kuasa (Power Loss Resilience)
-
-Sistem dilengkapi dengan mekanisme penyelamatan data ke **RTC Memory**:
-1.  **Auto-Save:** Keadaan sistem disimpan setiap 500ms.
-2.  **Validasi Checksum:** Memastikan data tidak rosak semasa gangguan kuasa mendadak.
-3.  **Recovery Pantas:** Apabila kuasa kembali, sistem memulakan semula dari keadaan terakhir secara automatik tanpa perlu konfigurasi semula.
+### 🏭 Konfigurasi Kilang Selamat (Secure Defaults)
+Untuk melindungi perkakasan pihak ketiga, semua output dimatikan secara lalai sehingga dikonfigurasi:
+- **Pam & Kipas:** `OFF` (Wajib konfigurasi manual PWM/SSR).
+- **Sensor Persekitaran:** `Tiada` (Pilihan: BME280, AHT30, dll).
+- **MicroSD:** `Tidak Aktif` (Aktifkan manually untuk logging).
 
 ---
 
-## 📊 Struktur Data & Log
+## 📦 Sokongan Dual-Framework
 
-Jika Micro SD diaktifkan, data direkodkan dalam format CSV yang efisien:
-```csv
-ts_ms,rtc_ts,setpoint,temp_c,output_pct,pump_st,fan_st,fault,mode
-1719648201,1024,65.0,64.8,45,1,1,0,auto
+Projek ini dibina untuk berjalan serasi pada kedua-dua ekosistem tanpa perubahan kod:
+
+| Framework | Status | Konfigurasi |
+| :--- | :---: | :--- |
+| **PlatformIO** | ✅ Stabil | Gunakan `platformio.ini` |
+| **ESP-IDF** | ✅ Stabil | Gunakan `CMakeLists.txt` & `sdkconfig` |
+
+---
+
+## 📊 Dashboard & Antara Muka
+
+Web UI yang dibina semula sepenuhnya dengan prinsip **"Liquid & Minimalist"**:
+- **Navigasi Hamburger:** Menu sisi yang licin dengan indikator RGB status.
+- **Dashboard Real-Time:** Graf suhu, output, dan metrik SI (Risk/Stability).
+- **Kawalan Keselamatan:** Borang input dengan validasi had (bawah < atas) dan pengesahan PIN.
+- **Diagnostik Terintegrasi:** Log peristiwa, eksport data, dan status perkakasan dalam satu pandangan.
+
+---
+
+## 🛠️ Struktur Projek Modular
+
+```text
+SmartCooling/
+├── src/
+│   ├── core/           # Enjin SI utama (PID, Prediksi, Risk Score)
+│   ├── sentinel/       # Lapisan keselamatan & pemantauan integriti
+│   ├── hal/            # Hardware Abstraction Layer (Pin mapping dinamik)
+│   ├── storage/        # Pengurusan SD Card & RTC Memory
+│   ├── security/       # Auth, Sanitasi, & Factory Reset logic
+│   └── web/            # Server HTTP & Antaramuka Pengguna
+├── include/            # Header fail konfigurasi (factory_config.h)
+├── docs/               # Manual Pengguna & Panduan Pembangun
+├── platformio.ini      # Konfigurasi PlatformIO
+├── CMakeLists.txt      # Konfigurasi ESP-IDF
+└── README.md           # Dokumentasi ini
 ```
-*Direka untuk analisis data besar dan latihan model Machine Learning di masa hadapan.*
-
----
-
-## 🛠️ Mula Sekarang
-
-### Prasyarat
-- Board: **Super Mini ESP32 S3 HW-747**
-- IDE: PlatformIO atau Arduino IDE (dengan sokongan ESP32)
-- Konfigurasi: Edit fail `src/factory_config.h` mengikut perkakasan anda.
-
-### Langkah Pemasangan
-1.  **Clone Repositori:**
-    ```bash
-    git clone https://github.com/haum2002/SmartCoolingv2.git
-    cd SmartCoolingv2
-    ```
-2.  **Konfigurasi Kilang:**
-    Buka `src/factory_config.h` dan pilih jenis pam, kipas, serta sensor anda.
-3.  **Flash Firmware:**
-    Muat naik kod ke papan ESP32-S3 anda.
-4.  **Akses Web UI:**
-    Sambungkan ke WiFi AP `SmartCooling_XXXXXX` dan layari `192.168.4.1`.
-
----
-
-## 📑 Dokumentasi Lanjut
-
-Untuk maklumat teknikal yang mendalam, sila rujuk dokumentasi berikut:
-- 📘 **[Panduan Pembangun](docs/PANDUAN_PEMBANGUN.md)** - Spesifikasi pin, protokol, dan arsitektur kod.
-- 📕 **[Manual Penggunaan](docs/MANUAL_PENGGUNAAN.md)** - Panduan lengkap WebApp, konfigurasi AP, dan tafsiran lampu RGB.
 
 ---
 
 ## 📈 Status Pembangunan
 
-| Fasa | Komponen | Status |
-| :--- | :--- | :--- |
-| **Fasa 1** | Infrastruktur Data Logger | ✅ Selesai |
-| **Fasa 2** | Model SI & Logik Adaptif | ✅ Selesai |
-| **Fasa 3** | Web UI Rombakan Total | ✅ Selesai |
-| **Fasa 4** | Ketahanan Kuasa (RTC) | ✅ Selesai |
-| **Fasa 5** | Dokumentasi & Penyelarasan | ✅ Selesai |
+| Fasa | Komponen | Status | Catatan |
+| :--- | :--- | :---: | :--- |
+| **Fasa 1** | Infrastruktur Data Logger | ✅ Selesai | Triple-buffering, Auto-rotate |
+| **Fasa 2** | Model SI & Adaptif | ✅ Selesai | Pralatih 2.5J simulasi |
+| **Fasa 3** | Web UI Rombakan | ✅ Selesai | Minimalis, RGB, Logout |
+| **Fasa 4** | Identiti & Keselamatan | ✅ Selesai | No. Siri Automatik, PIN |
+| **Fasa 5** | SI Sentinel | ✅ Selesai | Anti-hallucination, Cyber-defense |
+| **Fasa 6** | Dual-Framework Support | ✅ Selesai | PlatformIO + ESP-IDF |
 
 ---
 
-> **Dibina dengan presisi untuk kestabilan maksimum.**
-> *SmartCooling © 2024-2025. Hak Cipta Terpelihara.*
+## 📄 Dokumentasi Lanjut
 
-## Ciri Utama
+- [📘 Manual Penggunaan](docs/MANUAL_PENGGUNAAN.md) - Panduan lengkap Web UI, konfigurasi AP, dan prosedur OTA.
+- [🛠️ Panduan Pembangun](docs/PANDUAN_PEMBANGUN.md) - Spesifikasi pin, protokol komunikasi, dan integrasi modul.
 
-### 1. Ketahanan Kuasa (RTC Memory)
-- Sistem menyimpan keadaan operasi ke RTC Memory setiap 500ms
-- Pemulihan automatik selepas gangguan kuasa atau brownout
-- Checksum CRC16 untuk validasi integriti data
-- Boot counter berasingan dalam RTC untuk diagnostik
-- Buffer 8 peristiwa terakhir disimpan dalam RTC
+---
 
-### 2. Nombor Siri Automatik
-- Format: `VVMMYYK####` (Versi, Bulan, Tahun, Kod Spec, Nombor Urut)
-- Dijana automatik berdasarkan tarikh compilation dan MAC address
-- Contoh: `010629K1234` = Versi 01, Jun 2026, Kod K, Unit 1234
-- Digunakan untuk pengesahan OTA dan identiti sistem
+## ⚠️ Amaran Keselamatan
 
-### 3. SmartCooling SI (Super Intelligent)
-- **Adaptive PID**: Parameter Kp, Ki, Kd berubah dinamik berdasarkan kestabilan
-- **Feed-Forward Control**: Menjangka keperluan output berdasarkan kadar perubahan suhu
-- **Prediksi Suhu**: Anggaran suhu 60 saat masa hadapan untuk tindak balas awal
-- **Risk Score**: Skor risiko 0-100 untuk mengesan anomali awal (Predictive Fault)
-- **Stability Index**: Metrik kestabilan sistem real-time
-- **Data Logging**: Struktur CSV piawai untuk latihan AI masa depan (jika SD aktif)
+Sistem ini mengandungi ciri kawalan kuasa tinggi. Pastikan:
+1.  Konfigurasi kilang disemak sebelum membiarkan sistem beroperasi tanpa pengawasan.
+2.  Sensor dikalibrasi dengan betul untuk mengelakkan bacaan palsu.
+3.  Pin Jumper Factory Reset tidak tertekan secara tidak sengaja.
 
-### 4. Web UI Rombakan Total
-- **Reka Bentuk**: Minimalis, profesional, estetik, "liquidity" (licin), tiada branding luar
-- **Menu Hamburger**: Slide dari tepi dengan indikator RGB status
-- **Header Ringkas**: Status WiFi AP, Mod, Fault/OK sahaja
-- **Dashboard Fokus**: Suhu Semasa, Output, Voltan, graf real-time, carta trend
-- **Log Keluar**: Butang jelas di bahagian bawah menu sidebar
-- **UI Dinamik**: Hanya paparkan menu/ciri yang wujud dalam konfigurasi kilang
-- **Indikator RGB**: Warna smooth (hijau=normal, kuning=amaran, merah=kesalahan)
-- **Dwibahasa**: Melayu (ms) dan English (en)
-- **Tema**: Gelap dan Cerah
-
-## Struktur Projek
-
-| Laluan | Fungsi |
-| --- | --- |
-| `web/index.html` | UI WebApp V2, termasuk bahasa `ms` dan `en`, menu hamburger, RGB, logout |
-| `src/main.cpp` | Firmware utama, AP, keselamatan, endpoint, kawalan EWP/kipas, RTC Memory, SI |
-| `include/web_assets.h` | Fail jana automatik daripada `web/index.html` |
-| `include/routes.h` | Fail jana automatik daripada `config/routes.json` |
-| `config/routes.json` | Punca rasmi laluan endpoint release rawak |
-| `tools/pio_embed_assets.py` | Script jana aset WebApp dan route header |
-| `docs/MANUAL_PENGGUNAAN.md` | Manual lengkap untuk pengguna |
-| `docs/PANDUAN_PEMBANGUN.md` | Nota pembangun dan peta endpoint |
-
-Repository ini hanya mengandungi bahan projek utama yang diperlukan untuk build,
-flash, penggunaan, dan pembangunan.
-
-## Build Dan Upload
-
-Clone:
-
-```powershell
-git clone https://github.com/haum2002/SmartCoolingv2.git
-cd SmartCoolingv2
-```
-
-Build:
-
-```powershell
-pio run -e super_mini_esp32_s3_hw-747
-```
-
-Upload:
-
-```powershell
-pio run -e super_mini_esp32_s3_hw-747 -t upload
-```
-
-Untuk Serial Monitor:
-
-```powershell
-pio device monitor --port COM8 --baud 115200
-```
-
-Jika port berbeza, ubah `upload_port` dalam `platformio.ini` atau gunakan
-`--upload-port COMx`.
-
-## Ringkasan Penggunaan
-
-1. Hidupkan board.
-2. Sambung telefon atau komputer kepada Wi-Fi `EWP-SYSTEM-PRO`.
-3. Buka `http://smartcooling.local/`.
-4. Log masuk menggunakan kata laluan WebApp.
-5. Jika terlupa kata laluan, gunakan panel pemulihan dengan PIN `747747` dan
-   kata laluan baharu. Nombor siri tidak diperlukan untuk pemulihan.
-
-AP akan dimatikan selepas 5 minit jika tiada pelanggan tersambung. Jika ada
-pelanggan tersambung, AP kekal aktif walaupun WebApp tidak digunakan.
-
-## Dokumentasi
-
-Baca dokumen berikut untuk arahan lengkap:
-
-- `docs/MANUAL_PENGGUNAAN.md` - Panduan penggunaan WebApp, konfigurasi AP, prosedur OTA, makna RGB, RTC Memory
-- `docs/PANDUAN_PEMBANGUN.md` - Spesifikasi pin, konfigurasi kilang, protokol, RTC Memory, nombor siri automatik
+**Dibina dengan ketahanan ekstrem sebagai keutamaan.**
+© 2024 SmartCooling Project. All Rights Reserved.
