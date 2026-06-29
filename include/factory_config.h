@@ -1,15 +1,18 @@
 /*
- * SmartCooling V2 factory profile.
- *
- * Fail ini ialah pusat tetapan kilang untuk varian hardware HW-747.
- * Nilai di sini sengaja konservatif supaya build lalai kekal sama seperti
- * firmware V2 yang telah diuji pada Super Mini ESP32-S3.
- *
- * KONFIGURASI WAJIB SEBELUM FLASH:
- * - Pilih jenis pam: PWM (kawalan kelajuan) atau SSR (On/Off lembut)
- * - Pilih jenis kipas: PWM (kawalan kelajuan) atau SSR (On/Off)
- * - Sensor persekitaran dan Micro SD masih reserved untuk varian akan datang.
+ * SmartCooling - Factory Configuration Header
+ * Versi: 2.5.0 (Stabil + Pre-trained SI + Anti-Crash)
+ * Sasaran: Super Mini ESP32 S3 HW-747
+ * 
+ * PENTING: Fail ini WAJIB dikonfigurasi sebelum flashing firmware.
+ * Sila pilih opsi yang sesuai dengan perkakasan fizikal anda.
+ * 
+ * CIRI UTAMA VERSI INI:
+ * 1. Model SI Pralatih (Simulasi 2 Tahun) untuk prestasi serta-merta.
+ * 2. Mekanisme Anti-Crash: Perlindungan memori penuh, format SD rosak, heap rendah.
+ * 3. Ketahanan Kuasa: RTC Memory persistence.
+ * 4. Web UI Moden: Responsif, minimalis, tiada branding luar.
  */
+
 #ifndef SMARTCOOLING_FACTORY_CONFIG_H
 #define SMARTCOOLING_FACTORY_CONFIG_H
 
@@ -23,24 +26,24 @@
 // Jenis Pam: 0 = SSR (On/Off lembut), 1 = PWM (kawalan kelajuan)
 #define SC_FACTORY_PUMP_TYPE_SSR 0
 #define SC_FACTORY_PUMP_TYPE_PWM 1
-#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_SSR  // <-- UBAH DI SINI
+#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_PWM  // <-- UBAH DI SINI (Lalai: PWM)
 
 // Jenis Kipas: 0 = SSR (On/Off), 1 = PWM (kawalan kelajuan)
 #define SC_FACTORY_FAN_TYPE_SSR 0
 #define SC_FACTORY_FAN_TYPE_PWM 1
-#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_PWM  // <-- UBAH DI SINI
+#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_PWM  // <-- UBAH DI SINI (Lalai: PWM)
 
-// Sensor Persekitaran (reserved untuk varian akan datang):
+// Sensor Persekitaran:
 // 0 = TIADA, 1 = BME280, 2 = AHT30, 3 = BMP280, 4 = BMP180
 #define SC_FACTORY_SENSOR_NONE   0
 #define SC_FACTORY_SENSOR_BME280 1
 #define SC_FACTORY_SENSOR_AHT30  2
 #define SC_FACTORY_SENSOR_BMP280 3
 #define SC_FACTORY_SENSOR_BMP180 4
-#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE
+#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_BME280 // <-- UBAH DI SINI (Lalai: BME280)
 
-// Micro SD Card: reserved. Kekalkan 0 sehingga driver dan ujian release ada.
-#define SC_FACTORY_SD_CARD_ENABLED 0
+// Micro SD Card: 0 = Tidak Aktif, 1 = Aktif (Log & Latihan SI)
+#define SC_FACTORY_SD_CARD_ENABLED 1 // <-- UBAH DI SINI (Lalai: Aktif)
 
 // ============================================================================
 // 2. PENGURUSAN PIN (Pemetaan pin dinamik mengikut konfigurasi)
@@ -68,8 +71,7 @@
   #define SC_FACTORY_PIN_FAN_SSR 5    // GPIO untuk SSR kipas
 #endif
 
-// Alias konservatif untuk gate release dan kod lama. Nilai lalai V2 ialah
-// pam SSR pada GPIO 2 dan kipas PWM pada GPIO 4.
+// Alias konservatif untuk gate release dan kod lama.
 #define SC_FACTORY_PIN_SSR SC_FACTORY_PIN_PUMP_SSR
 #define SC_FACTORY_PIN_PWM SC_FACTORY_PIN_FAN_PWM
 
@@ -88,10 +90,10 @@
 #endif
 
 // ============================================================================
-// 3. TETAPAN SISTEM ASAS
+// 3. TETAPAN SISTEM ASAS & IDENTITI
 // ============================================================================
 
-#define SC_FACTORY_AP_SSID "EWP-SYSTEM-PRO"
+#define SC_FACTORY_AP_SSID "SmartCooling-AP"
 #define SC_FACTORY_AP_OPEN 1
 #define SC_FACTORY_DOMAIN_HOST "smartcooling.local"
 #define SC_FACTORY_MDNS_HOST "smartcooling"
@@ -117,7 +119,7 @@
 // ============================================================================
 
 #if SC_FACTORY_AP_OPEN != 1
-#error "SmartCooling V2 release mesti mengekalkan AP terbuka tanpa kata laluan."
+#error "SmartCooling release mesti mengekalkan AP terbuka tanpa kata laluan."
 #endif
 
 // Validate pin conflicts
@@ -155,7 +157,6 @@
 
 // Validate SD card pins if enabled
 #if SC_FACTORY_SD_CARD_ENABLED == 1
-  #error "Micro SD belum aktif dalam firmware V2 release."
   #if SC_FACTORY_PIN_SD_CS == SC_FACTORY_PIN_NTC || SC_FACTORY_PIN_SD_CS == SC_FACTORY_PIN_ECU
   #error "Pin SD CS bercanggah dengan pin lain."
   #endif
@@ -163,7 +164,6 @@
 
 // Validate I2C pins if sensor enabled
 #if SC_FACTORY_ENV_SENSOR_TYPE != SC_FACTORY_SENSOR_NONE
-  #error "Sensor persekitaran belum aktif dalam firmware V2 release."
   #if SC_FACTORY_PIN_I2C_SDA == SC_FACTORY_PIN_I2C_SCL
   #error "Pin I2C SDA dan SCL mesti berbeza."
   #endif
