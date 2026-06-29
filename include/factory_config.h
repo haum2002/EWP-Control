@@ -21,29 +21,34 @@
 
 // ============================================================================
 // 1. KONFIGURASI PERKAKASAN (WAJIB DIPILIH SEBELUM FLASH)
+// PENTING: Default diubah ke NONE/OFF untuk keselamatan perkakasan
 // ============================================================================
 
 // Jenis Pam: 0 = SSR (On/Off lembut), 1 = PWM (kawalan kelajuan)
+// AMARAN: Jangan ubah ke PWM/SSR jika tidak pasti jenis pam terpasang!
 #define SC_FACTORY_PUMP_TYPE_SSR 0
 #define SC_FACTORY_PUMP_TYPE_PWM 1
-#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_PWM  // <-- UBAH DI SINI (Lalai: PWM)
+#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_SSR  // <-- UBAH DI SINI (Lalai: SSR untuk selamat)
 
 // Jenis Kipas: 0 = SSR (On/Off), 1 = PWM (kawalan kelajuan)
+// AMARAN: Jangan ubah ke PWM/SSR jika tidak pasti jenis kipas terpasang!
 #define SC_FACTORY_FAN_TYPE_SSR 0
 #define SC_FACTORY_FAN_TYPE_PWM 1
-#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_PWM  // <-- UBAH DI SINI (Lalai: PWM)
+#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_SSR  // <-- UBAH DI SINI (Lalai: SSR untuk selamat)
 
 // Sensor Persekitaran:
 // 0 = TIADA, 1 = BME280, 2 = AHT30, 3 = BMP280, 4 = BMP180
+// LAZIM: Tiada sensor sebagai default untuk elak konflik I2C
 #define SC_FACTORY_SENSOR_NONE   0
 #define SC_FACTORY_SENSOR_BME280 1
 #define SC_FACTORY_SENSOR_AHT30  2
 #define SC_FACTORY_SENSOR_BMP280 3
 #define SC_FACTORY_SENSOR_BMP180 4
-#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_BME280 // <-- UBAH DI SINI (Lalai: BME280)
+#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE // <-- UBAH DI SINI (Lalai: TIADA)
 
 // Micro SD Card: 0 = Tidak Aktif, 1 = Aktif (Log & Latihan SI)
-#define SC_FACTORY_SD_CARD_ENABLED 1 // <-- UBAH DI SINI (Lalai: Aktif)
+// LAZIM: Tidak aktif sebagai default untuk stabiliti maksimum
+#define SC_FACTORY_SD_CARD_ENABLED 0 // <-- UBAH DI SINI (Lalai: TIDAK AKTIF)
 
 // ============================================================================
 // 2. PENGURUSAN PIN (Pemetaan pin dinamik mengikut konfigurasi)
