@@ -1,6 +1,6 @@
-# SmartCooling V2
+# SmartCooling
 
-SmartCooling V2 ialah firmware dan WebApp untuk pengawal EWP, kipas radiator,
+SmartCooling ialah firmware dan WebApp untuk pengawal EWP, kipas radiator,
 diagnostik suhu, keselamatan asas, dan tetapan operasi berasaskan ESP32-S3
 Super Mini HW-747 dengan ciri kecerdasan buatan (SI), ketahanan kuasa RTC,
 dan nombor siri automatik.
@@ -52,7 +52,7 @@ Akses melalui IP ditolak oleh firmware. Gunakan domain rasmi
 - **Data Logging**: Struktur CSV piawai untuk latihan AI masa depan (jika SD aktif)
 
 ### 4. Web UI Rombakan Total
-- **Reka Bentuk**: Minimalis, profesional, estetik, "liquidity" (licin)
+- **Reka Bentuk**: Minimalis, profesional, estetik, "liquidity" (licin), tiada branding luar
 - **Menu Hamburger**: Slide dari tepi dengan indikator RGB status
 - **Header Ringkas**: Status WiFi AP, Mod, Fault/OK sahaja
 - **Dashboard Fokus**: Suhu Semasa, Output, Voltan, graf real-time, carta trend
