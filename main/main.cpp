@@ -1831,8 +1831,6 @@ void setup() {
   // Initialize RTC memory and attempt recovery
   rtcRecoveredAtBoot = recoverFromRtc();
 
-  esp_task_wdt_init(CONTROL_WDT_TIMEOUT_S, true);
-  esp_task_wdt_add(NULL);
   analogReadResolution(12);
   analogSetPinAttenuation(PIN_NTC, ADC_11db);
   pinMode(PIN_ECU, INPUT_PULLDOWN);
@@ -1866,6 +1864,8 @@ void setup() {
   setupWebSocket();
   setupRoutes();
   server.begin();
+  esp_task_wdt_init(CONTROL_WDT_TIMEOUT_S, true);
+  esp_task_wdt_add(NULL);
 
   char bootMsg[72];
   snprintf(bootMsg, sizeof(bootMsg), "Boot reset=%s rtc=%d count=%lu",
