@@ -793,11 +793,28 @@ void addEvent(uint8_t level, const char *message) {
   Serial.printf("[SC][%lu][%u] %s\r\n", (unsigned long)e.uptime_ms, level, message);
 }
 
+void applyApRadioProfile() {
+  WiFi.setSleep(false);
+  WiFi.setTxPower(WIFI_POWER_19_5dBm);
+
+  wifi_country_t country = {};
+  country.cc[0] = 'M';
+  country.cc[1] = 'Y';
+  country.cc[2] = '\0';
+  country.schan = 1;
+  country.nchan = 13;
+  country.max_tx_power = 78;
+  country.policy = WIFI_COUNTRY_POLICY_MANUAL;
+  esp_wifi_set_country(&country);
+  esp_wifi_set_max_tx_power(78);
+  esp_wifi_set_protocol(WIFI_IF_AP, WIFI_PROTOCOL_11B | WIFI_PROTOCOL_11G | WIFI_PROTOCOL_11N);
+  esp_wifi_set_bandwidth(WIFI_IF_AP, WIFI_BW_HT20);
+}
+
 void setupNetwork() {
   WiFi.persistent(false);
   WiFi.mode(WIFI_AP);
-  WiFi.setSleep(false);
-  WiFi.setTxPower(WIFI_POWER_19_5dBm);
+  applyApRadioProfile();
   startAp();
 }
 
@@ -850,8 +867,7 @@ void startAp() {
   WiFi.softAPdisconnect(true);
   delay(80);
   WiFi.mode(WIFI_AP);
-  WiFi.setSleep(false);
-  WiFi.setTxPower(WIFI_POWER_19_5dBm);
+  applyApRadioProfile();
   WiFi.softAPsetHostname(MDNS_HOST);
   uint8_t preferred = chooseApChannel();
   if (!WiFi.softAPConfig(AP_IP, AP_GW, AP_MASK, AP_LEASE_START)) {
@@ -874,7 +890,7 @@ void startAp() {
       }
       WiFi.softAPdisconnect(false);
       delay(40);
-      ok = WiFi.softAP(AP_SSID, nullptr, channel, 0, 4);
+      ok = WiFi.softAP(AP_SSID, "", channel, 0, 4);
       delay(120);
       if (ok && WiFi.softAPSSID() == AP_SSID) {
         apChannel = channel;
@@ -898,9 +914,10 @@ void startAp() {
     if (MDNS.begin(MDNS_HOST)) {
       MDNS.addService("http", "tcp", 80);
     }
-    char msg[80];
-    snprintf(msg, sizeof(msg), "AP started ssid=%s channel=%u ip=%s",
-             AP_SSID, apChannel, AP_IP.toString().c_str());
+    char msg[128];
+    snprintf(msg, sizeof(msg), "AP started ssid=%s channel=%u ip=%s bssid=%s",
+             AP_SSID, apChannel, AP_IP.toString().c_str(),
+             WiFi.softAPmacAddress().c_str());
     addEvent(0, msg);
     updateRgbStatus(true);
   } else {
@@ -1059,13 +1076,15 @@ void printSerialDiagnostics(bool force) {
   }
   lastSerialDiagMs = now;
   String stackSsid = WiFi.softAPSSID();
+  String apMac = WiFi.softAPmacAddress();
   uint8_t clients = apRunning ? WiFi.softAPgetStationNum() : 0;
-  Serial.printf("[SC][DIAG] up=%lu reset=%s ap=%d stack_ssid=\"%s\" cfg_ssid=\"%s\" ch=%u clients=%u ip=%s heap=%lu rgb=%s\r\n",
+  Serial.printf("[SC][DIAG] up=%lu reset=%s ap=%d stack_ssid=\"%s\" cfg_ssid=\"%s\" bssid=%s ch=%u clients=%u ip=%s heap=%lu rgb=%s\r\n",
                 (unsigned long)now,
                 resetReasonText(bootResetReason),
                 apRunning ? 1 : 0,
                 stackSsid.c_str(),
                 AP_SSID,
+                apMac.c_str(),
                 apChannel,
                 clients,
                 apRunning ? WiFi.softAPIP().toString().c_str() : "0.0.0.0",
