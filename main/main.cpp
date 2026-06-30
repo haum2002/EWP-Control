@@ -22,6 +22,14 @@
 #include <stddef.h>
 #include <nvs_flash.h>
 
+#ifndef SMARTCOOLING_WIFI_AP_CHANNEL
+#define SMARTCOOLING_WIFI_AP_CHANNEL 6
+#endif
+
+#ifndef SMARTCOOLING_WIFI_RF_PREFLIGHT_SCAN
+#define SMARTCOOLING_WIFI_RF_PREFLIGHT_SCAN 0
+#endif
+
 /*
  * SmartCooling Console V2
  * Target: ESP32-S3 Super Mini HW-747
@@ -249,6 +257,7 @@ Lockout loginLockout;
 Lockout recoveryLockout;
 bool apRunning = false;
 uint32_t apLastEmptyMs = 0;
+uint8_t apChannel = SMARTCOOLING_WIFI_AP_CHANNEL;
 uint32_t lastTickMs = 0;
 uint32_t lastWsPushMs = 0;
 String otaError;
@@ -284,6 +293,7 @@ String requestBody(uint8_t *data, size_t len);
 void registerJsonPost(const char *route, ArRequestHandlerFunction onRequestBody);
 void addEvent(uint8_t level, const char *message);
 void setupNetwork();
+uint8_t chooseApChannel();
 void startAp();
 bool configureApDhcpLeaseRange();
 void stopAp();
@@ -650,7 +660,7 @@ void statusToJson(JsonDocument &doc) {
   doc["ap_open"] = SC_FACTORY_AP_OPEN == 1;
   doc["ap_ip"] = AP_IP.toString();
   doc["wifi_ap_running"] = apRunning;
-  doc["wifi_channel"] = SMARTCOOLING_WIFI_AP_CHANNEL;
+  doc["wifi_channel"] = apChannel;
   doc["wifi_clients"] = clients;
   doc["wifi_dhcp_clients"] = clients;
   doc["wifi_dhcp_start"] = AP_LEASE_START.toString();
@@ -774,6 +784,7 @@ void addEvent(uint8_t level, const char *message) {
   e.level = level;
   strlcpy(e.message, message, sizeof(e.message));
   eventHead = (eventHead + 1) % 32;
+  Serial.printf("[SC][%lu][%u] %s\r\n", (unsigned long)e.uptime_ms, level, message);
 }
 
 void setupNetwork() {
@@ -782,6 +793,48 @@ void setupNetwork() {
   WiFi.setSleep(false);
   WiFi.setTxPower(WIFI_POWER_19_5dBm);
   startAp();
+}
+
+uint8_t chooseApChannel() {
+  uint8_t best = SMARTCOOLING_WIFI_AP_CHANNEL;
+#if SMARTCOOLING_WIFI_RF_PREFLIGHT_SCAN == 1
+  int score[14] = {};
+  WiFi.mode(WIFI_AP_STA);
+  WiFi.disconnect(false, false);
+  delay(80);
+  int networks = WiFi.scanNetworks(false, true, false, 180);
+  for (int i = 0; i < networks; ++i) {
+    int ch = WiFi.channel(i);
+    if (ch < 1 || ch > 13) {
+      continue;
+    }
+    int rssi = WiFi.RSSI(i);
+    int weight = constrain(100 + rssi, 1, 80);
+    score[ch] += weight;
+    if (ch > 1) {
+      score[ch - 1] += weight / 3;
+    }
+    if (ch < 13) {
+      score[ch + 1] += weight / 3;
+    }
+  }
+  WiFi.scanDelete();
+
+  const uint8_t candidates[] = {SMARTCOOLING_WIFI_AP_CHANNEL, 1, 6, 11};
+  int bestScore = 32767;
+  for (uint8_t i = 0; i < sizeof(candidates); ++i) {
+    uint8_t ch = candidates[i];
+    if (ch < 1 || ch > 13) {
+      continue;
+    }
+    if (score[ch] < bestScore) {
+      bestScore = score[ch];
+      best = ch;
+    }
+  }
+  WiFi.mode(WIFI_AP);
+#endif
+  return best;
 }
 
 void startAp() {
@@ -794,13 +847,35 @@ void startAp() {
   WiFi.setSleep(false);
   WiFi.setTxPower(WIFI_POWER_19_5dBm);
   WiFi.softAPsetHostname(MDNS_HOST);
+  uint8_t preferred = chooseApChannel();
   if (!WiFi.softAPConfig(AP_IP, AP_GW, AP_MASK, AP_LEASE_START)) {
     addEvent(1, "AP IP config failed");
   }
 
+  const uint8_t candidates[] = {preferred, SMARTCOOLING_WIFI_AP_CHANNEL, 1, 6, 11};
   bool ok = false;
   for (uint8_t attempt = 0; attempt < AP_START_RETRY_COUNT && !ok; ++attempt) {
-    ok = WiFi.softAP(AP_SSID, nullptr, SMARTCOOLING_WIFI_AP_CHANNEL, 0, 4);
+    for (uint8_t idx = 0; idx < sizeof(candidates) && !ok; ++idx) {
+      uint8_t channel = candidates[idx];
+      bool duplicate = false;
+      for (uint8_t prev = 0; prev < idx; ++prev) {
+        if (candidates[prev] == channel) {
+          duplicate = true;
+        }
+      }
+      if (duplicate || channel < 1 || channel > 13) {
+        continue;
+      }
+      WiFi.softAPdisconnect(false);
+      delay(40);
+      ok = WiFi.softAP(AP_SSID, nullptr, channel, 0, 4);
+      delay(120);
+      if (ok && WiFi.softAPSSID() == AP_SSID) {
+        apChannel = channel;
+      } else {
+        ok = false;
+      }
+    }
     if (!ok) {
       delay(AP_RETRY_DELAY_MS);
     }
@@ -817,7 +892,10 @@ void startAp() {
     if (MDNS.begin(MDNS_HOST)) {
       MDNS.addService("http", "tcp", 80);
     }
-    addEvent(0, "AP started");
+    char msg[80];
+    snprintf(msg, sizeof(msg), "AP started ssid=%s channel=%u ip=%s",
+             AP_SSID, apChannel, AP_IP.toString().c_str());
+    addEvent(0, msg);
     updateRgbStatus(true);
   } else {
     addEvent(2, "AP start failed");
