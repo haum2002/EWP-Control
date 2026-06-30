@@ -30,6 +30,10 @@
 #define SMARTCOOLING_WIFI_RF_PREFLIGHT_SCAN 0
 #endif
 
+#ifndef SMARTCOOLING_WIFI_DIAGNOSTIC_ONLY
+#define SMARTCOOLING_WIFI_DIAGNOSTIC_ONLY 0
+#endif
+
 /*
  * SmartCooling Console V2
  * Target: ESP32-S3 Super Mini HW-747
@@ -266,6 +270,7 @@ esp_reset_reason_t bootResetReason = ESP_RST_UNKNOWN;
 bool configRecovered = false;
 bool rtcRecoveredAtBoot = false;
 uint32_t lastRtcSaveMs = 0;
+uint32_t lastSerialDiagMs = 0;
 char rgbHex[8] = "#38C8FF";
 uint8_t rgbBrightness12 = RGB_BRIGHTNESS12;
 bool rgbManual = false;
@@ -303,6 +308,7 @@ void updateRgbStatus(bool force = false);
 bool parseHexColor(const String &hex, uint8_t &r, uint8_t &g, uint8_t &b);
 void writeRgb(uint8_t r, uint8_t g, uint8_t b);
 void writeRgbHex(const char *hex);
+void printSerialDiagnostics(bool force = false);
 void setupRoutes();
 void setupWebSocket();
 void engine();
@@ -1043,6 +1049,31 @@ void updateRgbStatus(bool force) {
 
   strlcpy(rgbHex, next, sizeof(rgbHex));
   writeRgbHex(rgbHex);
+}
+
+void printSerialDiagnostics(bool force) {
+#if SMARTCOOLING_WIFI_DIAGNOSTIC_ONLY == 1
+  uint32_t now = millis();
+  if (!force && now - lastSerialDiagMs < 3000UL) {
+    return;
+  }
+  lastSerialDiagMs = now;
+  String stackSsid = WiFi.softAPSSID();
+  uint8_t clients = apRunning ? WiFi.softAPgetStationNum() : 0;
+  Serial.printf("[SC][DIAG] up=%lu reset=%s ap=%d stack_ssid=\"%s\" cfg_ssid=\"%s\" ch=%u clients=%u ip=%s heap=%lu rgb=%s\r\n",
+                (unsigned long)now,
+                resetReasonText(bootResetReason),
+                apRunning ? 1 : 0,
+                stackSsid.c_str(),
+                AP_SSID,
+                apChannel,
+                clients,
+                apRunning ? WiFi.softAPIP().toString().c_str() : "0.0.0.0",
+                (unsigned long)ESP.getFreeHeap(),
+                rgbHex);
+#else
+  (void)force;
+#endif
 }
 
 void setupRoutes() {
@@ -1877,6 +1908,7 @@ void setup() {
   if (rtcRecoveredAtBoot) {
     addEvent(0, "RTC state validated");
   }
+  printSerialDiagnostics(true);
   saveToRtc();
 }
 
@@ -1893,6 +1925,7 @@ void loop() {
   }
   handleSSR();
   maintainAp();
+  printSerialDiagnostics();
   ws.cleanupClients();
   pushStatus();
 }
