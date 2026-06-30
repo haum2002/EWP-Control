@@ -19,9 +19,9 @@ untuk ESP32-S3 Super Mini HW-747.
 Gunakan domain `http://smartcooling.local/` sahaja. Firmware menolak akses WebApp
 melalui IP supaya tabiat penggunaan kekal konsisten dan lebih mudah disokong.
 
-Profil kilang V2 mengekalkan pin HW-747 yang telah diuji, AP terbuka tanpa kata
-laluan, dan PIN pemulihan `747747`. Jika firmware dibina semula oleh pembangun,
-pastikan profil ini tidak diubah tanpa semakan hardware.
+Profil kilang V2 menggunakan secure-default: output pam dan kipas dimatikan
+secara lalai sehingga pembangun memilih profil hardware sebenar dalam firmware.
+AP kekal terbuka tanpa kata laluan dan PIN pemulihan ialah `747747`.
 
 ## Komponen Utama
 
@@ -31,8 +31,8 @@ SmartCooling terdiri daripada:
 - Firmware kawalan EWP, kipas, SSR, input ECU, keselamatan, AP, mDNS, dan OTA.
 - WebApp responsif untuk desktop dan telefon.
 - Sensor NTC 10 kohm B3950 untuk bacaan suhu.
-- Output SSR untuk pam EWP.
-- Output PWM untuk kipas radiator.
+- Output pam EWP, jika diaktifkan oleh profil hardware.
+- Output kipas radiator, jika diaktifkan oleh profil hardware.
 - Input ECU 3.3 V yang selamat melalui level shifter atau divider.
 - Dokumen pengguna dan dokumen pembangun.
 
@@ -42,12 +42,19 @@ Sebelum flash firmware, pembangun boleh memilih konfigurasi output berikut dalam
 `components/smartcooling/include/factory_config.h` selepas semakan hardware:
 
 ### 1. Jenis Pam
-- **SSR (0)**: On/Off lembut menggunakan relay/SSR
-- **PWM (1)**: Kawalan kelajuan menggunakan isyarat PWM
+- **NONE (0)**: Output dimatikan, lalai release.
+- **SSR (1)**: On/Off lembut menggunakan relay/SSR.
+- **PWM (2)**: Kawalan kelajuan menggunakan isyarat PWM.
 
 ### 2. Jenis Kipas
-- **SSR (0)**: On/Off menggunakan relay/SSR
-- **PWM (1)**: Kawalan kelajuan menggunakan isyarat PWM
+- **NONE (0)**: Output dimatikan, lalai release.
+- **SSR (1)**: On/Off menggunakan relay/SSR.
+- **PWM (2)**: Kawalan kelajuan menggunakan isyarat PWM.
+
+Tetapan kilang rasmi dibuat dalam
+`components/smartcooling/include/factory_config.h` sebelum build dan flash.
+Tetapan dalam WebApp ialah konfigurasi runtime yang disimpan dalam NVS, bukan
+pengganti profil kilang firmware.
 
 Sensor persekitaran dan Micro SD masih disediakan sebagai ruang reserved untuk
 varian akan datang. Release V2 akan menolak build jika pilihan itu diaktifkan
@@ -91,6 +98,25 @@ AP hidup selepas boot, restart, power-cycle, atau ACC-ON kembali.
 - Jika sekurang-kurangnya satu pelanggan tersambung, AP kekal hidup walaupun
   tiada aktiviti WebApp.
 - Selepas AP dimatikan, hidupkan semula board untuk mengaktifkan AP kembali.
+
+Jika SSID `EWP-SYSTEM-PRO` tidak kelihatan, restart/power-cycle board dahulu.
+Firmware terkini menggunakan retry AP, Wi-Fi sleep OFF, dan kuasa TX tinggi
+untuk membantu SSID lebih mudah ditemui, tetapi AP tetap akan dimatikan selepas
+idle timeout apabila tiada pelanggan tersambung.
+
+## Petunjuk RGB
+
+Board HW-747 menggunakan RGB onboard sebagai petunjuk pantas:
+
+| Warna | Maksud |
+| --- | --- |
+| Biru | AP hidup, belum ada pelanggan tersambung |
+| Hijau | AP hidup dan ada pelanggan tersambung |
+| Amber | AP telah dimatikan kerana idle timeout |
+| Merah | Fault, forced output, atau config recovery |
+
+Di WebApp, buka **Tetapan > RGB status** untuk melihat pin/effect/warna,
+menetapkan warna manual, atau mengembalikan LED kepada mod status.
 
 ## Login
 

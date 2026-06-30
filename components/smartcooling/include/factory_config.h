@@ -111,9 +111,17 @@
 #define SC_FACTORY_AP_OPEN 1
 #define SC_FACTORY_DOMAIN_HOST "smartcooling.local"
 #define SC_FACTORY_MDNS_HOST "smartcooling"
+#define SC_FACTORY_AP_START_RETRY_COUNT 3
+#define SC_FACTORY_AP_RETRY_DELAY_MS 150UL
 
 #define SC_FACTORY_DEFAULT_WEB_PASSWORD "12345678"
 #define SC_FACTORY_RECOVERY_PIN "747747"
+
+// RGB onboard untuk ESP32-S3 Super Mini biasanya LED WS2812 pada GPIO48.
+// Jika varian HW-747 berbeza, tukar pin ini di sini sebelum build/flash.
+#define SC_FACTORY_RGB_ENABLED 1
+#define SC_FACTORY_PIN_RGB 48
+#define SC_FACTORY_RGB_BRIGHTNESS12 4
 
 // Nombor Siri Automatik Format: VVMMYYK####
 // Versi(2) + Bulan(2) + Tahun(2) + Kod Spec(1) + Unit(4)
@@ -141,6 +149,14 @@
 
 #if SC_FACTORY_AP_OPEN != 1
 #error "SmartCooling release mesti mengekalkan AP terbuka tanpa kata laluan."
+#endif
+
+#if SC_FACTORY_AP_START_RETRY_COUNT < 1
+#error "AP start retry count mesti sekurang-kurangnya 1."
+#endif
+
+#if SC_FACTORY_RGB_ENABLED == 1 && SC_FACTORY_PIN_RGB < 0
+#error "Pin RGB tidak sah."
 #endif
 
 // Validasi jenis pam

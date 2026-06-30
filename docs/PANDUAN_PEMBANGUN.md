@@ -150,13 +150,39 @@ Nilai release HW-747 yang mesti kekal selari:
 | AP terbuka | Ya |
 | PIN recovery | `747747` |
 | AP idle timeout | `300000 ms` |
+| AP start retry | `3` cubaan |
+| RGB onboard | Aktif, GPIO `48`, kecerahan `4/12` |
 
 Jangan ubah pin atau polisi AP dalam release tanpa ujian hardware sebenar,
 semakan dokumen, dan build bersih. Gate `tools/verify_release.py` akan
 menolak perubahan yang menukar PIN recovery, mematikan AP terbuka, membuang
 secure-default output `NONE`, atau menggunakan endpoint release yang jelas.
 
-### 5. Diagnostik RTC Memory
+Tetapan kilang rasmi dibuat dalam `components/smartcooling/include/factory_config.h`
+sebelum build dan flash. Tetapan WebApp hanya konfigurasi runtime yang disimpan
+dalam NVS; ia bukan pengganti profil kilang firmware.
+
+### 5. AP Dan RGB
+
+AP kekal terbuka tanpa kata laluan dan visible. Firmware menetapkan sleep Wi-Fi
+kepada OFF, kuasa TX maksimum Arduino core, hostname AP, dan retry start supaya
+SSID lebih mudah ditemui selepas boot. AP masih dimatikan selepas idle timeout
+jika tiada pelanggan, mengikut polisi asal.
+
+RGB onboard digunakan sebagai petunjuk fizikal:
+
+| Warna | Maksud |
+| --- | --- |
+| Biru | AP hidup, belum ada pelanggan |
+| Hijau | AP hidup dan ada pelanggan tersambung |
+| Amber | AP telah dimatikan oleh idle timeout |
+| Merah | Fault, forced output, atau config recovery |
+
+Endpoint `rgb` boleh menetapkan warna manual atau memulangkan LED ke mod status.
+Jika varian board tidak menggunakan GPIO48 untuk WS2812, ubah `SC_FACTORY_PIN_RGB`
+dalam `factory_config.h` dan uji semula pada hardware sebenar.
+
+### 6. Diagnostik RTC Memory
 
 Firmware menggunakan RTC slow memory untuk menyimpan diagnostik ringkas semasa
 warm reset dan beberapa keadaan brownout. Ia bukan storan konfigurasi utama dan
@@ -202,7 +228,7 @@ Untuk kehilangan kuasa sebenar, reka bentuk hardware masih perlu menyediakan
 perlindungan berasingan seperti bekalan stabil, fius, driver output yang sesuai,
 dan wiring yang disahkan.
 
-### 6. Nombor Siri Automatik
+### 7. Nombor Siri Automatik
 
 Setiap board mempunyai nombor siri unik format `VVMMYYK####`:
 
@@ -317,7 +343,7 @@ Semua endpoint release menggunakan nama rawak dalam jadual di atas.
 | Baca konfigurasi | `GET config` |
 | Pratonton konfigurasi | `POST preview` |
 | Simpan konfigurasi | `POST save` |
-| RGB no-op | `POST rgb` |
+| RGB status/manual | `POST rgb` |
 | Log peristiwa | `GET events` |
 | OTA | `POST ota` |
 | WebSocket | `GET ws` |
