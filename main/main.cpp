@@ -1857,7 +1857,9 @@ void noteSuccess(Lockout &lockout) {
 void setup() {
   Serial.begin(115200);
   bootResetReason = esp_reset_reason();
+  setupNetwork();
   initRgb();
+  updateRgbStatus(true);
 
   // Initialize RTC memory and attempt recovery
   rtcRecoveredAtBoot = recoverFromRtc();
@@ -1891,7 +1893,6 @@ void setup() {
   }
 
   loadConfig();
-  setupNetwork();
   setupWebSocket();
   setupRoutes();
   server.begin();
