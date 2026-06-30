@@ -74,18 +74,24 @@ RTC_DATA_ATTR static uint32_t rtc_boot_count = 0;
 #if SC_FACTORY_PUMP_TYPE == SC_FACTORY_PUMP_TYPE_PWM
   #define PIN_PUMP_PWM SC_FACTORY_PIN_PUMP_PWM
   #define PIN_PUMP_SSR -1
-#else
+#elif SC_FACTORY_PUMP_TYPE == SC_FACTORY_PUMP_TYPE_SSR
   #define PIN_PUMP_PWM -1
   #define PIN_PUMP_SSR SC_FACTORY_PIN_PUMP_SSR
+#else
+  #define PIN_PUMP_PWM -1
+  #define PIN_PUMP_SSR -1
 #endif
 
 // Fan output: SSR (digital) or PWM (analog speed control)
 #if SC_FACTORY_FAN_TYPE == SC_FACTORY_FAN_TYPE_PWM
   #define PIN_FAN_PWM SC_FACTORY_PIN_FAN_PWM
   #define PIN_FAN_SSR -1
-#else
+#elif SC_FACTORY_FAN_TYPE == SC_FACTORY_FAN_TYPE_SSR
   #define PIN_FAN_PWM -1
   #define PIN_FAN_SSR SC_FACTORY_PIN_FAN_SSR
+#else
+  #define PIN_FAN_PWM -1
+  #define PIN_FAN_SSR -1
 #endif
 
 // Timing and output

@@ -64,64 +64,78 @@ Prosesnya:
 
 UI dan firmware mesti merujuk route daripada sumber yang sama.
 
-## Profil Kilang V2 - Konfigurasi Perkakasan
+## Profil Kilang SmartCoolingv2 - Secure Defaults
 
-`components/smartcooling/include/factory_config.h` ialah fail rasmi untuk tetapan kilang build V2.
-Firmware membaca nilai AP, domain, PIN recovery, pin GPIO, masa AP timeout,
-tetapan PWM, dan had asas daripada fail ini.
+`components/smartcooling/include/factory_config.h` ialah fail rasmi untuk tetapan
+kilang build SmartCoolingv2. Firmware membaca nilai AP, domain, PIN recovery,
+pin GPIO, masa AP timeout, tetapan PWM, dan had asas daripada fail ini.
 
-### 1. Pilihan Wajib Sebelum Flash
+### 1. Dasar Integrasi Untuk Qwen Dan Pembangun Lain
 
-Sebelum membina firmware, anda WAJIB memilih konfigurasi berikut dalam `factory_config.h`:
+Upgrade semasa menggunakan model secure-default. Pam dan kipas dimatikan secara
+lalai sehingga profil hardware sebenar dipilih dan diuji. Jangan tukar semula
+default kepada SSR/PWM hanya untuk membuat gate lama lulus.
+
+Jika perubahan besar menyebabkan build, gate, atau firmware gagal, pembetulan
+mesti dibuat melalui integrasi kod, dokumen, dan ujian terkini. Jangan pulangkan
+fail ke versi lama tanpa pengesahan pemilik projek.
+
+### 2. Pilihan Output
 
 #### Jenis Pam
 ```c
-#define SC_FACTORY_PUMP_TYPE_SSR 0  // On/Off lembut (relay/SSR)
-#define SC_FACTORY_PUMP_TYPE_PWM 1  // Kawalan kelajuan (PWM)
-#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_SSR  // <-- Pilih di sini
+#define SC_FACTORY_PUMP_TYPE_NONE 0  // Tiada output, OFF secara lalai
+#define SC_FACTORY_PUMP_TYPE_SSR  1  // On/Off lembut melalui relay/SSR
+#define SC_FACTORY_PUMP_TYPE_PWM  2  // Kawalan kelajuan melalui PWM
+#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_NONE
 ```
 
 #### Jenis Kipas
 ```c
-#define SC_FACTORY_FAN_TYPE_SSR 0  // On/Off (relay/SSR)
-#define SC_FACTORY_FAN_TYPE_PWM 1  // Kawalan kelajuan (PWM)
-#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_PWM  // <-- Pilih di sini
+#define SC_FACTORY_FAN_TYPE_NONE 0  // Tiada output, OFF secara lalai
+#define SC_FACTORY_FAN_TYPE_SSR  1  // On/Off melalui relay/SSR
+#define SC_FACTORY_FAN_TYPE_PWM  2  // Kawalan kelajuan melalui PWM
+#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_NONE
 ```
 
-#### Sensor Persekitaran (Reserved)
+Apabila nilai `NONE` dipilih, firmware memetakan pin output kepada `-1` dan
+tidak menjalankan `pinMode`, `digitalWrite`, atau `ledcAttachPin` untuk output
+tersebut. Pemilihan SSR/PWM hanya boleh dibuat untuk build hardware yang sudah
+disahkan pada board sebenar.
+
+#### Sensor Persekitaran
 ```c
-#define SC_FACTORY_SENSOR_NONE   0  // Tiada sensor
-#define SC_FACTORY_SENSOR_BME280 1  // BME280 (suhu, kelembapan, tekanan)
-#define SC_FACTORY_SENSOR_AHT30  2  // AHT30 (suhu, kelembapan)
-#define SC_FACTORY_SENSOR_BMP280 3  // BMP280 (suhu, tekanan)
-#define SC_FACTORY_SENSOR_BMP180 4  // BMP180 (suhu, tekanan)
+#define SC_FACTORY_SENSOR_NONE   0
+#define SC_FACTORY_SENSOR_BME280 1
+#define SC_FACTORY_SENSOR_AHT30  2
+#define SC_FACTORY_SENSOR_BMP280 3
+#define SC_FACTORY_SENSOR_BMP180 4
 #define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE
 ```
 
-Pilihan selain `SC_FACTORY_SENSOR_NONE` belum aktif dalam release V2. Build akan
-ditolak sehingga driver, dependency, status JSON, dan ujian hardware rasmi
-ditambah.
+Default release kekal `SC_FACTORY_SENSOR_NONE`. Jika sensor diaktifkan, perubahan
+mesti meliputi driver, dependency, status JSON, UI, dokumen, dan ujian hardware.
 
-#### Micro SD Card (Reserved)
+#### Micro SD Card
 ```c
 #define SC_FACTORY_SD_CARD_ENABLED 0
 ```
 
-Nilai `1` belum aktif dalam release V2. Build akan ditolak supaya firmware tidak
-mendakwa mempunyai logging SD tanpa implementasi sebenar.
+Default release kekal `0`. Jika SD diaktifkan, perubahan mesti meliputi driver,
+mounting, data logger, polisi fail, status, dan ujian tulis/baca sebenar.
 
-### 2. Pengurusan Pin Dinamik
+### 3. Pengurusan Pin Dinamik
 
 Pin dipetakan secara automatik berdasarkan konfigurasi di atas:
 
-| Komponen | GPIO (SSR) | GPIO (PWM) |
-| --- | --- | --- |
-| NTC Sensor | 1 | 1 |
-| ECU Input | 6 | 6 |
-| Pam | 2 (SSR) | 3 (PWM) |
-| Kipas | 5 (SSR) | 4 (PWM) |
+| Komponen | GPIO (NONE) | GPIO (SSR) | GPIO (PWM) |
+| --- | --- | --- | --- |
+| NTC Sensor | 1 | 1 | 1 |
+| ECU Input | 6 | 6 | 6 |
+| Pam | `-1` | 2 | 3 |
+| Kipas | `-1` | 5 | 4 |
 
-### 3. Validasi Automatik
+### 4. Validasi Automatik
 
 Fail `factory_config.h` mengandungi compile-time checks yang akan menolak build
 jika terdapat konflik pin atau konfigurasi tidak sah.
@@ -139,10 +153,10 @@ Nilai release HW-747 yang mesti kekal selari:
 
 Jangan ubah pin atau polisi AP dalam release tanpa ujian hardware sebenar,
 semakan dokumen, dan build bersih. Gate `tools/verify_release.py` akan
-menolak perubahan yang mengalihkan pin HW-747, menukar PIN recovery, atau
-menukar AP V2 kepada AP berpassword.
+menolak perubahan yang menukar PIN recovery, mematikan AP terbuka, membuang
+secure-default output `NONE`, atau menggunakan endpoint release yang jelas.
 
-### 4. Diagnostik RTC Memory
+### 5. Diagnostik RTC Memory
 
 Firmware menggunakan RTC slow memory untuk menyimpan diagnostik ringkas semasa
 warm reset dan beberapa keadaan brownout. Ia bukan storan konfigurasi utama dan
@@ -188,7 +202,7 @@ Untuk kehilangan kuasa sebenar, reka bentuk hardware masih perlu menyediakan
 perlindungan berasingan seperti bekalan stabil, fius, driver output yang sesuai,
 dan wiring yang disahkan.
 
-### 5. Nombor Siri Automatik
+### 6. Nombor Siri Automatik
 
 Setiap board mempunyai nombor siri unik format `VVMMYYK####`:
 
