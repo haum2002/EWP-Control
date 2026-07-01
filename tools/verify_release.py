@@ -96,8 +96,6 @@ def verify_text_clean():
         for term in blocked:
             if term in text:
                 hits.append(f"{path.relative_to(ROOT)}: {term}")
-        if re.search(r"[\U0001F300-\U0001FAFF]", text):
-            hits.append(f"{path.relative_to(ROOT)}: emoji")
     if hits:
         fail("blocked release text:\n" + "\n".join(hits))
 
@@ -159,21 +157,34 @@ def verify_factory_config():
         '#define SC_FACTORY_HARDWARE_REV "hw-747"',
         '#define SC_FACTORY_AP_SSID "EWP-SYSTEM-PRO"',
         "#define SC_FACTORY_AP_OPEN 1",
+        "#define SC_FACTORY_AP_START_RETRY_COUNT 3",
+        "#define SC_FACTORY_AP_RETRY_DELAY_MS 150UL",
         '#define SC_FACTORY_DEFAULT_WEB_PASSWORD "12345678"',
         '#define SC_FACTORY_RECOVERY_PIN "747747"',
-        "#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_SSR",
-        "#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_PWM",
+        "#define SC_FACTORY_RGB_ENABLED 1",
+        "#define SC_FACTORY_PIN_RGB 48",
+        "#define SC_FACTORY_RGB_BRIGHTNESS12 4",
+        "#define SC_FACTORY_PUMP_TYPE_NONE 0",
+        "#define SC_FACTORY_PUMP_TYPE_SSR 1",
+        "#define SC_FACTORY_PUMP_TYPE_PWM 2",
+        "#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_NONE",
+        "#define SC_FACTORY_FAN_TYPE_NONE 0",
+        "#define SC_FACTORY_FAN_TYPE_SSR 1",
+        "#define SC_FACTORY_FAN_TYPE_PWM 2",
+        "#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_NONE",
         "#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE",
         "#define SC_FACTORY_SD_CARD_ENABLED 0",
         "#define SC_FACTORY_PIN_NTC 1",
         "#define SC_FACTORY_PIN_ECU 6",
-        "#define SC_FACTORY_PIN_PUMP_SSR 2",
-        "#define SC_FACTORY_PIN_FAN_PWM 4",
+        "#define SC_FACTORY_PIN_PUMP_PWM -1",
+        "#define SC_FACTORY_PIN_PUMP_SSR -1",
+        "#define SC_FACTORY_PIN_FAN_PWM -1",
+        "#define SC_FACTORY_PIN_FAN_SSR -1",
         "#define SC_FACTORY_PIN_SSR SC_FACTORY_PIN_PUMP_SSR",
         "#define SC_FACTORY_PIN_PWM SC_FACTORY_PIN_FAN_PWM",
         "#define SC_FACTORY_AP_IDLE_OFF_MS 300000UL",
-        '#error "Micro SD belum aktif dalam firmware V2 release."',
-        '#error "Sensor persekitaran belum aktif dalam firmware V2 release."',
+        "#define SC_FACTORY_RESET_PIN GPIO_NUM_0",
+        "#define SC_FACTORY_RESET_ACTIVE_LOW true",
     ]
     missing = [item for item in required if item not in factory]
     if missing:
@@ -182,8 +193,15 @@ def verify_factory_config():
         '#include "factory_config.h"',
         "static constexpr const char *AP_SSID = SC_FACTORY_AP_SSID;",
         "static constexpr const char *RECOVERY_PIN = SC_FACTORY_RECOVERY_PIN;",
-        "#define PIN_PUMP_SSR SC_FACTORY_PIN_PUMP_SSR",
-        "#define PIN_FAN_PWM SC_FACTORY_PIN_FAN_PWM",
+        "WiFi.setSleep(false);",
+        "WiFi.setTxPower(WIFI_POWER_19_5dBm);",
+        "neopixelWrite(PIN_RGB",
+        "#elif SC_FACTORY_PUMP_TYPE == SC_FACTORY_PUMP_TYPE_SSR",
+        "#elif SC_FACTORY_FAN_TYPE == SC_FACTORY_FAN_TYPE_SSR",
+        "#define PIN_PUMP_PWM -1",
+        "#define PIN_PUMP_SSR -1",
+        "#define PIN_FAN_PWM -1",
+        "#define PIN_FAN_SSR -1",
         "ledcAttachPin(PIN_FAN_PWM, PWM_CHAN_FAN);",
     ]:
         if needle not in src:

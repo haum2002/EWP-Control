@@ -22,6 +22,18 @@
 #include <stddef.h>
 #include <nvs_flash.h>
 
+#ifndef SMARTCOOLING_WIFI_AP_CHANNEL
+#define SMARTCOOLING_WIFI_AP_CHANNEL 6
+#endif
+
+#ifndef SMARTCOOLING_WIFI_RF_PREFLIGHT_SCAN
+#define SMARTCOOLING_WIFI_RF_PREFLIGHT_SCAN 0
+#endif
+
+#ifndef SMARTCOOLING_WIFI_DIAGNOSTIC_ONLY
+#define SMARTCOOLING_WIFI_DIAGNOSTIC_ONLY 0
+#endif
+
 /*
  * SmartCooling Console V2
  * Target: ESP32-S3 Super Mini HW-747
@@ -74,18 +86,24 @@ RTC_DATA_ATTR static uint32_t rtc_boot_count = 0;
 #if SC_FACTORY_PUMP_TYPE == SC_FACTORY_PUMP_TYPE_PWM
   #define PIN_PUMP_PWM SC_FACTORY_PIN_PUMP_PWM
   #define PIN_PUMP_SSR -1
-#else
+#elif SC_FACTORY_PUMP_TYPE == SC_FACTORY_PUMP_TYPE_SSR
   #define PIN_PUMP_PWM -1
   #define PIN_PUMP_SSR SC_FACTORY_PIN_PUMP_SSR
+#else
+  #define PIN_PUMP_PWM -1
+  #define PIN_PUMP_SSR -1
 #endif
 
 // Fan output: SSR (digital) or PWM (analog speed control)
 #if SC_FACTORY_FAN_TYPE == SC_FACTORY_FAN_TYPE_PWM
   #define PIN_FAN_PWM SC_FACTORY_PIN_FAN_PWM
   #define PIN_FAN_SSR -1
-#else
+#elif SC_FACTORY_FAN_TYPE == SC_FACTORY_FAN_TYPE_SSR
   #define PIN_FAN_PWM -1
   #define PIN_FAN_SSR SC_FACTORY_PIN_FAN_SSR
+#else
+  #define PIN_FAN_PWM -1
+  #define PIN_FAN_SSR -1
 #endif
 
 // Timing and output
@@ -104,6 +122,11 @@ RTC_DATA_ATTR static uint32_t rtc_boot_count = 0;
 #define SENSOR_BAD_LIMIT SC_FACTORY_SENSOR_BAD_LIMIT
 #define SENSOR_SPIKE_LIMIT SC_FACTORY_SENSOR_SPIKE_LIMIT
 #define CONTROL_WDT_TIMEOUT_S SC_FACTORY_CONTROL_WDT_TIMEOUT_S
+#define AP_START_RETRY_COUNT SC_FACTORY_AP_START_RETRY_COUNT
+#define AP_RETRY_DELAY_MS SC_FACTORY_AP_RETRY_DELAY_MS
+#define RGB_ENABLED SC_FACTORY_RGB_ENABLED
+#define PIN_RGB SC_FACTORY_PIN_RGB
+#define RGB_BRIGHTNESS12 SC_FACTORY_RGB_BRIGHTNESS12
 
 static constexpr const char *APP_VERSION = "2026.06.26-v2";
 static constexpr const char *AP_SSID = SC_FACTORY_AP_SSID;
@@ -238,6 +261,7 @@ Lockout loginLockout;
 Lockout recoveryLockout;
 bool apRunning = false;
 uint32_t apLastEmptyMs = 0;
+uint8_t apChannel = SMARTCOOLING_WIFI_AP_CHANNEL;
 uint32_t lastTickMs = 0;
 uint32_t lastWsPushMs = 0;
 String otaError;
@@ -246,6 +270,11 @@ esp_reset_reason_t bootResetReason = ESP_RST_UNKNOWN;
 bool configRecovered = false;
 bool rtcRecoveredAtBoot = false;
 uint32_t lastRtcSaveMs = 0;
+uint32_t lastSerialDiagMs = 0;
+char rgbHex[8] = "#38C8FF";
+uint8_t rgbBrightness12 = RGB_BRIGHTNESS12;
+bool rgbManual = false;
+uint32_t lastRgbStatusMs = 0;
 
 void setDefaultConfig(Config &c);
 void loadConfig();
@@ -269,10 +298,17 @@ String requestBody(uint8_t *data, size_t len);
 void registerJsonPost(const char *route, ArRequestHandlerFunction onRequestBody);
 void addEvent(uint8_t level, const char *message);
 void setupNetwork();
+uint8_t chooseApChannel();
 void startAp();
 bool configureApDhcpLeaseRange();
 void stopAp();
 void maintainAp();
+void initRgb();
+void updateRgbStatus(bool force = false);
+bool parseHexColor(const String &hex, uint8_t &r, uint8_t &g, uint8_t &b);
+void writeRgb(uint8_t r, uint8_t g, uint8_t b);
+void writeRgbHex(const char *hex);
+void printSerialDiagnostics(bool force = false);
 void setupRoutes();
 void setupWebSocket();
 void engine();
@@ -630,13 +666,18 @@ void statusToJson(JsonDocument &doc) {
   doc["ap_open"] = SC_FACTORY_AP_OPEN == 1;
   doc["ap_ip"] = AP_IP.toString();
   doc["wifi_ap_running"] = apRunning;
-  doc["wifi_channel"] = SMARTCOOLING_WIFI_AP_CHANNEL;
+  doc["wifi_channel"] = apChannel;
   doc["wifi_clients"] = clients;
   doc["wifi_dhcp_clients"] = clients;
   doc["wifi_dhcp_start"] = AP_LEASE_START.toString();
   doc["wifi_dhcp_end"] = AP_LEASE_END.toString();
   doc["ap_auto_off_s"] = apAutoOff;
   doc["local_only_network"] = true;
+  doc["rgb_ready"] = RGB_ENABLED == 1;
+  doc["rgb_pin"] = RGB_ENABLED == 1 ? PIN_RGB : -1;
+  doc["rgb_effect"] = rgbManual ? "manual" : "status";
+  doc["rgb_hex"] = rgbHex;
+  doc["rgb_brightness12"] = rgbBrightness12;
   doc["heap_free"] = ESP.getFreeHeap();
   doc["heap_min_free"] = ESP.getMinFreeHeap();
   doc["internal_free"] = ESP.getFreeHeap();
@@ -749,12 +790,74 @@ void addEvent(uint8_t level, const char *message) {
   e.level = level;
   strlcpy(e.message, message, sizeof(e.message));
   eventHead = (eventHead + 1) % 32;
+  Serial.printf("[SC][%lu][%u] %s\r\n", (unsigned long)e.uptime_ms, level, message);
+}
+
+void applyApRadioProfile() {
+  WiFi.setSleep(false);
+  WiFi.setTxPower(WIFI_POWER_19_5dBm);
+
+  wifi_country_t country = {};
+  country.cc[0] = 'M';
+  country.cc[1] = 'Y';
+  country.cc[2] = '\0';
+  country.schan = 1;
+  country.nchan = 13;
+  country.max_tx_power = 78;
+  country.policy = WIFI_COUNTRY_POLICY_MANUAL;
+  esp_wifi_set_country(&country);
+  esp_wifi_set_max_tx_power(78);
+  esp_wifi_set_protocol(WIFI_IF_AP, WIFI_PROTOCOL_11B | WIFI_PROTOCOL_11G | WIFI_PROTOCOL_11N);
+  esp_wifi_set_bandwidth(WIFI_IF_AP, WIFI_BW_HT20);
 }
 
 void setupNetwork() {
   WiFi.persistent(false);
   WiFi.mode(WIFI_AP);
+  applyApRadioProfile();
   startAp();
+}
+
+uint8_t chooseApChannel() {
+  uint8_t best = SMARTCOOLING_WIFI_AP_CHANNEL;
+#if SMARTCOOLING_WIFI_RF_PREFLIGHT_SCAN == 1
+  int score[14] = {};
+  WiFi.mode(WIFI_AP_STA);
+  WiFi.disconnect(false, false);
+  delay(80);
+  int networks = WiFi.scanNetworks(false, true, false, 180);
+  for (int i = 0; i < networks; ++i) {
+    int ch = WiFi.channel(i);
+    if (ch < 1 || ch > 13) {
+      continue;
+    }
+    int rssi = WiFi.RSSI(i);
+    int weight = constrain(100 + rssi, 1, 80);
+    score[ch] += weight;
+    if (ch > 1) {
+      score[ch - 1] += weight / 3;
+    }
+    if (ch < 13) {
+      score[ch + 1] += weight / 3;
+    }
+  }
+  WiFi.scanDelete();
+
+  const uint8_t candidates[] = {SMARTCOOLING_WIFI_AP_CHANNEL, 1, 6, 11};
+  int bestScore = 32767;
+  for (uint8_t i = 0; i < sizeof(candidates); ++i) {
+    uint8_t ch = candidates[i];
+    if (ch < 1 || ch > 13) {
+      continue;
+    }
+    if (score[ch] < bestScore) {
+      bestScore = score[ch];
+      best = ch;
+    }
+  }
+  WiFi.mode(WIFI_AP);
+#endif
+  return best;
 }
 
 void startAp() {
@@ -762,22 +865,64 @@ void startAp() {
     return;
   }
   WiFi.softAPdisconnect(true);
-  delay(50);
-  WiFi.softAPConfig(AP_IP, AP_GW, AP_MASK, AP_LEASE_START);
-  configureApDhcpLeaseRange();
-  bool ok = WiFi.softAP(AP_SSID, nullptr, SMARTCOOLING_WIFI_AP_CHANNEL, 0, 4);
+  delay(80);
+  WiFi.mode(WIFI_AP);
+  applyApRadioProfile();
+  WiFi.softAPsetHostname(MDNS_HOST);
+  uint8_t preferred = chooseApChannel();
+  if (!WiFi.softAPConfig(AP_IP, AP_GW, AP_MASK, AP_LEASE_START)) {
+    addEvent(1, "AP IP config failed");
+  }
+
+  const uint8_t candidates[] = {preferred, SMARTCOOLING_WIFI_AP_CHANNEL, 1, 6, 11};
+  bool ok = false;
+  for (uint8_t attempt = 0; attempt < AP_START_RETRY_COUNT && !ok; ++attempt) {
+    for (uint8_t idx = 0; idx < sizeof(candidates) && !ok; ++idx) {
+      uint8_t channel = candidates[idx];
+      bool duplicate = false;
+      for (uint8_t prev = 0; prev < idx; ++prev) {
+        if (candidates[prev] == channel) {
+          duplicate = true;
+        }
+      }
+      if (duplicate || channel < 1 || channel > 13) {
+        continue;
+      }
+      WiFi.softAPdisconnect(false);
+      delay(40);
+      ok = WiFi.softAP(AP_SSID, "", channel, 0, 4);
+      delay(120);
+      if (ok && WiFi.softAPSSID() == AP_SSID) {
+        apChannel = channel;
+      } else {
+        ok = false;
+      }
+    }
+    if (!ok) {
+      delay(AP_RETRY_DELAY_MS);
+    }
+  }
   apRunning = ok;
   apLastEmptyMs = millis();
   if (ok) {
+    if (!configureApDhcpLeaseRange()) {
+      addEvent(1, "AP DHCP custom range unavailable");
+    }
     dnsServer.setErrorReplyCode(DNSReplyCode::NonExistentDomain);
     dnsServer.setTTL(15);
     dnsServer.start(53, DOMAIN_HOST, AP_IP);
     if (MDNS.begin(MDNS_HOST)) {
       MDNS.addService("http", "tcp", 80);
     }
-    addEvent(0, "AP started");
+    char msg[128];
+    snprintf(msg, sizeof(msg), "AP started ssid=%s channel=%u ip=%s bssid=%s",
+             AP_SSID, apChannel, AP_IP.toString().c_str(),
+             WiFi.softAPmacAddress().c_str());
+    addEvent(0, msg);
+    updateRgbStatus(true);
   } else {
     addEvent(2, "AP start failed");
+    updateRgbStatus(true);
   }
 }
 
@@ -824,21 +969,130 @@ void stopAp() {
   WiFi.softAPdisconnect(true);
   apRunning = false;
   addEvent(1, "AP stopped after idle");
+  updateRgbStatus(true);
 }
 
 void maintainAp() {
   if (!apRunning) {
+    updateRgbStatus();
     return;
   }
   dnsServer.processNextRequest();
   uint8_t clients = WiFi.softAPgetStationNum();
   if (clients > 0) {
     apLastEmptyMs = millis();
+    updateRgbStatus();
     return;
   }
   if (millis() - apLastEmptyMs >= AP_IDLE_OFF_MS) {
     stopAp();
   }
+  updateRgbStatus();
+}
+
+void initRgb() {
+  rgbBrightness12 = RGB_BRIGHTNESS12 > 12 ? 12 : RGB_BRIGHTNESS12;
+  writeRgbHex("#38C8FF");
+}
+
+bool parseHexColor(const String &hex, uint8_t &r, uint8_t &g, uint8_t &b) {
+  String value = hex;
+  value.trim();
+  if (value.startsWith("#")) {
+    value.remove(0, 1);
+  }
+  if (value.length() != 6) {
+    return false;
+  }
+  for (uint8_t i = 0; i < 6; ++i) {
+    if (!isxdigit(value[i])) {
+      return false;
+    }
+  }
+  char buf[3] = {0, 0, 0};
+  buf[0] = value[0];
+  buf[1] = value[1];
+  r = (uint8_t)strtoul(buf, nullptr, 16);
+  buf[0] = value[2];
+  buf[1] = value[3];
+  g = (uint8_t)strtoul(buf, nullptr, 16);
+  buf[0] = value[4];
+  buf[1] = value[5];
+  b = (uint8_t)strtoul(buf, nullptr, 16);
+  return true;
+}
+
+void writeRgb(uint8_t r, uint8_t g, uint8_t b) {
+#if RGB_ENABLED == 1
+  uint8_t level = rgbBrightness12 > 12 ? 12 : rgbBrightness12;
+  uint8_t rr = (uint16_t)r * level / 12;
+  uint8_t gg = (uint16_t)g * level / 12;
+  uint8_t bb = (uint16_t)b * level / 12;
+  neopixelWrite(PIN_RGB, rr, gg, bb);
+#else
+  (void)r;
+  (void)g;
+  (void)b;
+#endif
+}
+
+void writeRgbHex(const char *hex) {
+  uint8_t r = 0;
+  uint8_t g = 0;
+  uint8_t b = 0;
+  if (parseHexColor(String(hex), r, g, b)) {
+    writeRgb(r, g, b);
+  }
+}
+
+void updateRgbStatus(bool force) {
+  if (rgbManual) {
+    return;
+  }
+  uint32_t now = millis();
+  if (!force && now - lastRgbStatusMs < 500) {
+    return;
+  }
+  lastRgbStatusMs = now;
+
+  const char *next = "#38C8FF";
+  if (state.faults != 0 || state.outputsForced || configRecovered) {
+    next = "#FF2438";
+  } else if (!apRunning) {
+    next = "#FFB020";
+  } else if (WiFi.softAPgetStationNum() > 0) {
+    next = "#2EE59D";
+  }
+
+  strlcpy(rgbHex, next, sizeof(rgbHex));
+  writeRgbHex(rgbHex);
+}
+
+void printSerialDiagnostics(bool force) {
+#if SMARTCOOLING_WIFI_DIAGNOSTIC_ONLY == 1
+  uint32_t now = millis();
+  if (!force && now - lastSerialDiagMs < 3000UL) {
+    return;
+  }
+  lastSerialDiagMs = now;
+  String stackSsid = WiFi.softAPSSID();
+  String apMac = WiFi.softAPmacAddress();
+  uint8_t clients = apRunning ? WiFi.softAPgetStationNum() : 0;
+  Serial.printf("[SC][DIAG] up=%lu reset=%s ap=%d stack_ssid=\"%s\" cfg_ssid=\"%s\" bssid=%s ch=%u clients=%u ip=%s heap=%lu rgb=%s\r\n",
+                (unsigned long)now,
+                resetReasonText(bootResetReason),
+                apRunning ? 1 : 0,
+                stackSsid.c_str(),
+                AP_SSID,
+                apMac.c_str(),
+                apChannel,
+                clients,
+                apRunning ? WiFi.softAPIP().toString().c_str() : "0.0.0.0",
+                (unsigned long)ESP.getFreeHeap(),
+                rgbHex);
+#else
+  (void)force;
+#endif
 }
 
 void setupRoutes() {
@@ -1060,19 +1314,45 @@ void handleRgbGet(AsyncWebServerRequest *request) {
   if (!requireAuth(request)) {
     return;
   }
-  StaticJsonDocument<256> doc;
-  doc["ready"] = false;
-  doc["effect"] = "unavailable";
-  doc["hex"] = "#38C8FF";
+  StaticJsonDocument<320> doc;
+  doc["ready"] = RGB_ENABLED == 1;
+  doc["effect"] = rgbManual ? "manual" : "status";
+  doc["hex"] = rgbHex;
   doc["theme"] = "system";
-  doc["brightness12"] = 0;
+  doc["brightness12"] = rgbBrightness12;
+  doc["pin"] = RGB_ENABLED == 1 ? PIN_RGB : -1;
+  doc["ap_running"] = apRunning;
+  doc["clients"] = apRunning ? WiFi.softAPgetStationNum() : 0;
   sendJson(request, doc);
 }
 
 void handleRgbPost(AsyncWebServerRequest *request, JsonVariantConst body) {
-  (void)body;
   if (!requireAuth(request)) {
     return;
+  }
+  if (body.containsKey("brightness12")) {
+    int level = body["brightness12"] | RGB_BRIGHTNESS12;
+    rgbBrightness12 = (uint8_t)constrain(level, 0, 12);
+  }
+  String effect = body["effect"] | "";
+  effect.trim();
+  effect.toLowerCase();
+  if (effect == "status") {
+    rgbManual = false;
+    updateRgbStatus(true);
+  }
+  String hex = body["hex"] | "";
+  uint8_t r = 0;
+  uint8_t g = 0;
+  uint8_t b = 0;
+  if (hex.length() > 0) {
+    if (!parseHexColor(hex, r, g, b)) {
+      sendError(request, 400, "rgb");
+      return;
+    }
+    snprintf(rgbHex, sizeof(rgbHex), "#%02X%02X%02X", r, g, b);
+    rgbManual = true;
+    writeRgb(r, g, b);
   }
   handleRgbGet(request);
 }
@@ -1407,9 +1687,11 @@ void engine() {
 }
 
 void handleSSR() {
+#if (PIN_PUMP_SSR >= 0) || (PIN_FAN_SSR >= 0)
   unsigned long now = millis();
   unsigned long window = (unsigned long)max(10, previewCfg.window_s) * 1000UL;
   unsigned long elapsed = now % window;
+#endif
   bool pumpSsrOn = false;
   bool fanSsrOn = false;
 
@@ -1594,12 +1876,13 @@ void noteSuccess(Lockout &lockout) {
 void setup() {
   Serial.begin(115200);
   bootResetReason = esp_reset_reason();
+  setupNetwork();
+  initRgb();
+  updateRgbStatus(true);
 
   // Initialize RTC memory and attempt recovery
   rtcRecoveredAtBoot = recoverFromRtc();
 
-  esp_task_wdt_init(CONTROL_WDT_TIMEOUT_S, true);
-  esp_task_wdt_add(NULL);
   analogReadResolution(12);
   analogSetPinAttenuation(PIN_NTC, ADC_11db);
   pinMode(PIN_ECU, INPUT_PULLDOWN);
@@ -1629,10 +1912,11 @@ void setup() {
   }
 
   loadConfig();
-  setupNetwork();
   setupWebSocket();
   setupRoutes();
   server.begin();
+  esp_task_wdt_init(CONTROL_WDT_TIMEOUT_S, true);
+  esp_task_wdt_add(NULL);
 
   char bootMsg[72];
   snprintf(bootMsg, sizeof(bootMsg), "Boot reset=%s rtc=%d count=%lu",
@@ -1644,6 +1928,7 @@ void setup() {
   if (rtcRecoveredAtBoot) {
     addEvent(0, "RTC state validated");
   }
+  printSerialDiagnostics(true);
   saveToRtc();
 }
 
@@ -1660,6 +1945,7 @@ void loop() {
   }
   handleSSR();
   maintainAp();
+  printSerialDiagnostics();
   ws.cleanupClients();
   pushStatus();
 }

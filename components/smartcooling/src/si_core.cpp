@@ -390,10 +390,10 @@ bool SuperIntelligence::checkPhysicalResetPin() {
 #if SC_FACTORY_ENABLE_NVS_ERASE_RESET != 1
     return false;
 #else
-    pinMode(FACTORY_RESET_PIN, INPUT_PULLUP);
+    pinMode(SC_FACTORY_RESET_PIN, INPUT_PULLUP);
     delay(10);
     
-    if (digitalRead(FACTORY_RESET_PIN) == (FACTORY_RESET_ACTIVE_LOW ? LOW : HIGH)) {
+    if (digitalRead(SC_FACTORY_RESET_PIN) == (SC_FACTORY_RESET_ACTIVE_LOW ? LOW : HIGH)) {
         return true;
     }
     
