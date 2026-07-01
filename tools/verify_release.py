@@ -155,6 +155,23 @@ def verify_factory_config():
     required = [
         '#define SC_FACTORY_PROFILE "super_mini_esp32_s3_hw747"',
         '#define SC_FACTORY_HARDWARE_REV "hw-747"',
+        "#define SC_SPEC_P 1",
+        "#define SC_SPEC_H 2",
+        "#define SC_SPEC_L 3",
+        "#define SC_SPEC_S 4",
+        "#define SC_SPEC_Q 5",
+        "#define SC_SPEC_PS 6",
+        "#define SC_SPEC_SP 7",
+        "#define SC_SPEC_C 8",
+        "#define SC_SPEC_W 9",
+        "#define SC_SPEC_V 10",
+        "#define SC_SPEC_Z 11",
+        "#define SC_SPEC_D 12",
+        "#define SC_FACTORY_SPEC_CODE SC_SPEC_",
+        "#define SC_FACTORY_SPEC_CODE_TEXT",
+        "#define SC_FACTORY_ENV_SENSOR ",
+        "#define SC_FACTORY_SD_CARD ",
+        "#define SYSTEM_UNIT_NUMBER ",
         '#define SC_FACTORY_AP_SSID "EWP-SYSTEM-PRO"',
         "#define SC_FACTORY_AP_OPEN 1",
         "#define SC_FACTORY_AP_START_RETRY_COUNT 3",
@@ -167,19 +184,24 @@ def verify_factory_config():
         "#define SC_FACTORY_PUMP_TYPE_NONE 0",
         "#define SC_FACTORY_PUMP_TYPE_SSR 1",
         "#define SC_FACTORY_PUMP_TYPE_PWM 2",
-        "#define SC_FACTORY_PUMP_TYPE SC_FACTORY_PUMP_TYPE_NONE",
         "#define SC_FACTORY_FAN_TYPE_NONE 0",
         "#define SC_FACTORY_FAN_TYPE_SSR 1",
         "#define SC_FACTORY_FAN_TYPE_PWM 2",
-        "#define SC_FACTORY_FAN_TYPE SC_FACTORY_FAN_TYPE_NONE",
-        "#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_SENSOR_NONE",
-        "#define SC_FACTORY_SD_CARD_ENABLED 0",
+        "#define SC_FACTORY_PUMP_TYPE SC_INTERNAL_PUMP_TYPE",
+        "#define SC_FACTORY_FAN_TYPE SC_INTERNAL_FAN_TYPE",
+        "#define SC_FACTORY_SENSOR_NONE   0",
+        "#define SC_FACTORY_SENSOR_BME280 1",
+        "#define SC_FACTORY_SENSOR_AHT30  2",
+        "#define SC_FACTORY_SENSOR_BMP280 3",
+        "#define SC_FACTORY_SENSOR_BMP180 4",
+        "#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_ENV_SENSOR",
+        "#define SC_FACTORY_SD_CARD_ENABLED SC_FACTORY_SD_CARD",
         "#define SC_FACTORY_PIN_NTC 1",
         "#define SC_FACTORY_PIN_ECU 6",
-        "#define SC_FACTORY_PIN_PUMP_PWM -1",
-        "#define SC_FACTORY_PIN_PUMP_SSR -1",
-        "#define SC_FACTORY_PIN_FAN_PWM -1",
-        "#define SC_FACTORY_PIN_FAN_SSR -1",
+        "#define SC_FACTORY_PIN_PUMP_PWM 3",
+        "#define SC_FACTORY_PIN_PUMP_SSR 2",
+        "#define SC_FACTORY_PIN_FAN_PWM 4",
+        "#define SC_FACTORY_PIN_FAN_SSR 5",
         "#define SC_FACTORY_PIN_SSR SC_FACTORY_PIN_PUMP_SSR",
         "#define SC_FACTORY_PIN_PWM SC_FACTORY_PIN_FAN_PWM",
         "#define SC_FACTORY_AP_IDLE_OFF_MS 300000UL",
@@ -189,6 +211,16 @@ def verify_factory_config():
     missing = [item for item in required if item not in factory]
     if missing:
         fail("factory config mismatch: " + ",".join(missing))
+    if re.search(r"#define\s+SC_FACTORY_SPEC_CODE\s+'", factory):
+        fail("factory spec code must use SC_SPEC_* symbols, not character literals")
+    if not re.search(r"#define\s+SC_FACTORY_SPEC_CODE\s+SC_SPEC_[A-Z]+", factory):
+        fail("factory spec code selection missing")
+    env_match = re.search(r"#define\s+SC_FACTORY_ENV_SENSOR\s+([0-4])\b", factory)
+    if not env_match:
+        fail("factory env sensor must be 0..4")
+    sd_match = re.search(r"#define\s+SC_FACTORY_SD_CARD\s+([01])\b", factory)
+    if not sd_match:
+        fail("factory SD setting must be 0 or 1")
     for needle in [
         '#include "factory_config.h"',
         "static constexpr const char *AP_SSID = SC_FACTORY_AP_SSID;",

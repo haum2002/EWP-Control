@@ -1808,8 +1808,8 @@ static bool recoverFromRtc() {
 }
 
 static String generateSerialNumber() {
-  // Format: VVMMYYK####
-  // VV = Version (01), MM = Month, YY = Year, K = Spec Code, #### = Unit Number
+  // Format: VVMMYY<spec>####
+  // VV = Version (01), MM = Month, YY = Year, spec = factory spec code, #### = Unit Number
 
   // Get compilation date
   const char *compileDate = __DATE__;
@@ -1837,8 +1837,8 @@ static String generateSerialNumber() {
   int unitNum = ((uint32_t)mac ^ day) % 10000;
 
   char serial[16];
-  snprintf(serial, sizeof(serial), "%02d%02d%02dK%04d",
-           1, month, year, unitNum);
+  snprintf(serial, sizeof(serial), "%02d%02d%02d%s%04d",
+           1, month, year, SC_SYSTEM_SPEC_CODE_TEXT, unitNum);
 
   return String(serial);
 }

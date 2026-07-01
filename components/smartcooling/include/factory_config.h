@@ -10,7 +10,7 @@
  * ============================================================================
  * Cukup UBAH SATU HURUF sahaja untuk konfigurasi automatik penuh!
  * 
- * #define SC_FACTORY_SPEC_CODE 'X'  // Ganti 'X' dengan kod pilihan
+ * #define SC_FACTORY_SPEC_CODE SC_SPEC_P  // Ganti dengan kod pilihan
  * 
  * KATEGORI 1: KAWALAN KELAJUAN PENUH (PWM)
  * ---------------------------------------------------------
@@ -44,7 +44,7 @@
  * ============================================================================
  * SC_FACTORY_ENV_SENSOR: 0=Tiada, 1=BME280, 2=AHT30, 3=BMP280, 4=BMP180
  * SC_FACTORY_SD_CARD: 0=Tidak Aktif, 1=Aktif
- * SYSTEM_UNIT_NUMBER: Nombor unit 4 digit (contoh: 0001, 0042, 1234)
+ * SYSTEM_UNIT_NUMBER: Nombor unit 4 digit (0001, 0042, 1234)
  */
 
 #ifndef SMARTCOOLING_FACTORY_CONFIG_H
@@ -57,8 +57,23 @@
 // 1. SISTEM KOD SPEC V3.0 - PILIHAN KONFIGURASI UTAMA
 // ============================================================================
 
-// ✅ UBAH HURUF INI SAHAJA UNTUK KONFIGURASI AUTOMATIK
-#define SC_FACTORY_SPEC_CODE 'P'  // Pilihan: P, H, L, S, Q, PS, SP, C, W, V, Z, D
+// Kod spec rasmi. Gunakan simbol ini untuk mengelakkan literal dua aksara
+// seperti 'SP' yang tidak portable dalam C/C++.
+#define SC_SPEC_P 1
+#define SC_SPEC_H 2
+#define SC_SPEC_L 3
+#define SC_SPEC_S 4
+#define SC_SPEC_Q 5
+#define SC_SPEC_PS 6
+#define SC_SPEC_SP 7
+#define SC_SPEC_C 8
+#define SC_SPEC_W 9
+#define SC_SPEC_V 10
+#define SC_SPEC_Z 11
+#define SC_SPEC_D 12
+
+// ✅ UBAH NILAI INI SAHAJA UNTUK KONFIGURASI AUTOMATIK
+#define SC_FACTORY_SPEC_CODE SC_SPEC_P  // Pilihan: SC_SPEC_P/H/L/S/Q/PS/SP/C/W/V/Z/D
 
 // Parameter tambahan (manual)
 #define SC_FACTORY_ENV_SENSOR 0      // 0=Tiada, 1=BME280, 2=AHT30, 3=BMP280, 4=BMP180
@@ -70,44 +85,92 @@
 // ============================================================================
 
 // Jenis Pam & Kipas berdasarkan Kod Spec
-#if SC_FACTORY_SPEC_CODE == 'P' || SC_FACTORY_SPEC_CODE == 'H' || SC_FACTORY_SPEC_CODE == 'L'
+#if SC_FACTORY_SPEC_CODE == SC_SPEC_P || SC_FACTORY_SPEC_CODE == SC_SPEC_H || SC_FACTORY_SPEC_CODE == SC_SPEC_L
   #define SC_INTERNAL_PUMP_TYPE 2  // PWM
   #define SC_INTERNAL_FAN_TYPE 2   // PWM
-#elif SC_FACTORY_SPEC_CODE == 'S' || SC_FACTORY_SPEC_CODE == 'Q'
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_S || SC_FACTORY_SPEC_CODE == SC_SPEC_Q
   #define SC_INTERNAL_PUMP_TYPE 1  // SSR
   #define SC_INTERNAL_FAN_TYPE 1   // SSR
-#elif SC_FACTORY_SPEC_CODE == 'PS' || SC_FACTORY_SPEC_CODE == 'C' || SC_FACTORY_SPEC_CODE == 'W'
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_PS || SC_FACTORY_SPEC_CODE == SC_SPEC_C || SC_FACTORY_SPEC_CODE == SC_SPEC_W
   #define SC_INTERNAL_PUMP_TYPE 2  // PWM
   #define SC_INTERNAL_FAN_TYPE 1   // SSR
-#elif SC_FACTORY_SPEC_CODE == 'SP'
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_SP
   #define SC_INTERNAL_PUMP_TYPE 1  // SSR
   #define SC_INTERNAL_FAN_TYPE 2   // PWM
-#elif SC_FACTORY_SPEC_CODE == 'V'
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_V
   #define SC_INTERNAL_PUMP_TYPE 0  // OFF
   #define SC_INTERNAL_FAN_TYPE 2   // PWM
-#elif SC_FACTORY_SPEC_CODE == 'Z'
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_Z
   #define SC_INTERNAL_PUMP_TYPE 0  // OFF
   #define SC_INTERNAL_FAN_TYPE 0   // OFF
-#elif SC_FACTORY_SPEC_CODE == 'D'
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_D
   #define SC_INTERNAL_PUMP_TYPE 0  // Developer pilih sendiri
   #define SC_INTERNAL_FAN_TYPE 0   // Developer pilih sendiri
 #else
-  #error "Kod Spec tidak sah! Gunakan: P, H, L, S, Q, PS, SP, C, W, V, Z, atau D"
+  #error "Kod Spec tidak sah! Gunakan simbol SC_SPEC_P, H, L, S, Q, PS, SP, C, W, V, Z, atau D"
+#endif
+
+#if SC_FACTORY_SPEC_CODE == SC_SPEC_P
+  #define SC_FACTORY_SPEC_CODE_TEXT "P"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_H
+  #define SC_FACTORY_SPEC_CODE_TEXT "H"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_L
+  #define SC_FACTORY_SPEC_CODE_TEXT "L"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_S
+  #define SC_FACTORY_SPEC_CODE_TEXT "S"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_Q
+  #define SC_FACTORY_SPEC_CODE_TEXT "Q"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_PS
+  #define SC_FACTORY_SPEC_CODE_TEXT "PS"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_SP
+  #define SC_FACTORY_SPEC_CODE_TEXT "SP"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_C
+  #define SC_FACTORY_SPEC_CODE_TEXT "C"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_W
+  #define SC_FACTORY_SPEC_CODE_TEXT "W"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_V
+  #define SC_FACTORY_SPEC_CODE_TEXT "V"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_Z
+  #define SC_FACTORY_SPEC_CODE_TEXT "Z"
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_D
+  #define SC_FACTORY_SPEC_CODE_TEXT "D"
 #endif
 
 // Tetapan khas berdasarkan spec
-#if SC_FACTORY_SPEC_CODE == 'H'
+#if SC_FACTORY_SPEC_CODE == SC_SPEC_H
   #define SC_INTERNAL_PWM_FREQ 20000  // High frequency untuk prestasi
   #define SC_INTERNAL_PWM_RES 10      // Higher resolution
-#elif SC_FACTORY_SPEC_CODE == 'L'
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_L
   #define SC_INTERNAL_PWM_FREQ 5000   // Low frequency untuk jimat tenaga
   #define SC_INTERNAL_PWM_RES 8
-#elif SC_FACTORY_SPEC_CODE == 'Q'
+#elif SC_FACTORY_SPEC_CODE == SC_SPEC_Q
   #define SC_INTERNAL_SSR_FAST_CYCLE 1  // Enable fast cycling untuk SSR
 #else
   #define SC_INTERNAL_PWM_FREQ 15000  // Standard frequency
   #define SC_INTERNAL_PWM_RES 8
 #endif
+
+#ifndef SC_INTERNAL_SSR_FAST_CYCLE
+  #define SC_INTERNAL_SSR_FAST_CYCLE 0
+#endif
+
+// Alias compatibility untuk firmware utama dan gate release lama.
+#define SC_FACTORY_PUMP_TYPE_NONE 0
+#define SC_FACTORY_PUMP_TYPE_SSR 1
+#define SC_FACTORY_PUMP_TYPE_PWM 2
+#define SC_FACTORY_FAN_TYPE_NONE 0
+#define SC_FACTORY_FAN_TYPE_SSR 1
+#define SC_FACTORY_FAN_TYPE_PWM 2
+#define SC_FACTORY_PUMP_TYPE SC_INTERNAL_PUMP_TYPE
+#define SC_FACTORY_FAN_TYPE SC_INTERNAL_FAN_TYPE
+
+#define SC_FACTORY_SENSOR_NONE   0
+#define SC_FACTORY_SENSOR_BME280 1
+#define SC_FACTORY_SENSOR_AHT30  2
+#define SC_FACTORY_SENSOR_BMP280 3
+#define SC_FACTORY_SENSOR_BMP180 4
+#define SC_FACTORY_ENV_SENSOR_TYPE SC_FACTORY_ENV_SENSOR
+#define SC_FACTORY_SD_CARD_ENABLED SC_FACTORY_SD_CARD
 
 // ============================================================================
 // 3. DEFINISI PIN DINAMIK BERDASARKAN KONFIGURASI
@@ -170,9 +233,17 @@
 #define SC_FACTORY_AP_OPEN 1
 #define SC_FACTORY_DOMAIN_HOST "smartcooling.local"
 #define SC_FACTORY_MDNS_HOST "smartcooling"
+#define SC_FACTORY_AP_START_RETRY_COUNT 3
+#define SC_FACTORY_AP_RETRY_DELAY_MS 150UL
 
 #define SC_FACTORY_DEFAULT_WEB_PASSWORD "12345678"
 #define SC_FACTORY_RECOVERY_PIN "747747"
+
+// RGB onboard untuk ESP32-S3 Super Mini biasanya LED WS2812 pada GPIO48.
+// Jika varian HW-747 berbeza, tukar pin ini di sini sebelum build/flash.
+#define SC_FACTORY_RGB_ENABLED 1
+#define SC_FACTORY_PIN_RGB 48
+#define SC_FACTORY_RGB_BRIGHTNESS12 4
 
 // Nombor Siri Automatik Format: VVMMYYK####
 // Versi(2) + Bulan(2) + Tahun(2) + Kod Spec(1) + Unit(4)
@@ -180,6 +251,7 @@
 #define SC_SYSTEM_VERSION_MINOR 1
 // Kod Spec diambil dari SC_FACTORY_SPEC_CODE untuk nombor siri
 #define SC_SYSTEM_SPEC_CODE SC_FACTORY_SPEC_CODE
+#define SC_SYSTEM_SPEC_CODE_TEXT SC_FACTORY_SPEC_CODE_TEXT
 
 #define SC_FACTORY_TICK_MS 500UL
 #define SC_FACTORY_PWM_FREQ SC_INTERNAL_PWM_FREQ
@@ -234,4 +306,14 @@
   #if SC_FACTORY_PIN_I2C_SDA == SC_FACTORY_PIN_I2C_SCL
   #error "Pin I2C SDA dan SCL mesti berbeza."
   #endif
+#endif
+
+#if SC_FACTORY_AP_START_RETRY_COUNT < 1
+#error "AP start retry count mesti sekurang-kurangnya 1."
+#endif
+
+#if SC_FACTORY_RGB_ENABLED == 1 && SC_FACTORY_PIN_RGB < 0
+#error "Pin RGB tidak sah."
+#endif
+
 #endif
