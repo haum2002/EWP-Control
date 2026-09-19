@@ -10558,6 +10558,12 @@
 		(uuid "02ca2bb6-d34b-4e2d-a364-5ef266719b88")
 	)
 	(junction
+		(at 396.24 109.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "225919ab-ee21-426b-b6b3-c8c0543a6ce9")
+	)
+	(junction
 		(at 471.17 92.71)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -11643,7 +11649,7 @@
 	)
 	(wire
 		(pts
-			(xy 388.62 109.22) (xy 388.62 101.6)
+			(xy 388.62 116.84) (xy 388.62 109.22)
 		)
 		(stroke
 			(width 0.1524)
@@ -11693,7 +11699,7 @@
 	)
 	(wire
 		(pts
-			(xy 388.62 101.6) (xy 379.73 101.6)
+			(xy 388.62 116.84) (xy 396.24 116.84)
 		)
 		(stroke
 			(width 0.1524)
@@ -11770,6 +11776,16 @@
 			(type solid)
 		)
 		(uuid "78fb3c55-932e-4f94-8bc2-821ce998d2db")
+	)
+	(wire
+		(pts
+			(xy 396.24 109.22) (xy 388.62 109.22)
+		)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(uuid "79704e4f-afd7-4a6e-84a3-65685874be49")
 	)
 	(wire
 		(pts
@@ -12283,7 +12299,7 @@
 	)
 	(wire
 		(pts
-			(xy 421.64 109.22) (xy 388.62 109.22)
+			(xy 421.64 109.22) (xy 396.24 109.22)
 		)
 		(stroke
 			(width 0.1524)
@@ -12373,7 +12389,7 @@
 	)
 	(wire
 		(pts
-			(xy 379.73 101.6) (xy 379.73 93.98)
+			(xy 396.24 116.84) (xy 396.24 109.22)
 		)
 		(stroke
 			(width 0.1524)
@@ -20331,7 +20347,7 @@
 	)
 	(symbol
 		(lib_id "Protoflow:MBR0520L-TP")
-		(at 374.65 93.98 180)
+		(at 391.16 109.22 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -20341,7 +20357,7 @@
 		(dnp no)
 		(uuid "19c4ca0d-c688-4897-a0b1-c9faa13cb93d")
 		(property "Reference" "D1"
-			(at 374.65 88.9 0)
+			(at 391.16 104.14 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20351,7 +20367,7 @@
 			)
 		)
 		(property "Value" "MBR0520L-TP"
-			(at 374.65 99.06 0)
+			(at 391.16 114.3 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20361,7 +20377,7 @@
 			)
 		)
 		(property "Footprint" "ProtoFlow.pretty:SOD-123_L2.7-W1.6-LS3.7-RD-1"
-			(at 374.65 93.98 0)
+			(at 391.16 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20372,7 +20388,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/C4944915.pdf"
-			(at 374.65 93.98 0)
+			(at 391.16 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20383,7 +20399,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 374.65 93.98 0)
+			(at 391.16 109.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -20393,7 +20409,7 @@
 			)
 		)
 		(property "Manufacturer" "MCC(美微科)"
-			(at 374.65 93.98 0)
+			(at 391.16 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20404,7 +20420,7 @@
 			)
 		)
 		(property "MPN" "MBR0520L-TP"
-			(at 374.65 93.98 0)
+			(at 391.16 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20415,7 +20431,7 @@
 			)
 		)
 		(property "Price" "$0.0481"
-			(at 374.65 93.98 0)
+			(at 391.16 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20426,7 +20442,7 @@
 			)
 		)
 		(property "LCSC" "C4944915"
-			(at 374.65 93.98 0)
+			(at 391.16 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -20437,7 +20453,7 @@
 			)
 		)
 		(property "Protoflow_Source" "kicad"
-			(at 374.65 93.98 0)
+			(at 391.16 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
