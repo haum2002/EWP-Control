@@ -25,7 +25,14 @@ def active_files():
         parts = set(rel.parts)
         if ".pio" in parts or ".vscode" in parts or "archive" in parts:
             continue
-        if rel.as_posix() in {"components/smartcooling/include/web_assets.h", "tools/verify_release.py"}:
+        # Internal planning/instruction documents are not release artifacts.
+        if "EWP_CONTROLLER_PROTOFLOW_MASTER" in parts:
+            continue
+        if rel.as_posix() in {
+            "components/smartcooling/include/web_assets.h",
+            "tools/verify_release.py",
+            "EWP_CONTROLLER_MASTER_AGENT_INSTRUCTION.md",
+        }:
             continue
         yield path
 
@@ -126,12 +133,18 @@ def verify_required_files():
         "components/smartcooling/include/routes.h",
         "components/smartcooling/include/si_core.h",
         "components/smartcooling/include/si_sentinel.h",
+        "components/smartcooling/include/ewp_link_protocol.h",
+        "components/smartcooling/include/data_logger.h",
         "components/smartcooling/src/si_core.cpp",
         "components/smartcooling/src/si_sentinel.cpp",
+        "components/smartcooling/src/ewp_link_protocol.cpp",
+        "components/smartcooling/src/data_logger.cpp",
         "config/routes.json",
         "docs/MANUAL_PENGGUNAAN.md",
         "docs/PANDUAN_PEMBANGUN.md",
         "tools/verify_control_math.py",
+        "tools/verify_release.py",
+        "docs/BUILD_AUDIT_REPORT.md",
         "sdkconfig.defaults",
     ]
     missing = [item for item in required if not (ROOT / item).is_file()]
@@ -153,7 +166,7 @@ def verify_factory_config():
     factory = (ROOT / COMPONENT_INCLUDE / "factory_config.h").read_text(encoding="utf-8")
     src = (ROOT / FIRMWARE_MAIN).read_text(encoding="utf-8")
     required = [
-        '#define SC_FACTORY_PROFILE "super_mini_esp32_s3_hw747"',
+        '#define SC_FACTORY_PROFILE "smartcoolingv2_1_super_mini_esp32_s3_hw747"',
         '#define SC_FACTORY_HARDWARE_REV "hw-747"',
         "#define SC_SPEC_P 1",
         "#define SC_SPEC_H 2",
@@ -242,6 +255,31 @@ def verify_factory_config():
     hits = [needle for needle in rejected if needle in src]
     if hits:
         fail("unsafe factory branch symbols in firmware: " + ",".join(hits))
+
+    # Integration assertions: SI core, Sentinel, and DataLogger must be wired.
+    integration = [
+        '#include "si_core.h"',
+        '#include "si_sentinel.h"',
+        '#include "data_logger.h"',
+        "SI.begin();",
+        "Sentinel.begin();",
+        "DataLogger.begin();",
+        "runSmartCoolingEnrichment();",
+    ]
+    missing_int = [needle for needle in integration if needle not in src]
+    if missing_int:
+        fail("smartcooling integration not wired in firmware: " + ",".join(missing_int))
+
+    # Build file must register all component sources.
+    cmake = (ROOT / "components/smartcooling/CMakeLists.txt").read_text(encoding="utf-8")
+    for src_name in [
+        '"src/si_core.cpp"',
+        '"src/si_sentinel.cpp"',
+        '"src/ewp_link_protocol.cpp"',
+        '"src/data_logger.cpp"',
+    ]:
+        if src_name not in cmake:
+            fail("CMakeLists missing source: " + src_name)
 
 
 def main():

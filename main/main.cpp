@@ -4,6 +4,7 @@
 #include "ewp_link_protocol.h"
 #include "si_core.h"
 #include "si_sentinel.h"
+#include "data_logger.h"
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
@@ -694,6 +695,34 @@ void statusToJson(JsonDocument &doc) {
   health["good_streak"] = state.sensorGoodStreak;
   health["bad_streak"] = state.sensorBadStreak;
   health["filter_ready"] = state.filterReady;
+
+  // SmartCooling enrichment diagnostics (advisory; does not affect actuator path).
+  // si_core mirrors the SI's own adaptive metrics for cross-validation against the
+  // console's state.riskScore/state.siConfidence heuristic.
+  JsonObject si_core = doc.createNestedObject("si_core");
+  si_core["risk_score"] = siCtx.risk_score;
+  si_core["stability_idx"] = siCtx.stability_idx;
+  si_core["pred_temp_60s"] = siCtx.pred_temp_60s;
+  si_core["confidence_lvl"] = siCtx.confidence_lvl;
+  si_core["operation_mode"] = siCtx.operation_mode;
+  si_core["fault_flags"] = siCtx.fault_flags;
+  si_core["cycle_count"] = SI.getCycleCount();
+  si_core["healthy"] = SI.isHealthy();
+
+  SentinelStatus sent = Sentinel.getStatus();
+  JsonObject sentinel = doc.createNestedObject("sentinel");
+  sentinel["is_safe"] = sent.is_safe;
+  sentinel["active_threat"] = (int)sent.active_threat;
+  sentinel["threat_count"] = sent.threat_count;
+  sentinel["sanity_score"] = sent.sanity_score;
+  sentinel["request_count"] = sent.request_count;
+
+  JsonObject logger = doc.createNestedObject("logger");
+  logger["ready"] = DataLogger.isReady();
+  logger["sd_enabled"] = (SC_FACTORY_SD_CARD_ENABLED == 1);
+  logger["dropped"] = DataLogger.getDroppedCount();
+  logger["total_logged"] = DataLogger.getTotalLogged();
+  logger["file"] = DataLogger.getCurrentFileName();
 }
 
 void sendJson(AsyncWebServerRequest *request, JsonDocument &doc, int code) {
@@ -1620,6 +1649,85 @@ void applyOutputs(int targetPump, int targetFan) {
 #endif
 }
 
+// ============================================================================
+// SMARTCOOLING ENRICHMENT — activate SI core, Sentinel, and RobustDataLogger.
+//
+// Purely ADDITIVE: runs AFTER applyOutputs() so the real-time safety/actuator
+// path (updateThermalModel -> safety decision -> applyOutputs -> ledcWrite) is
+// never delayed, overridden, or vetoed. SI/Sentinel operate on their own
+// context (siCtx) and never write state.pump/state.fan/ledcWrite. handleEmergency
+// only mutates siCtx fields, so it cannot affect the live actuator path.
+// DataLogger is SD-guarded by SC_FACTORY_SD_CARD_ENABLED and non-blocking.
+// ============================================================================
+static SI_Context siCtx;            // persistent so temp_history accumulates
+static float siPrevOutputPwm = 0.0f;
+static bool siCtxSeeded = false;
+
+static void runSmartCoolingEnrichment() {
+  uint32_t now = millis();
+
+  // Seed the SI history window with the current filtered temperature once, so
+  // the rate-of-change metrics do not see a bogus 0C -> ~74C transient on boot
+  // (which would otherwise spike risk_score and trip the advisory emergency).
+  if (!siCtxSeeded) {
+    for (uint8_t i = 0; i < 120; ++i) {
+      siCtx.temp_history[i] = state.ema;
+    }
+    siCtx.hist_idx = 0;
+    siCtx.last_hist_update = now;
+    siCtxSeeded = true;
+  }
+
+  // 1. Feed the SI context from the already-computed real-time state.
+  siCtx.temp_current = state.ema;
+  siCtx.temp_target = (float)previewCfg.auto_target_c;
+  siCtx.env_temp = 0.0f;
+  siCtx.env_humidity = 0.0f;
+  siCtx.env_pressure = 0.0f;
+  siCtx.ecu_fan_status = state.ecuSignal;
+  siCtx.ecu_fan_valid = true;
+  siCtx.ecu_fan_changes = (uint32_t)(state.ecuHighCount + state.ecuLowCount);
+  siCtx.output_pwm = (float)state.fan;       // primary cooling output
+  siCtx.output_prev = siPrevOutputPwm;
+  siCtx.uptime_ms = now;
+  siCtx.fault_flags = (uint16_t)(state.faults & 0xFFFFu);
+  // Map console safety state -> SI operation_mode (0=Manual,1=Auto,2=Safe,3=Emergency).
+  uint8_t siMode;
+  switch (state.safetyState) {
+    case SAFETY_SENSOR_FAILSAFE:   siMode = 2; break;
+    case SAFETY_CRITICAL_FAILSAFE: siMode = 3; break;
+    default: siMode = (previewCfg.mode == 1) ? 0 : 1;
+  }
+  siCtx.operation_mode = siMode;
+
+  // 2. Run the SuperIntelligence core (advisory; recomputes risk/stability/
+  //    prediction/faults INTO siCtx — never touches the actuator path).
+  SI.update(siCtx);
+  siPrevOutputPwm = siCtx.output_pwm;
+
+  // 3. Sentinel memory-integrity canary (advisory; logs a threat, never blocks).
+  if (!Sentinel.verifyMemoryIntegrity()) {
+    addEvent(2, "Sentinel: memory canary mismatch");
+  }
+
+  // 4. Robust data logger — non-blocking, SD-guarded by SC_FACTORY_SD_CARD_ENABLED.
+  LogEntry le = {};
+  le.timestamp_ms = now;
+  le.rtc_epoch = 0;                       // RTC epoch not tracked in console
+  le.setpoint = (float)previewCfg.auto_target_c;
+  le.temp_c = state.ema;
+  le.output_pct = (float)state.fan;
+  le.pump_state = state.pump > 0;
+  le.fan_state = state.fan > 0;
+  le.ecu_fan_state = state.ecuSignal;
+  le.fault_code = (uint16_t)(state.faults & 0xFFFFu);
+  le.risk_score = siCtx.risk_score;       // SI core 0.0-1.0 metric
+  le.stability_idx = siCtx.stability_idx;
+  le.sensor_conf = (uint8_t)constrain((int)state.siConfidence, 0, 255);
+  le.operation_mode = siMode;
+  DataLogger.logData(le);
+}
+
 void engine() {
   updateThermalModel();
   bool curEcu = digitalRead(PIN_ECU);
@@ -1687,6 +1795,7 @@ void engine() {
   }
   applyOutputs(targetP, targetF);
   state.sequence++;
+  runSmartCoolingEnrichment();
 }
 
 void handleSSR() {
@@ -1932,6 +2041,15 @@ void setup() {
     addEvent(0, "RTC state validated");
   }
   printSerialDiagnostics(true);
+
+  // Activate SmartCooling subsystems: SuperIntelligence core, security Sentinel,
+  // and RobustDataLogger. SI.begin() checks the physical reset pin but will NOT
+  // erase NVS/reboot unless SC_FACTORY_ENABLE_NVS_ERASE_RESET==1. DataLogger
+  // no-ops safely when SC_FACTORY_SD_CARD_ENABLED==0.
+  SI.begin();
+  Sentinel.begin();
+  DataLogger.begin();
+
   saveToRtc();
 }
 

@@ -2,6 +2,8 @@ idf_component_register(
     SRCS
         "src/si_core.cpp"
         "src/si_sentinel.cpp"
+        "src/ewp_link_protocol.cpp"
+        "src/data_logger.cpp"
     INCLUDE_DIRS
         "include"
     REQUIRES
