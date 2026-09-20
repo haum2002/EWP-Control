@@ -109,6 +109,21 @@ ECU=6, I2C=8/9, SD=10-13, RGB=38), UART↔RP2350B, QSPI→flash U4 + PSRAM U5 (t
 </div>
 </div>
 
+<div class="section">
+<h2>Skrip Sync GitHub (satu-klik)</h2>
+<div class="note">
+<b>Linux / Mac / Git Bash:</b> <code>tools/sync_github.sh</code><br>
+<b>Windows CMD:</b> <code>tools\sync_github.bat</code><br><br>
+<b>Perintah:</b><br>
+&nbsp;&nbsp;<code>./sync_github.sh</code> — tarik dari GitHub ke PC (lalai)<br>
+&nbsp;&nbsp;<code>./sync_github.sh push</code> — dorong dari PC ke GitHub<br>
+&nbsp;&nbsp;<code>./sync_github.sh status</code> — tunjuk perbezaan<br>
+&nbsp;&nbsp;<code>./sync_github.sh clone</code> — muat turun baharu<br><br>
+<b>Sebelum guna:</b> edit fail, tampal <code>GITHUB_TOKEN</code> anda (dari
+<a href="https://github.com/settings/tokens">github.com/settings/tokens</a>), tetapkan <code>LOCAL_DIR</code>.
+</div>
+</div>
+
 <div class="footer">
 Reproducibility: <code>python3.12 tools/fix_schematic.py</code> &amp; <code>python3.12 tools/fix_pcb.py</code> ·
 Pengesahan: <code>python3.11 tools/verify_release.py</code> &amp; <code>tools/verify_control_math.py</code><br>
