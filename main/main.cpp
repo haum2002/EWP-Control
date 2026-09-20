@@ -1,6 +1,7 @@
 #include "routes.h"
 #include "web_assets.h"
 #include "factory_config.h"
+#include "ewp_link_protocol.h"
 #include "si_core.h"
 #include "si_sentinel.h"
 
@@ -35,7 +36,7 @@
 #endif
 
 /*
- * SmartCooling Console V2
+ * SmartCoolingv2.1 Console
  * Target: ESP32-S3 Super Mini HW-747
  *
  * Features:
@@ -128,7 +129,8 @@ RTC_DATA_ATTR static uint32_t rtc_boot_count = 0;
 #define PIN_RGB SC_FACTORY_PIN_RGB
 #define RGB_BRIGHTNESS12 SC_FACTORY_RGB_BRIGHTNESS12
 
-static constexpr const char *APP_VERSION = "2026.06.26-v2";
+static constexpr const char *APP_VERSION = "2026.09.19-v2.1";
+static constexpr uint8_t EWP_LINK_PROTOCOL_VERSION = ewp_link::PROTOCOL_VERSION;
 static constexpr const char *AP_SSID = SC_FACTORY_AP_SSID;
 static constexpr const char *DOMAIN_HOST = SC_FACTORY_DOMAIN_HOST;
 static constexpr const char *MDNS_HOST = SC_FACTORY_MDNS_HOST;
@@ -625,6 +627,7 @@ void statusToJson(JsonDocument &doc) {
   doc["firmware_version"] = APP_VERSION;
   doc["factory_profile"] = SC_FACTORY_PROFILE;
   doc["hardware_rev"] = SC_FACTORY_HARDWARE_REV;
+  doc["ewp_link_protocol_version"] = EWP_LINK_PROTOCOL_VERSION;
   doc["uptime_ms"] = millis();
   doc["coolant_c"] = state.ema;
   doc["coolant_valid"] = state.coolantValid;

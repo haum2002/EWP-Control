@@ -1,4 +1,4 @@
-# SmartCooling
+# SmartCoolingv2.1 / EWP Controller
 ### Super Intelligent Thermal Management System | ESP32-S3 Powered
 
 ![Status](https://img.shields.io/badge/status-stable-green)
@@ -19,6 +19,10 @@ Bukan AI biasa. SI kami menggabungkan kawalan adaptif, model fizik termodinamik,
 - **Predictive Fault Detection:** Mengesan anomali (cagaran sensor, kegagalan kipas) sebelum ia menjadi kritikal.
 - **Risk Score Engine:** Penilaian risiko berterusan (0.0 - 1.0) untuk membuat keputusan keselamatan proaktif.
 - **Sensor Fusion:** Menggabungkan data sensor fizik, input ECU/ECM, dan model dalaman untuk ketepatan mutlak.
+
+## Integrasi EWP Controller
+
+SmartCoolingv2.1 menggabungkan firmware SmartCooling dengan reka bentuk EWP Controller ini. RP2350B kekal sebagai pengawal keselamatan dan actuator kritikal, manakala ESP32-S3 mengurus UI, Wi-Fi, BLE, diagnostik dan OTA. Kontrak komunikasi neutral-transport berada di [docs/SMARTCOOLINGV2_1_INTEGRATION.md](docs/SMARTCOOLINGV2_1_INTEGRATION.md).
 
 ### 🛡️ SI Sentinel (Neural-Safe Core)
 Lapisan pertahanan aktif yang melindungi integriti sistem daripada "hallucination" SI dan serangan bukan fizikal.

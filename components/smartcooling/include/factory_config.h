@@ -50,7 +50,7 @@
 #ifndef SMARTCOOLING_FACTORY_CONFIG_H
 #define SMARTCOOLING_FACTORY_CONFIG_H
 
-#define SC_FACTORY_PROFILE "super_mini_esp32_s3_hw747"
+#define SC_FACTORY_PROFILE "smartcoolingv2_1_super_mini_esp32_s3_hw747"
 #define SC_FACTORY_HARDWARE_REV "hw-747"
 
 // ============================================================================
@@ -73,10 +73,10 @@
 #define SC_SPEC_D 12
 
 // ✅ UBAH NILAI INI SAHAJA UNTUK KONFIGURASI AUTOMATIK
-#define SC_FACTORY_SPEC_CODE SC_SPEC_P  // Pilihan: SC_SPEC_P/H/L/S/Q/PS/SP/C/W/V/Z/D
+#define SC_FACTORY_SPEC_CODE SC_SPEC_SP  // Pilihan: SC_SPEC_P/H/L/S/Q/PS/SP/C/W/V/Z/D
 
 // Parameter tambahan (manual)
-#define SC_FACTORY_ENV_SENSOR 0      // 0=Tiada, 1=BME280, 2=AHT30, 3=BMP280, 4=BMP180
+#define SC_FACTORY_ENV_SENSOR 4      // 0=Tiada, 1=BME280, 2=AHT30, 3=BMP280, 4=BMP180
 #define SC_FACTORY_SD_CARD 0         // 0=Tidak Aktif, 1=Aktif
 #define SYSTEM_UNIT_NUMBER 0001      // Nombor unit 4 digit
 

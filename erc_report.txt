@@ -1,0 +1,1988 @@
+ERC report (2026-09-19T20:42:14, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(116.84 mm, 358.14 mm): Symbol #PWR40 Hidden pin 1 [VCC, Power input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(119.38 mm, 360.68 mm): Symbol U7 Pin 2 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(119.38 mm, 370.84 mm): Symbol U7 Pin 6 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 307.34 mm): Symbol U6 Pin 4 [AIN0/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 309.88 mm): Symbol U6 Pin 5 [AIN1/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 312.42 mm): Symbol U6 Pin 6 [AIN2/IOUT/VBIAS/P1, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 314.96 mm): Symbol U6 Pin 7 [AIN3/IOUT/VBIAS/P2, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 317.50 mm): Symbol U6 Pin 8 [AIN4/IOUT/VBIAS/P3, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 320.04 mm): Symbol U6 Pin 9 [AIN5/IOUT/VBIAS/P4, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 322.58 mm): Symbol U6 Pin 10 [AIN6/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 325.12 mm): Symbol U6 Pin 11 [AIN7/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 327.66 mm): Symbol U6 Pin 12 [REFIN+, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 330.20 mm): Symbol U6 Pin 13 [REFIN-, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 332.74 mm): Symbol U6 Pin 14 [AIN8/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 335.28 mm): Symbol U6 Pin 15 [AIN9/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(140.97 mm, 337.82 mm): Symbol U6 Pin 16 [AIN10/IOUT/VBIAS, Unspecified, Line]
+[label_dangling]: Label not connected
+    ; error
+    @(153.913 mm, 418.749 mm): Global Label 'N_85E97F04'
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(166.37 mm, 82.55 mm): Symbol #PWR6 Hidden pin 1 [VDD, Power input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(172.72 mm, 421.64 mm): Symbol U9 Pin 4 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 115.57 mm): Symbol U1 Pin 79 [GPIO2, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 118.11 mm): Symbol U1 Pin 80 [GPIO3, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 120.65 mm): Symbol U1 Pin 1 [GPIO4, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 123.19 mm): Symbol U1 Pin 2 [GPIO5, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 125.73 mm): Symbol U1 Pin 3 [GPIO6, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 128.27 mm): Symbol U1 Pin 4 [GPIO7, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 130.81 mm): Symbol U1 Pin 6 [GPIO8, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 133.35 mm): Symbol U1 Pin 7 [GPIO9, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 148.59 mm): Symbol U1 Pin 14 [GPIO15, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 168.91 mm): Symbol U1 Pin 23 [GPIO23, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 171.45 mm): Symbol U1 Pin 25 [GPIO24, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 173.99 mm): Symbol U1 Pin 26 [GPIO25, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 176.53 mm): Symbol U1 Pin 27 [GPIO26, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 179.07 mm): Symbol U1 Pin 28 [GPIO27, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 207.01 mm): Symbol U1 Pin 47 [GPIO38, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 209.55 mm): Symbol U1 Pin 48 [GPIO39, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 212.09 mm): Symbol U1 Pin 49 [GPIO40_ADC0, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 214.63 mm): Symbol U1 Pin 52 [GPIO41_ADC1, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 217.17 mm): Symbol U1 Pin 53 [GPIO42_ADC2, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 219.71 mm): Symbol U1 Pin 54 [GPIO43_ADC3, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 222.25 mm): Symbol U1 Pin 55 [GPIO44_ADC4, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 224.79 mm): Symbol U1 Pin 56 [GPIO45_ADC5, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 227.33 mm): Symbol U1 Pin 57 [GPIO46_ADC6, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(203.20 mm, 229.87 mm): Symbol U1 Pin 58 [GPIO47_ADC7, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(204.47 mm, 412.75 mm): Symbol C35 Pin 1 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(204.47 mm, 420.37 mm): Symbol C35 Pin 2 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(207.01 mm, 302.26 mm): Symbol U6 Pin 31 [CLK, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(207.01 mm, 317.50 mm): Symbol U6 Pin 25 [PSW, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(207.01 mm, 325.12 mm): Symbol U6 Pin 22 [REFOUT, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(207.01 mm, 327.66 mm): Symbol U6 Pin 21 [AIN15/IOUT/VBIAS/REFIN2(–), Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(207.01 mm, 330.20 mm): Symbol U6 Pin 20 [AIN14/IOUT/VBIAS/REFIN2(+), Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(207.01 mm, 332.74 mm): Symbol U6 Pin 19 [AIN13/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(207.01 mm, 335.28 mm): Symbol U6 Pin 18 [AIN12/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(207.01 mm, 337.82 mm): Symbol U6 Pin 17 [AIN11/IOUT/VBIAS, Unspecified, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(304.80 mm, 77.47 mm): Symbol #GND1 Hidden pin 1 [GND, Power input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(369.57 mm, 93.98 mm): Symbol D1 Pin 2 [A, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(392.43 mm, 453.39 mm): Symbol C39 Pin 1 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(392.43 mm, 461.01 mm): Symbol C39 Pin 2 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(402.59 mm, 335.28 mm): Symbol U11 Pin 4 [~{RST}, Bidirectional, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 83.82 mm): Symbol U2 Pin 1 [LNA_IN, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 96.52 mm): Symbol U2 Pin 6 [GPIO1, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 99.06 mm): Symbol U2 Pin 7 [GPIO2, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 101.60 mm): Symbol U2 Pin 8 [GPIO3, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 104.14 mm): Symbol U2 Pin 9 [GPIO4, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 106.68 mm): Symbol U2 Pin 10 [GPIO5, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 109.22 mm): Symbol U2 Pin 11 [GPIO6, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 111.76 mm): Symbol U2 Pin 12 [GPIO7, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 114.30 mm): Symbol U2 Pin 13 [GPIO8, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 116.84 mm): Symbol U2 Pin 14 [GPIO9, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 119.38 mm): Symbol U2 Pin 15 [GPIO10, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 121.92 mm): Symbol U2 Pin 16 [GPIO11, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 124.46 mm): Symbol U2 Pin 17 [GPIO12, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 127.00 mm): Symbol U2 Pin 18 [GPIO13, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 129.54 mm): Symbol U2 Pin 19 [GPIO14, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 134.62 mm): Symbol U2 Pin 21 [XTAL_32K_P, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 137.16 mm): Symbol U2 Pin 22 [XTAL_32K_N, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 139.70 mm): Symbol U2 Pin 23 [GPIO17, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 142.24 mm): Symbol U2 Pin 24 [GPIO18, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 144.78 mm): Symbol U2 Pin 25 [GPIO19, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 147.32 mm): Symbol U2 Pin 26 [GPIO20, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 149.86 mm): Symbol U2 Pin 27 [GPIO21, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(419.10 mm, 152.40 mm): Symbol U2 Pin 28 [SPICS1, Unspecified, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(429.26 mm, 419.10 mm): Symbol #PWR44 Hidden pin 1 [VBAT, Power input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(433.07 mm, 326.39 mm): Symbol U11 Pin 1 [32kHz, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 93.98 mm): Symbol U2 Pin 52 [GPIO46, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 96.52 mm): Symbol U2 Pin 51 [GPIO45, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 104.14 mm): Symbol U2 Pin 48 [MTMS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 106.68 mm): Symbol U2 Pin 47 [MTDI, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 111.76 mm): Symbol U2 Pin 45 [MTDO, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 114.30 mm): Symbol U2 Pin 44 [MTCK, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 116.84 mm): Symbol U2 Pin 43 [GPIO38, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 119.38 mm): Symbol U2 Pin 42 [GPIO37, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 121.92 mm): Symbol U2 Pin 41 [GPIO36, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 124.46 mm): Symbol U2 Pin 40 [GPIO35, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 127.00 mm): Symbol U2 Pin 39 [GPIO34, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 129.54 mm): Symbol U2 Pin 38 [GPIO33, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 132.08 mm): Symbol U2 Pin 37 [SPICLK_P, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 134.62 mm): Symbol U2 Pin 36 [SPICLK_N, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 137.16 mm): Symbol U2 Pin 35 [SPID, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 139.70 mm): Symbol U2 Pin 34 [SPIQ, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 142.24 mm): Symbol U2 Pin 33 [SPICLK, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 144.78 mm): Symbol U2 Pin 32 [SPICS0, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 147.32 mm): Symbol U2 Pin 31 [SPIWP, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(462.28 mm, 149.86 mm): Symbol U2 Pin 30 [SPIHD, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(464.82 mm, 453.39 mm): Symbol C41 Pin 1 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(464.82 mm, 461.01 mm): Symbol C41 Pin 2 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(528.32 mm, 76.20 mm): Symbol X2 Pin 1 [OSC1, Input, Line]
+[pin_not_driven]: Input pin not driven by any Output pins
+    ; error
+    @(528.32 mm, 76.20 mm): Symbol X2 Pin 1 [OSC1, Input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(538.48 mm, 76.20 mm): Symbol X2 Pin 2 [OSC2, Input, Line]
+[pin_not_driven]: Input pin not driven by any Output pins
+    ; error
+    @(538.48 mm, 76.20 mm): Symbol X2 Pin 2 [OSC2, Input, Line]
+[pin_not_driven]: Input pin not driven by any Output pins
+    ; error
+    @(572.77 mm, 77.47 mm): Symbol X4 Pin 3 [3, Input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(607.06 mm, 77.47 mm): Symbol U5 Pin A2 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(607.06 mm, 85.09 mm): Symbol U5 Pin A5 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(607.06 mm, 87.63 mm): Symbol U5 Pin B1 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(607.06 mm, 92.71 mm): Symbol U5 Pin B3 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(607.06 mm, 95.25 mm): Symbol U5 Pin B4 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(607.06 mm, 97.79 mm): Symbol U5 Pin B5 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(607.06 mm, 102.87 mm): Symbol U5 Pin C2 [RFU, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(632.46 mm, 102.87 mm): Symbol U5 Pin C5 [NC, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(633.73 mm, 125.73 mm): Symbol Card1 Pin 11 [11, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(633.73 mm, 166.37 mm): Symbol Card1 Pin 12 [12, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(697.23 mm, 326.39 mm): Symbol R5 Pin 1 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(701.04 mm, 85.09 mm): Symbol U4 Pin 4 [DNU, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(701.04 mm, 295.91 mm): Symbol C26 Pin 1 [Passive, Line]
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(87.63 mm, 421.64 mm): Vertical Wire, length 2.54 mm
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(90.17 mm, 299.72 mm): Symbol #GND26 [GND]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(90.17 mm, 447.04 mm): Pin 1 [???, ?]
+    @(93.98 mm, 447.04 mm): Symbol R13 Pin 2 [Passive, Line]
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(93.98 mm, 447.04 mm): Horizontal Wire, length 3.81 mm
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(92.71 mm, 99.06 mm): Symbol #GND12 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(92.71 mm, 367.03 mm): Symbol #GND39 [GND]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(95.25 mm, 421.64 mm): Global Label 'vsys'
+[similar_labels]: Labels are similar (lower/upper case difference only)
+    ; warning
+    @(95.25 mm, 421.64 mm): Global Label 'vsys'
+    @(123.19 mm, 452.12 mm): Global Label 'VSYS'
+[similar_labels]: Labels are similar (lower/upper case difference only)
+    ; warning
+    @(95.25 mm, 421.64 mm): Global Label 'vsys'
+    @(125.73 mm, 452.12 mm): Global Label 'VSYS'
+[similar_labels]: Labels are similar (lower/upper case difference only)
+    ; warning
+    @(95.25 mm, 421.64 mm): Global Label 'vsys'
+    @(154.94 mm, 416.56 mm): Global Label 'VSYS'
+[similar_labels]: Labels are similar (lower/upper case difference only)
+    ; warning
+    @(95.25 mm, 421.64 mm): Global Label 'vsys'
+    @(120.65 mm, 452.12 mm): Global Label 'VSYS'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(97.79 mm, 179.07 mm): Symbol L2 Pin 2 [2, Unspecified, Line]
+    @(160.02 mm, 176.53 mm): Symbol U1 Pin 65 [VREG_FB, Unspecified, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(101.60 mm, 296.546 mm): Vertical Wire, length 3.175 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(102.87 mm, 179.07 mm): Symbol L2 [LSQPB201214T2R2MD]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(102.87 mm, 377.19 mm): Symbol #GND37 [GND]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(107.95 mm, 179.07 mm): Symbol L2 Pin 1 [1, Unspecified, Line]
+    @(160.02 mm, 179.07 mm): Symbol U1 Pin 63 [VREG_LX, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(113.03 mm, 365.76 mm): Symbol #GND36 [GND]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(113.03 mm, 447.04 mm): Symbol Q1 Pin 4 [G, Unspecified, Line]
+    @(101.60 mm, 447.04 mm): Symbol R13 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(114.30 mm, 311.15 mm): Symbol #GND25 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(115.57 mm, 416.56 mm): Symbol #GND68 [GND]
+[lib_symbol_mismatch]: Symbol 'VCC' doesn't match copy in library 'power'
+    ; warning
+    @(116.84 mm, 358.14 mm): Symbol #PWR40 [VCC]
+[multiple_net_names]: Both VREF and VCC are attached to the same items; VREF will be used in the netlist
+    ; warning
+    @(119.38 mm, 358.14 mm): Global Label 'VREF'
+    @(116.84 mm, 358.14 mm): Symbol #PWR40 Hidden pin 1 [VCC, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(116.84 mm, 368.30 mm): Symbol #PWR39 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(119.38 mm, 358.14 mm): Symbol U7 Pin 1 [VREF, Unspecified, Line]
+    @(116.84 mm, 358.14 mm): Symbol #PWR40 Hidden pin 1 [VCC, Power input, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(119.38 mm, 363.22 mm): Global Label 'DAC_OUTA'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(119.38 mm, 365.76 mm): Symbol U7 Pin 4 [GND, Unspecified, Line]
+    @(119.38 mm, 368.30 mm): Symbol #PWR81 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(119.38 mm, 368.30 mm): Symbol #PWR81 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(119.38 mm, 368.30 mm): Symbol U7 Pin 5 [VDD, Unspecified, Line]
+    @(119.38 mm, 368.30 mm): Symbol #PWR81 Hidden pin 1 [+3V3, Power input, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(119.38 mm, 373.38 mm): Global Label 'DAC_OUTB'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(119.38 mm, 375.92 mm): Global Label 'DAC_SDO'
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(119.38 mm, 447.04 mm): Symbol Q1 [SQJ411EP-T1_GE3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(120.65 mm, 168.91 mm): Symbol #GND2 [GND]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(120.65 mm, 441.96 mm): Global Label 'VIN'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(120.65 mm, 452.12 mm): Symbol Q1 Pin 1 [S, Unspecified, Line]
+    @(123.19 mm, 452.12 mm): Symbol Q1 Pin 2 [S, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(123.19 mm, 452.12 mm): Symbol Q1 Pin 2 [S, Unspecified, Line]
+    @(125.73 mm, 452.12 mm): Symbol Q1 Pin 3 [S, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(125.73 mm, 452.12 mm): Symbol Q1 Pin 3 [S, Unspecified, Line]
+    @(127.00 mm, 416.56 mm): Symbol C32 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(128.27 mm, 138.43 mm): Symbol #PWR28 [+3V3]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(133.35 mm, 367.03 mm): Symbol U7 [AD5689RBRUZ]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(134.62 mm, 304.80 mm): Symbol #GND21 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(138.43 mm, 302.26 mm): Symbol #PWR30 [+3V3]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(140.97 mm, 296.546 mm): Horizontal Wire, length 39.37 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(140.97 mm, 299.72 mm): Vertical Wire, length 3.175 mm
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(140.97 mm, 299.72 mm): Symbol U6 Pin 1 [REGCAPD, Unspecified, Line]
+    @(101.60 mm, 299.72 mm): Symbol C13 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(140.97 mm, 302.26 mm): Symbol #PWR80 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(140.97 mm, 302.26 mm): Symbol U6 Pin 2 [IOVDD, Unspecified, Line]
+    @(140.97 mm, 302.26 mm): Symbol #PWR80 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(140.97 mm, 304.80 mm): Symbol U6 Pin 3 [DGND, Unspecified, Line]
+    @(140.97 mm, 302.26 mm): Symbol #PWR80 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(142.24 mm, 419.10 mm): Symbol #GND67 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(143.51 mm, 190.50 mm): Symbol #GND6 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(147.32 mm, 358.14 mm): Symbol #GND33 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(147.32 mm, 358.14 mm): Symbol U7 Pin 16 [RSTSEL, Unspecified, Line]
+    @(147.32 mm, 358.14 mm): Symbol #GND33 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(147.32 mm, 360.68 mm): Symbol #PWR35 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(147.32 mm, 360.68 mm): Symbol U7 Pin 15 [~{RESET}, Unspecified, Line]
+    @(147.32 mm, 360.68 mm): Symbol #PWR35 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(147.32 mm, 363.22 mm): Symbol #PWR58 [+3V3]
+[multiple_net_names]: Both +3.3V and DAC_SDIN are attached to the same items; +3.3V will be used in the netlist
+    ; warning
+    @(632.46 mm, 100.33 mm): Global Label '+3.3V'
+    @(147.32 mm, 363.22 mm): Global Label 'DAC_SDIN'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(147.32 mm, 363.22 mm): Symbol U7 Pin 14 [SDIN, Unspecified, Line]
+    @(147.32 mm, 363.22 mm): Symbol #PWR58 Hidden pin 1 [+3V3, Power input, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(147.32 mm, 365.76 mm): Global Label 'DAC_SYNC'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(147.32 mm, 368.30 mm): Global Label 'DAC_SCLK'
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(147.32 mm, 370.84 mm): Symbol #PWR82 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(147.32 mm, 370.84 mm): Symbol U7 Pin 11 [VLOGIC, Unspecified, Line]
+    @(147.32 mm, 370.84 mm): Symbol #PWR82 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(147.32 mm, 373.38 mm): Symbol #PWR36 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(147.32 mm, 373.38 mm): Symbol U7 Pin 10 [GAIN, Unspecified, Line]
+    @(147.32 mm, 373.38 mm): Symbol #PWR36 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(147.32 mm, 375.92 mm): Symbol #GND34 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(147.32 mm, 375.92 mm): Symbol U7 Pin 9 [~{LDAC}, Unspecified, Line]
+    @(147.32 mm, 375.92 mm): Symbol #GND34 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(148.59 mm, 143.51 mm): Symbol #PWR1 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(152.40 mm, 370.84 mm): Symbol #PWR38 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(154.94 mm, 416.56 mm): Symbol U9 Pin 1 [IN, Unspecified, Line]
+    @(127.00 mm, 416.56 mm): Symbol C32 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(154.94 mm, 419.10 mm): Symbol U9 Pin 2 [GND, Unspecified, Line]
+    @(142.24 mm, 419.10 mm): Symbol #GND67 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(154.94 mm, 421.64 mm): Symbol U9 Pin 3 [EN, Unspecified, Line]
+    @(102.87 mm, 421.64 mm): Symbol R14 Pin 2 [Passive, Line]
+[multiple_net_names]: Both PSRAM_DQ6 and RESET are attached to the same items; PSRAM_DQ6 will be used in the netlist
+    ; warning
+    @(632.46 mm, 85.09 mm): Global Label 'PSRAM_DQ6'
+    @(160.02 mm, 138.43 mm): Global Label 'RESET'
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(160.02 mm, 138.43 mm): Symbol U1 Pin 35 [RUN, Unspecified, Line]
+    @(148.59 mm, 138.43 mm): Symbol R1 Pin 1 [Passive, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(160.02 mm, 146.05 mm): Global Label 'RP_SWCLK'
+[multiple_net_names]: Both PSRAM_DQ7 and RP_SWDIO are attached to the same items; PSRAM_DQ7 will be used in the netlist
+    ; warning
+    @(632.46 mm, 87.63 mm): Global Label 'PSRAM_DQ7'
+    @(160.02 mm, 148.59 mm): Global Label 'RP_SWDIO'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(160.02 mm, 148.59 mm): Symbol U1 Pin 34 [SWDIO, Unspecified, Line]
+    @(632.46 mm, 87.63 mm): Symbol U5 Pin E1 [ADQ7, Unspecified, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(160.02 mm, 156.21 mm): Global Label 'USB_D_N'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(160.02 mm, 158.75 mm): Global Label 'USB_D_P'
+[pin_to_pin]: Pins of type Unspecified and Input are connected
+    ; warning
+    @(160.02 mm, 166.37 mm): Symbol U1 Pin 30 [XIN, Unspecified, Line]
+    @(293.37 mm, 77.47 mm): Symbol X3 Pin 3 [OUT, Input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(160.02 mm, 168.91 mm): Symbol U1 Pin 31 [XOUT, Unspecified, Line]
+    @(132.08 mm, 168.91 mm): Symbol C9 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(160.02 mm, 176.53 mm): Symbol U1 Pin 65 [VREG_FB, Unspecified, Line]
+    @(168.91 mm, 87.63 mm): Symbol #PWR17 Hidden pin 1 [VDD, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(160.02 mm, 181.61 mm): Symbol #PWR27 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(160.02 mm, 181.61 mm): Symbol #PWR7 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(160.02 mm, 181.61 mm): Symbol U1 Pin 64 [VREG_VIN, Unspecified, Line]
+    @(160.02 mm, 181.61 mm): Symbol #PWR7 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(160.02 mm, 189.23 mm): Symbol U1 Pin 71 [QSPI_SCLK, Unspecified, Line]
+    @(703.58 mm, 128.27 mm): Symbol U3 Pin 6 [CLK, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(160.02 mm, 191.77 mm): Symbol U1 Pin 72 [QSPI_SD0, Unspecified, Line]
+    @(703.58 mm, 130.81 mm): Symbol U3 Pin 5 [DI, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(160.02 mm, 194.31 mm): Symbol U1 Pin 74 [QSPI_SD1, Unspecified, Line]
+    @(678.18 mm, 125.73 mm): Symbol U3 Pin 2 [DO, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(160.02 mm, 196.85 mm): Symbol U1 Pin 73 [QSPI_SD2, Unspecified, Line]
+    @(678.18 mm, 128.27 mm): Symbol U3 Pin 3 [IO2, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(160.02 mm, 199.39 mm): Symbol U1 Pin 70 [QSPI_SD3, Unspecified, Line]
+    @(703.58 mm, 125.73 mm): Symbol U3 Pin 7 [IO3, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(160.02 mm, 201.93 mm): Symbol U1 Pin 75 [QSPI_SS, Unspecified, Line]
+    @(678.18 mm, 123.19 mm): Symbol U3 Pin 1 [~{CS}, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(163.83 mm, 87.63 mm): Symbol #PWR12 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(163.83 mm, 87.63 mm): Symbol U1 Pin 59 [ADC_AVDD, Unspecified, Line]
+    @(163.83 mm, 87.63 mm): Symbol #PWR12 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(163.83 mm, 379.73 mm): Symbol #GND38 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(163.83 mm, 419.10 mm): Symbol U9 [TLV75533PDBVR]
+[lib_symbol_mismatch]: Symbol 'VDD' doesn't match copy in library 'power'
+    ; warning
+    @(166.37 mm, 82.55 mm): Symbol #PWR6 [VDD]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(166.37 mm, 87.63 mm): Symbol U1 Pin 10 [DVDD, Unspecified, Line]
+    @(168.91 mm, 87.63 mm): Symbol #PWR17 Hidden pin 1 [VDD, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'VDD' doesn't match copy in library 'power'
+    ; warning
+    @(168.91 mm, 87.63 mm): Symbol #PWR17 [VDD]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(168.91 mm, 87.63 mm): Symbol U1 Pin 32 [DVDD, Unspecified, Line]
+    @(168.91 mm, 87.63 mm): Symbol #PWR17 Hidden pin 1 [VDD, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'VDD' doesn't match copy in library 'power'
+    ; warning
+    @(171.45 mm, 87.63 mm): Symbol #PWR11 [VDD]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(171.45 mm, 87.63 mm): Symbol U1 Pin 51 [DVDD, Unspecified, Line]
+    @(171.45 mm, 87.63 mm): Symbol #PWR11 Hidden pin 1 [VDD, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(172.72 mm, 416.56 mm): Symbol U9 Pin 5 [OUT, Unspecified, Line]
+    @(175.26 mm, 416.56 mm): Symbol #PWR57 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(173.99 mm, 77.47 mm): Symbol #PWR5 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(173.99 mm, 87.63 mm): Symbol #PWR59 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(173.99 mm, 87.63 mm): Symbol U1 Pin 5 [IOVDD, Unspecified, Line]
+    @(173.99 mm, 87.63 mm): Symbol #PWR59 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(173.99 mm, 320.04 mm): Symbol U6 [AD7124-8BCPZ]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.238 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.476 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.635 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.357 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.635 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.635 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.357 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.397 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.357 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.397 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.397 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.397 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.625 mm, 416.56 mm): Horizontal Wire, length 0.357 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.635 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.238 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.238 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.397 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.238 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.238 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.238 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.238 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.119 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.397 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.863 mm, 416.56 mm): Horizontal Wire, length 0.238 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.942 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.942 mm, 416.56 mm): Horizontal Wire, length 14.287 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.942 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.119 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.119 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.119 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.72 mm, 416.56 mm): Horizontal Wire, length 2.262 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.278 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.278 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.119 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.119 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.278 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(174.982 mm, 416.56 mm): Horizontal Wire, length 0.119 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(172.72 mm, 416.56 mm): Horizontal Wire, length 2.262 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.04 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.022 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.101 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.101 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.101 mm, 416.56 mm): Horizontal Wire, length 0.476 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.159 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.556 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.556 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.556 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.198 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.556 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.181 mm, 416.56 mm): Horizontal Wire, length 0.318 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.26 mm, 416.56 mm): Horizontal Wire, length 0.079 mm
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(175.26 mm, 416.56 mm): Symbol #PWR57 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(176.53 mm, 87.63 mm): Symbol #PWR16 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(176.53 mm, 87.63 mm): Symbol U1 Pin 15 [IOVDD, Unspecified, Line]
+    @(176.53 mm, 87.63 mm): Symbol #PWR16 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(179.07 mm, 87.63 mm): Symbol #PWR10 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(179.07 mm, 87.63 mm): Symbol U1 Pin 24 [IOVDD, Unspecified, Line]
+    @(179.07 mm, 87.63 mm): Symbol #PWR10 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(180.34 mm, 252.73 mm): Symbol #GND5 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(180.34 mm, 252.73 mm): Symbol U1 Pin 81 [GND, Unspecified, Line]
+    @(180.34 mm, 252.73 mm): Symbol #GND5 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(181.61 mm, 77.47 mm): Symbol #PWR4 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(181.61 mm, 87.63 mm): Symbol #PWR62 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(181.61 mm, 87.63 mm): Symbol U1 Pin 29 [IOVDD, Unspecified, Line]
+    @(181.61 mm, 87.63 mm): Symbol #PWR62 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(181.61 mm, 170.18 mm): Symbol U1 [RP2350B_C42415655]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(182.88 mm, 252.73 mm): Symbol U1 Pin 62 [VREG_PGND, Unspecified, Line]
+    @(180.34 mm, 252.73 mm): Symbol #GND5 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(182.88 mm, 257.81 mm): Symbol #GND4 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(184.15 mm, 87.63 mm): Symbol #PWR63 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(184.15 mm, 87.63 mm): Symbol #PWR15 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(184.15 mm, 87.63 mm): Symbol U1 Pin 41 [IOVDD, Unspecified, Line]
+    @(184.15 mm, 87.63 mm): Symbol #PWR15 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(186.69 mm, 87.63 mm): Symbol #PWR9 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(186.69 mm, 87.63 mm): Symbol #PWR64 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(186.69 mm, 87.63 mm): Symbol U1 Pin 50 [IOVDD, Unspecified, Line]
+    @(186.69 mm, 87.63 mm): Symbol #PWR9 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(189.23 mm, 77.47 mm): Symbol #PWR3 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(189.23 mm, 87.63 mm): Symbol #PWR65 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(189.23 mm, 87.63 mm): Symbol U1 Pin 60 [IOVDD, Unspecified, Line]
+    @(189.23 mm, 87.63 mm): Symbol #PWR65 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(189.23 mm, 425.45 mm): Symbol #GND69 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(191.77 mm, 87.63 mm): Symbol #PWR14 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(191.77 mm, 87.63 mm): Symbol #PWR66 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(191.77 mm, 87.63 mm): Symbol U1 Pin 76 [IOVDD, Unspecified, Line]
+    @(191.77 mm, 87.63 mm): Symbol #PWR14 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(194.31 mm, 87.63 mm): Symbol #PWR67 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(194.31 mm, 87.63 mm): Symbol U1 Pin 69 [QSPI_IOVDD, Unspecified, Line]
+    @(194.31 mm, 87.63 mm): Symbol #PWR67 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(196.85 mm, 77.47 mm): Symbol #PWR2 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(196.85 mm, 87.63 mm): Symbol #PWR68 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(196.85 mm, 87.63 mm): Symbol U1 Pin 68 [USB_OTP_VDD, Unspecified, Line]
+    @(196.85 mm, 87.63 mm): Symbol #PWR68 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(199.39 mm, 87.63 mm): Symbol #PWR13 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(199.39 mm, 87.63 mm): Symbol U1 Pin 61 [VREG_AVDD, Unspecified, Line]
+    @(199.39 mm, 87.63 mm): Symbol #PWR13 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 110.49 mm): Symbol U1 Pin 77 [GPIO0, Unspecified, Line]
+    @(462.28 mm, 99.06 mm): Symbol U2 Pin 50 [U0RXD, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 113.03 mm): Symbol U1 Pin 78 [GPIO1, Unspecified, Line]
+    @(462.28 mm, 101.60 mm): Symbol U2 Pin 49 [U0TXD, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 135.89 mm): Symbol U1 Pin 8 [GPIO10, Unspecified, Line]
+    @(736.60 mm, 80.01 mm): Symbol U4 Pin 15 [DQ0, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 138.43 mm): Symbol U1 Pin 9 [GPIO11, Unspecified, Line]
+    @(701.04 mm, 95.25 mm): Symbol U4 Pin 8 [DQ1, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 140.97 mm): Symbol U1 Pin 11 [GPIO12, Unspecified, Line]
+    @(701.04 mm, 77.47 mm): Symbol U4 Pin 1 [DQ3/~{HOLD}, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 143.51 mm): Symbol U1 Pin 12 [GPIO13, Unspecified, Line]
+    @(736.60 mm, 77.47 mm): Symbol U4 Pin 16 [C, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 146.05 mm): Symbol U1 Pin 13 [GPIO14, Unspecified, Line]
+    @(701.04 mm, 92.71 mm): Symbol U4 Pin 7 [~{S}, Unspecified, Line]
+[multiple_net_names]: Both MCU_WDT_DONE and SD_DAT1 are attached to the same items; MCU_WDT_DONE will be used in the netlist
+    ; warning
+    @(567.69 mm, 427.99 mm): Global Label 'MCU_WDT_DONE'
+    @(203.20 mm, 153.67 mm): Global Label 'SD_DAT1'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 153.67 mm): Symbol U1 Pin 17 [GPIO17, Unspecified, Line]
+    @(567.69 mm, 427.99 mm): Symbol U13 Pin 4 [DONE, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 156.21 mm): Symbol U1 Pin 18 [GPIO18, Unspecified, Line]
+    @(567.69 mm, 425.45 mm): Symbol U13 Pin 5 [WAKE, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 163.83 mm): Symbol U1 Pin 21 [GPIO21, Unspecified, Line]
+    @(527.05 mm, 459.74 mm): Symbol U15 Pin 2 [IN, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(203.20 mm, 166.37 mm): Symbol U1 Pin 22 [GPIO22, Unspecified, Line]
+    @(590.55 mm, 156.21 mm): Symbol R3 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 181.61 mm): Symbol U1 Pin 36 [GPIO28, Unspecified, Line]
+    @(632.46 mm, 82.55 mm): Symbol U5 Pin E3 [ADQ5, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 184.15 mm): Symbol U1 Pin 37 [GPIO29, Unspecified, Line]
+    @(632.46 mm, 90.17 mm): Symbol U5 Pin D5 [ADQ4, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 186.69 mm): Symbol U1 Pin 38 [GPIO30, Unspecified, Line]
+    @(632.46 mm, 92.71 mm): Symbol U5 Pin D4 [ADQ3, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 189.23 mm): Symbol U1 Pin 39 [GPIO31, Unspecified, Line]
+    @(632.46 mm, 105.41 mm): Symbol U5 Pin C4 [ADQ2, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 191.77 mm): Symbol U1 Pin 40 [GPIO32, Unspecified, Line]
+    @(632.46 mm, 97.79 mm): Symbol U5 Pin D2 [ADQ1, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 194.31 mm): Symbol U1 Pin 42 [GPIO33, Unspecified, Line]
+    @(632.46 mm, 95.25 mm): Symbol U5 Pin D3 [ADQ0, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 196.85 mm): Symbol U1 Pin 43 [GPIO34, Unspecified, Line]
+    @(607.06 mm, 90.17 mm): Symbol U5 Pin B2 [CLK, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(203.20 mm, 199.39 mm): Symbol U1 Pin 44 [GPIO35, Unspecified, Line]
+    @(605.79 mm, 186.69 mm): Symbol R18 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 201.93 mm): Symbol U1 Pin 45 [GPIO36, Unspecified, Line]
+    @(607.06 mm, 105.41 mm): Symbol U5 Pin C3 [DQS/DM, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(203.20 mm, 204.47 mm): Symbol U1 Pin 46 [GPIO37, Unspecified, Line]
+    @(607.06 mm, 82.55 mm): Symbol U5 Pin A4 [~{RST}, Unspecified, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(207.01 mm, 299.72 mm): Global Label 'ADC_CS'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(207.01 mm, 304.80 mm): Global Label 'ADC_SCLK'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(207.01 mm, 307.34 mm): Global Label 'ADC_MOSI'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(207.01 mm, 309.88 mm): Global Label 'ADC_MISO'
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(207.01 mm, 312.42 mm): Symbol #PWR29 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(207.01 mm, 312.42 mm): Symbol U6 Pin 27 [~{SYNC}, Unspecified, Line]
+    @(207.01 mm, 312.42 mm): Symbol #PWR29 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(207.01 mm, 314.96 mm): Symbol #PWR78 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(207.01 mm, 314.96 mm): Symbol U6 Pin 26 [AVDD, Unspecified, Line]
+    @(207.01 mm, 314.96 mm): Symbol #PWR78 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(207.01 mm, 320.04 mm): Symbol U6 Pin 24 [REGCAPA, Unspecified, Line]
+    @(234.95 mm, 320.04 mm): Symbol C12 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(207.01 mm, 322.58 mm): Symbol U6 Pin 23 [AVSS, Unspecified, Line]
+    @(209.55 mm, 322.58 mm): Symbol #GND22 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(207.01 mm, 340.36 mm): Symbol U6 Pin 33 [EXP, Unspecified, Line]
+    @(209.55 mm, 340.36 mm): Symbol #GND23 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(209.55 mm, 322.58 mm): Symbol #GND22 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(209.55 mm, 340.36 mm): Symbol #GND23 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(219.71 mm, 99.06 mm): Symbol #GND7 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(223.52 mm, 306.07 mm): Symbol #GND71 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(223.52 mm, 323.85 mm): Symbol #GND24 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(229.87 mm, 99.06 mm): Symbol #GND8 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(240.03 mm, 99.06 mm): Symbol #GND9 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(246.38 mm, 320.04 mm): Symbol #GND27 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(250.19 mm, 99.06 mm): Symbol #GND10 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(251.46 mm, 289.56 mm): Symbol #PWR37 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(260.35 mm, 99.06 mm): Symbol #GND11 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(262.89 mm, 306.07 mm): Symbol #GND35 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(275.59 mm, 77.47 mm): Symbol #PWR18 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(278.13 mm, 82.55 mm): Symbol #GND3 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(285.75 mm, 80.01 mm): Symbol X3 [HSO531S12MHZ1_6_3_6V]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(293.37 mm, 82.55 mm): Symbol #GND13 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(304.80 mm, 77.47 mm): Symbol #GND1 [GND]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(323.85 mm, 76.20 mm): Symbol L1 Pin 1 [1, Unspecified, Line]
+    @(160.02 mm, 179.07 mm): Symbol U1 Pin 63 [VREG_LX, Unspecified, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(328.93 mm, 76.20 mm): Symbol L1 [SMNR4020-2_2UH]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(334.01 mm, 76.20 mm): Symbol L1 Pin 2 [2, Unspecified, Line]
+    @(462.28 mm, 152.40 mm): Symbol U2 Pin 29 [VDD_SPI, Unspecified, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(360.68 mm, 76.20 mm): Symbol X1 [X49SM12MSD2SI]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(374.65 mm, 93.98 mm): Symbol D1 [MBR0520L-TP]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(379.73 mm, 93.98 mm): Symbol D1 Pin 1 [K, Unspecified, Line]
+    @(419.10 mm, 93.98 mm): Symbol U2 Pin 5 [GPIO0, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(387.35 mm, 419.10 mm): Symbol #GND61 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(392.43 mm, 95.25 mm): Symbol #GND17 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(392.43 mm, 306.07 mm): Symbol #GND86 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(396.24 mm, 354.33 mm): Symbol #GND58 [GND]
+[lib_symbol_issues]: Symbol 'VBAT' not found in symbol library 'power'
+    ; warning
+    @(398.78 mm, 340.36 mm): Symbol #PWR51 [VBAT]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(400.05 mm, 345.44 mm): Symbol #PWR50 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(402.59 mm, 77.47 mm): Symbol #GND20 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(402.59 mm, 306.07 mm): Symbol #GND56 [GND]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(402.59 mm, 325.12 mm): Symbol U11 Pin 8 [SCL, Unspecified, Line]
+    @(403.86 mm, 424.18 mm): Symbol U12 Pin 5 [SCL, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(403.86 mm, 414.02 mm): Symbol #GND42 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(403.86 mm, 414.02 mm): Symbol U12 Pin 1 [A1, Unspecified, Line]
+    @(403.86 mm, 414.02 mm): Symbol #GND42 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(403.86 mm, 416.56 mm): Symbol #GND43 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(403.86 mm, 416.56 mm): Symbol U12 Pin 2 [A0, Unspecified, Line]
+    @(403.86 mm, 416.56 mm): Symbol #GND43 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(403.86 mm, 419.10 mm): Symbol U12 Pin 3 [Alert, Unspecified, Line]
+    @(468.63 mm, 490.22 mm): Symbol R16 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Bidirectional are connected
+    ; warning
+    @(403.86 mm, 421.64 mm): Symbol U12 Pin 4 [SDA, Unspecified, Line]
+    @(402.59 mm, 330.20 mm): Symbol U11 Pin 7 [SDA, Bidirectional, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(408.94 mm, 297.18 mm): Symbol #PWR49 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(411.48 mm, 372.11 mm): Symbol #PWR88 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(412.75 mm, 487.68 mm): Symbol #GND72 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(412.75 mm, 504.19 mm): Symbol #GND87 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(416.56 mm, 86.36 mm): Symbol #PWR20 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(416.56 mm, 132.08 mm): Symbol #PWR21 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(416.56 mm, 299.72 mm): Symbol #GND54 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(416.56 mm, 419.10 mm): Symbol U12 [INA226AIDGSR]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(417.83 mm, 336.55 mm): Symbol U11 [DS3231MZ_]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(419.10 mm, 86.36 mm): Symbol #PWR72 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(419.10 mm, 86.36 mm): Symbol U2 Pin 2 [VDD3P3, Unspecified, Line]
+    @(419.10 mm, 86.36 mm): Symbol #PWR72 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(419.10 mm, 88.90 mm): Symbol #PWR26 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(419.10 mm, 88.90 mm): Symbol U2 Pin 3 [VDD3P3, Unspecified, Line]
+    @(419.10 mm, 88.90 mm): Symbol #PWR26 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(419.10 mm, 91.44 mm): Symbol U2 Pin 4 [CHIP_PU, Unspecified, Line]
+    @(495.30 mm, 81.28 mm): Symbol R2 Pin 2 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(419.10 mm, 132.08 mm): Symbol #PWR74 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(419.10 mm, 132.08 mm): Symbol U2 Pin 20 [VDD3P3_RTC, Unspecified, Line]
+    @(419.10 mm, 132.08 mm): Symbol #PWR74 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(419.10 mm, 297.18 mm): Symbol U10 Pin 8 [VDD, Unspecified, Line]
+    @(416.56 mm, 299.72 mm): Symbol #GND54 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(419.10 mm, 299.72 mm): Symbol U10 Pin 7 [GND, Unspecified, Line]
+    @(416.56 mm, 299.72 mm): Symbol #GND54 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(419.10 mm, 302.26 mm): Symbol #PWR79 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(419.10 mm, 302.26 mm): Symbol U10 Pin 6 [VDDIO, Unspecified, Line]
+    @(419.10 mm, 302.26 mm): Symbol #PWR79 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(419.10 mm, 304.80 mm): Symbol #GND53 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(419.10 mm, 304.80 mm): Symbol U10 Pin 5 [SDO, Unspecified, Line]
+    @(419.10 mm, 304.80 mm): Symbol #GND53 Hidden pin 1 [GND, Power input, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(429.26 mm, 414.02 mm): Global Label 'SHUNT_P'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(429.26 mm, 416.56 mm): Global Label 'SHUNT_N'
+[lib_symbol_issues]: Symbol 'VBAT' not found in symbol library 'power'
+    ; warning
+    @(429.26 mm, 419.10 mm): Symbol #PWR44 [VBAT]
+[multiple_net_names]: Both VBAT and VBUS_SENSE are attached to the same items; VBAT will be used in the netlist
+    ; warning
+    @(402.59 mm, 340.36 mm): Global Label 'VBAT'
+    @(429.26 mm, 419.10 mm): Global Label 'VBUS_SENSE'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(429.26 mm, 419.10 mm): Symbol U12 Pin 8 [VBUS, Unspecified, Line]
+    @(429.26 mm, 419.10 mm): Symbol #PWR44 Hidden pin 1 [VBAT, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(429.26 mm, 421.64 mm): Symbol U12 Pin 7 [GND, Unspecified, Line]
+    @(431.80 mm, 424.18 mm): Symbol #PWR45 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(429.26 mm, 424.18 mm): Symbol U12 Pin 6 [VS+, Unspecified, Line]
+    @(431.80 mm, 424.18 mm): Symbol #PWR45 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(431.80 mm, 300.99 mm): Symbol U10 [BME280]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(431.80 mm, 424.18 mm): Symbol #PWR45 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(435.61 mm, 345.44 mm): Symbol #GND57 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(435.61 mm, 433.07 mm): Symbol #GND44 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(440.69 mm, 119.38 mm): Symbol U2 [ESP32-S3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(440.69 mm, 157.48 mm): Symbol U2 Pin 57 [EP, Unspecified, Line]
+    @(440.69 mm, 161.29 mm): Symbol #GND16 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(440.69 mm, 161.29 mm): Symbol #GND16 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(444.50 mm, 297.18 mm): Symbol #GND55 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(444.50 mm, 297.18 mm): Symbol U10 Pin 1 [GND, Unspecified, Line]
+    @(444.50 mm, 297.18 mm): Symbol #GND55 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(444.50 mm, 299.72 mm): Symbol U10 Pin 2 [CSB, Unspecified, Line]
+    @(455.93 mm, 299.72 mm): Symbol R9 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Bidirectional are connected
+    ; warning
+    @(444.50 mm, 302.26 mm): Symbol U10 Pin 3 [SDI, Unspecified, Line]
+    @(402.59 mm, 330.20 mm): Symbol U11 Pin 7 [SDA, Bidirectional, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(444.50 mm, 304.80 mm): Symbol U10 Pin 4 [SCK, Unspecified, Line]
+    @(402.59 mm, 325.12 mm): Symbol U11 Pin 8 [SCL, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(445.77 mm, 433.07 mm): Symbol #GND74 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(455.93 mm, 332.74 mm): Symbol #PWR89 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(455.93 mm, 433.07 mm): Symbol #GND84 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(457.20 mm, 490.22 mm): Symbol #PWR84 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(462.28 mm, 83.82 mm): Symbol #PWR77 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(462.28 mm, 83.82 mm): Symbol U2 Pin 56 [VDDA, Unspecified, Line]
+    @(462.28 mm, 83.82 mm): Symbol #PWR77 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(462.28 mm, 86.36 mm): Symbol #PWR76 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(462.28 mm, 86.36 mm): Symbol U2 Pin 55 [VDDA, Unspecified, Line]
+    @(462.28 mm, 86.36 mm): Symbol #PWR76 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(462.28 mm, 88.90 mm): Symbol U2 Pin 54 [XTAL_P, Unspecified, Line]
+    @(462.28 mm, 86.36 mm): Symbol #PWR76 Hidden pin 1 [+3V3, Power input, Line]
+[multiple_net_names]: Both U2_XTAL_N and XTAL_N are attached to the same items; U2_XTAL_N will be used in the netlist
+    ; warning
+    @(462.28 mm, 91.44 mm): Global Label 'U2_XTAL_N'
+    @(462.28 mm, 91.44 mm): Global Label 'XTAL_N'
+[pin_to_pin]: Pins of type Unspecified and Input are connected
+    ; warning
+    @(462.28 mm, 91.44 mm): Symbol U2 Pin 53 [XTAL_N, Unspecified, Line]
+    @(572.77 mm, 77.47 mm): Symbol X4 Pin 3 [3, Input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(462.28 mm, 109.22 mm): Symbol #PWR75 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(462.28 mm, 109.22 mm): Symbol U2 Pin 46 [VDD3P3_CPU, Unspecified, Line]
+    @(462.28 mm, 109.22 mm): Symbol #PWR75 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(462.28 mm, 152.40 mm): Symbol U2 Pin 29 [VDD_SPI, Unspecified, Line]
+    @(464.82 mm, 152.40 mm): Symbol #PWR22 Hidden pin 1 [VDD, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(464.82 mm, 86.36 mm): Symbol #PWR24 [+3V3]
+[lib_symbol_mismatch]: Symbol 'VDD' doesn't match copy in library 'power'
+    ; warning
+    @(464.82 mm, 152.40 mm): Symbol #PWR22 [VDD]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(467.36 mm, 299.72 mm): Symbol #PWR48 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(473.71 mm, 414.02 mm): Symbol #GND63 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(476.25 mm, 414.02 mm): Symbol U14 Pin 1 [GND, Unspecified, Line]
+    @(473.71 mm, 414.02 mm): Symbol #GND63 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(476.25 mm, 416.56 mm): Symbol U14 Pin 2 [IN, Unspecified, Line]
+    @(401.32 mm, 504.19 mm): Symbol R22 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(476.25 mm, 419.10 mm): Symbol U14 Pin 3 [IS, Unspecified, Line]
+    @(398.78 mm, 419.10 mm): Symbol R10 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(476.25 mm, 424.18 mm): Symbol U14 Pin 5 [OUT, Unspecified, Line]
+    @(476.25 mm, 426.72 mm): Symbol U14 Pin 6 [OUT, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(476.25 mm, 426.72 mm): Symbol U14 Pin 6 [OUT, Unspecified, Line]
+    @(476.25 mm, 429.26 mm): Symbol U14 Pin 7 [OUT, Unspecified, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(485.14 mm, 421.64 mm): Symbol U14 [BTS50015-1TAD]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(485.14 mm, 504.19 mm): Symbol #GND88 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(487.68 mm, 81.28 mm): Symbol #PWR19 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(494.03 mm, 421.64 mm): Symbol U14 Pin 8 [VS, Unspecified, Line]
+    @(496.57 mm, 421.64 mm): Symbol #PWR53 Hidden pin 1 [VBAT, Power input, Line]
+[lib_symbol_issues]: Symbol 'VBAT' not found in symbol library 'power'
+    ; warning
+    @(496.57 mm, 421.64 mm): Symbol #PWR53 [VBAT]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(499.11 mm, 81.28 mm): Symbol SW1 Pin 1 [1, Unspecified, Line]
+    @(495.30 mm, 81.28 mm): Symbol R2 Pin 2 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(499.11 mm, 86.36 mm): Symbol #GND14 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(499.11 mm, 86.36 mm): Symbol SW1 Pin 3 [3, Unspecified, Line]
+    @(499.11 mm, 86.36 mm): Symbol #GND14 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(499.11 mm, 462.28 mm): Symbol #GND62 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(500.38 mm, 430.53 mm): Symbol #GND73 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(504.19 mm, 82.55 mm): Symbol SW1 [HX3X4X2_5-PA-4NPUSHBUTTONSWITCH]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(509.27 mm, 81.28 mm): Symbol SW1 Pin 2 [2, Unspecified, Line]
+    @(495.30 mm, 81.28 mm): Symbol R2 Pin 2 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(509.27 mm, 86.36 mm): Symbol #GND15 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(509.27 mm, 86.36 mm): Symbol SW1 Pin 4 [4, Unspecified, Line]
+    @(509.27 mm, 86.36 mm): Symbol #GND15 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(515.62 mm, 414.02 mm): Symbol #GND89 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(515.62 mm, 431.80 mm): Symbol #GND76 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(520.70 mm, 427.99 mm): Symbol #GND65 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(520.70 mm, 438.15 mm): Symbol #GND75 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(524.51 mm, 457.20 mm): Symbol #GND64 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(527.05 mm, 457.20 mm): Symbol U15 Pin 1 [GND, Unspecified, Line]
+    @(524.51 mm, 457.20 mm): Symbol #GND64 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(527.05 mm, 462.28 mm): Symbol U15 Pin 3 [IS, Unspecified, Line]
+    @(510.54 mm, 462.28 mm): Symbol R11 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(527.05 mm, 467.36 mm): Symbol U15 Pin 5 [OUT, Unspecified, Line]
+    @(527.05 mm, 469.90 mm): Symbol U15 Pin 6 [OUT, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(527.05 mm, 469.90 mm): Symbol U15 Pin 6 [OUT, Unspecified, Line]
+    @(527.05 mm, 472.44 mm): Symbol U15 Pin 7 [OUT, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(529.59 mm, 422.91 mm): Symbol #PWR55 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(532.13 mm, 422.91 mm): Symbol U13 Pin 1 [VDD, Unspecified, Line]
+    @(532.13 mm, 425.45 mm): Symbol #GND66 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(532.13 mm, 425.45 mm): Symbol #GND66 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(532.13 mm, 425.45 mm): Symbol U13 Pin 2 [GND, Unspecified, Line]
+    @(532.13 mm, 425.45 mm): Symbol #GND66 Hidden pin 1 [GND, Power input, Line]
+[multiple_net_names]: Both 3V3_TARGET_SENSE and WDT_DELAY are attached to the same items; 3V3_TARGET_SENSE will be used in the netlist
+    ; warning
+    @(532.13 mm, 427.99 mm): Global Label '3V3_TARGET_SENSE'
+    @(532.13 mm, 427.99 mm): Global Label 'WDT_DELAY'
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(532.13 mm, 427.99 mm): Symbol U13 Pin 3 [DELAY/M_RST, Unspecified, Line]
+    @(528.32 mm, 427.99 mm): Symbol R12 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(533.40 mm, 76.20 mm): Symbol X2 [X49SM12MSD2SI]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(535.94 mm, 464.82 mm): Symbol U15 [BTS50015-1TAD]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(535.94 mm, 490.22 mm): Symbol #PWR87 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(544.83 mm, 464.82 mm): Symbol U15 Pin 8 [VS, Unspecified, Line]
+    @(547.37 mm, 464.82 mm): Symbol #PWR54 Hidden pin 1 [VBAT, Power input, Line]
+[lib_symbol_issues]: Symbol 'VBAT' not found in symbol library 'power'
+    ; warning
+    @(547.37 mm, 464.82 mm): Symbol #PWR54 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(549.91 mm, 425.45 mm): Symbol U13 [TPL5010DDCR]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(557.53 mm, 77.47 mm): Symbol #GND19 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(557.53 mm, 82.55 mm): Symbol #PWR85 [+3V3]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(565.15 mm, 80.01 mm): Symbol X4 [40MHZ_3225_12PF_10PPM]
+[multiple_net_names]: Both ESP_CHIP_PU_EN and MCU_WDT_RST are attached to the same items; ESP_CHIP_PU_EN will be used in the netlist
+    ; warning
+    @(419.10 mm, 91.44 mm): Global Label 'ESP_CHIP_PU_EN'
+    @(567.69 mm, 422.91 mm): Global Label 'MCU_WDT_RST'
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(567.69 mm, 422.91 mm): Symbol U13 Pin 6 [RSTn, Unspecified, Line]
+    @(495.30 mm, 81.28 mm): Symbol R2 Pin 2 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(572.77 mm, 82.55 mm): Symbol #GND18 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(579.12 mm, 156.21 mm): Symbol #PWR42 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(579.12 mm, 304.80 mm): Pin 1 [???, ?]
+    @(582.93 mm, 304.80 mm): Symbol R4 Pin 2 [Passive, Line]
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(582.93 mm, 304.80 mm): Horizontal Wire, length 3.81 mm
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(594.36 mm, 186.69 mm): Symbol #PWR86 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(601.98 mm, 149.86 mm): Symbol #GND41 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(601.98 mm, 311.15 mm): Symbol #GND52 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(604.52 mm, 100.33 mm): Symbol #GND29 [GND]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(607.06 mm, 80.01 mm): Symbol U5 Pin A3 [~{CE}, Unspecified, Line]
+    @(605.79 mm, 186.69 mm): Symbol R18 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(607.06 mm, 100.33 mm): Symbol U5 Pin C1 [VSS, Unspecified, Line]
+    @(604.52 mm, 100.33 mm): Symbol #GND29 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(608.33 mm, 140.97 mm): Symbol #PWR43 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(615.95 mm, 146.05 mm): Symbol #GND40 [GND]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(618.49 mm, 133.35 mm): Symbol Card1 Pin 1 [DAT2, Unspecified, Line]
+    @(203.20 mm, 161.29 mm): Symbol U1 Pin 20 [GPIO20, Unspecified, Line]
+[multiple_net_names]: Both HS_SW2_EN and SD_DAT3 are attached to the same items; HS_SW2_EN will be used in the netlist
+    ; warning
+    @(203.20 mm, 163.83 mm): Global Label 'HS_SW2_EN'
+    @(618.49 mm, 135.89 mm): Global Label 'SD_DAT3'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(618.49 mm, 135.89 mm): Symbol Card1 Pin 2 [CD/DAT3, Unspecified, Line]
+    @(527.05 mm, 459.74 mm): Symbol U15 Pin 2 [IN, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(618.49 mm, 138.43 mm): Symbol Card1 Pin 3 [CMD, Unspecified, Line]
+    @(203.20 mm, 158.75 mm): Symbol U1 Pin 19 [GPIO19, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(618.49 mm, 140.97 mm): Symbol Card1 Pin 4 [VDD, Unspecified, Line]
+    @(618.49 mm, 146.05 mm): Symbol Card1 Pin 6 [VSS, Unspecified, Line]
+[multiple_net_names]: Both MCU_WDT_WAKE and SD_CLK are attached to the same items; MCU_WDT_WAKE will be used in the netlist
+    ; warning
+    @(567.69 mm, 425.45 mm): Global Label 'MCU_WDT_WAKE'
+    @(618.49 mm, 143.51 mm): Global Label 'SD_CLK'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(618.49 mm, 143.51 mm): Symbol Card1 Pin 5 [CLK, Unspecified, Line]
+    @(567.69 mm, 425.45 mm): Symbol U13 Pin 5 [WAKE, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(618.49 mm, 146.05 mm): Symbol Card1 Pin 6 [VSS, Unspecified, Line]
+    @(615.95 mm, 146.05 mm): Symbol #GND40 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(618.49 mm, 148.59 mm): Symbol Card1 Pin 7 [DAT0, Unspecified, Line]
+    @(203.20 mm, 151.13 mm): Symbol U1 Pin 16 [GPIO16, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(618.49 mm, 151.13 mm): Symbol Card1 Pin 8 [DAT1, Unspecified, Line]
+    @(567.69 mm, 427.99 mm): Symbol U13 Pin 4 [DONE, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(618.49 mm, 156.21 mm): Symbol Card1 Pin SW1 [SW1, Unspecified, Line]
+    @(590.55 mm, 156.21 mm): Symbol R3 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(618.49 mm, 158.75 mm): Symbol #PWR41 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(618.49 mm, 158.75 mm): Symbol Card1 Pin SW2 [SW2, Unspecified, Line]
+    @(618.49 mm, 158.75 mm): Symbol #PWR41 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(618.49 mm, 299.72 mm): Symbol U8 Pin 1 [BOOT, Unspecified, Line]
+    @(675.64 mm, 295.91 mm): Symbol C25 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(618.49 mm, 302.26 mm): Pin 1 [???, ?]
+    @(618.49 mm, 302.26 mm): Symbol U8 Pin 2 [VIN, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(618.49 mm, 302.26 mm): Symbol U8 Pin 2 [VIN, Unspecified, Line]
+    @(601.98 mm, 303.53 mm): Symbol C24 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(618.49 mm, 304.80 mm): Symbol U8 Pin 3 [EN, Unspecified, Line]
+    @(590.55 mm, 304.80 mm): Symbol R4 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(618.49 mm, 307.34 mm): Symbol U8 Pin 4 [RT/CLK, Unspecified, Line]
+    @(678.18 mm, 342.90 mm): Symbol R7 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(619.76 mm, 91.44 mm): Symbol U5 [APS51208N-OBR-BD]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(621.03 mm, 342.90 mm): Symbol #GND46 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(626.11 mm, 146.05 mm): Symbol Card1 [SD-01A]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(631.19 mm, 302.26 mm): Symbol U8 [TPS54540DDAR]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(632.46 mm, 77.47 mm): Symbol U5 Pin E5 [VSS, Unspecified, Line]
+    @(635.00 mm, 77.47 mm): Symbol #GND28 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(632.46 mm, 80.01 mm): Symbol U5 Pin E4 [VDD, Unspecified, Line]
+    @(632.46 mm, 77.47 mm): Symbol U5 Pin E5 [VSS, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(632.46 mm, 85.09 mm): Symbol U5 Pin E2 [ADQ6, Unspecified, Line]
+    @(148.59 mm, 138.43 mm): Symbol R1 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(632.46 mm, 100.33 mm): Symbol U5 Pin D1 [VDD, Unspecified, Line]
+    @(635.00 mm, 100.33 mm): Symbol #PWR32 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(635.00 mm, 77.47 mm): Symbol #GND28 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(635.00 mm, 100.33 mm): Symbol #PWR32 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(642.62 mm, 80.01 mm): Symbol #PWR31 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(643.89 mm, 297.18 mm): Symbol U8 Pin 9 [EP, Unspecified, Line]
+    @(645.16 mm, 297.18 mm): Symbol #GND51 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(643.89 mm, 299.72 mm): Symbol U8 Pin 8 [SW, Unspecified, Line]
+    @(683.26 mm, 295.91 mm): Symbol C25 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(643.89 mm, 302.26 mm): Symbol U8 Pin 7 [GND, Unspecified, Line]
+    @(646.43 mm, 302.26 mm): Symbol #GND50 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(643.89 mm, 304.80 mm): Symbol U8 Pin 6 [COMP, Unspecified, Line]
+    @(679.45 mm, 327.66 mm): Symbol C28 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(643.89 mm, 307.34 mm): Symbol U8 Pin 5 [FB, Unspecified, Line]
+    @(609.60 mm, 342.90 mm): Symbol R6 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(645.16 mm, 297.18 mm): Symbol #GND51 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(646.43 mm, 302.26 mm): Symbol #GND50 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(648.97 mm, 88.90 mm): Symbol #GND30 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(659.13 mm, 88.90 mm): Symbol #GND83 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(674.37 mm, 88.90 mm): Symbol #GND32 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(675.64 mm, 130.81 mm): Symbol #GND59 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(678.18 mm, 130.81 mm): Symbol U3 Pin 4 [GND, Unspecified, Line]
+    @(675.64 mm, 130.81 mm): Symbol #GND59 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(689.61 mm, 342.90 mm): Symbol #GND45 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(690.88 mm, 127.00 mm): Symbol U3 [W25Q128JVSIQTR]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(693.42 mm, 90.17 mm): Symbol #GND78 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(695.96 mm, 80.01 mm): Symbol #PWR34 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(698.50 mm, 87.63 mm): Symbol #GND77 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(701.04 mm, 80.01 mm): Symbol U4 Pin 2 [VCC, Unspecified, Line]
+    @(701.04 mm, 82.55 mm): Symbol #PWR33 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(701.04 mm, 82.55 mm): Symbol #PWR33 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(701.04 mm, 82.55 mm): Symbol U4 Pin 3 [~{RESET}, Unspecified, Line]
+    @(701.04 mm, 82.55 mm): Symbol #PWR33 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(701.04 mm, 87.63 mm): Symbol U4 Pin 5 [DNU, Unspecified, Line]
+    @(698.50 mm, 87.63 mm): Symbol #GND77 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(701.04 mm, 90.17 mm): Symbol U4 Pin 6 [DNU, Unspecified, Line]
+    @(698.50 mm, 87.63 mm): Symbol #GND77 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(703.58 mm, 123.19 mm): Symbol U3 Pin 8 [VCC, Unspecified, Line]
+    @(706.12 mm, 123.19 mm): Symbol #PWR52 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(706.12 mm, 123.19 mm): Symbol #PWR52 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(712.47 mm, 295.91 mm): Symbol #GND47 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(715.01 mm, 327.66 mm): Symbol #GND49 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(718.82 mm, 86.36 mm): Symbol U4 [MT25QL01GBBB8ESF-0SITTR]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(720.09 mm, 132.08 mm): Symbol #GND60 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(721.36 mm, 342.90 mm): Symbol #GND48 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(730.25 mm, 132.08 mm): Symbol #GND85 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(736.60 mm, 82.55 mm): Symbol U4 Pin 14 [DNU, Unspecified, Line]
+    @(739.14 mm, 85.09 mm): Symbol #GND80 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(736.60 mm, 85.09 mm): Symbol U4 Pin 13 [DNU, Unspecified, Line]
+    @(739.14 mm, 85.09 mm): Symbol #GND80 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(736.60 mm, 87.63 mm): Symbol #GND82 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(736.60 mm, 87.63 mm): Symbol U4 Pin 12 [DNU, Unspecified, Line]
+    @(736.60 mm, 87.63 mm): Symbol #GND82 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(736.60 mm, 90.17 mm): Symbol U4 Pin 11 [DNU, Unspecified, Line]
+    @(736.60 mm, 87.63 mm): Symbol #GND82 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(736.60 mm, 92.71 mm): Symbol U4 Pin 10 [VSS, Unspecified, Line]
+    @(739.14 mm, 92.71 mm): Symbol #GND31 Hidden pin 1 [GND, Power input, Line]
+[multiple_net_names]: Both 1v1 and QSPI1_IO2 are attached to the same items; 1v1 will be used in the netlist
+    ; warning
+    @(97.79 mm, 179.07 mm): Global Label '1v1'
+    @(736.60 mm, 95.25 mm): Global Label 'QSPI1_IO2'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(736.60 mm, 95.25 mm): Symbol U4 Pin 9 [~{W}/DQ2, Unspecified, Line]
+    @(464.82 mm, 152.40 mm): Symbol #PWR22 Hidden pin 1 [VDD, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(739.14 mm, 85.09 mm): Symbol #GND80 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(739.14 mm, 92.71 mm): Symbol #GND31 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(744.22 mm, 82.55 mm): Symbol #GND81 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(744.22 mm, 90.17 mm): Symbol #GND79 [GND]
+
+ ** ERC messages: 598  Errors 123  Warnings 475
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

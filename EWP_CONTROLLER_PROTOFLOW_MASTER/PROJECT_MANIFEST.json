@@ -1,0 +1,40 @@
+{
+  "project": "EWP_CONTROLLER_4L",
+  "board": "EWP_CTRL_REV_A",
+  "pcb_layers": 4,
+  "primary_mcu": "RP2350B bare IC",
+  "secondary_mcu": "ESP32-S3 bare SoC",
+  "smd_first": true,
+  "modules_forbidden": true,
+  "through_hole_default": false,
+  "esp32s3_external_flash_physical_min_mb": 128,
+  "esp32s3_external_psram_physical_min_mb": 64,
+  "erc_required": true,
+  "drc_required": true,
+  "fix_required_errors_before_completion": true,
+  "schematic_pages": 15,
+  "component_policy": "verified SMD substitution allowed when exact catalog/CAD part is unavailable; original and actual MPN must be recorded",
+  "mandatory_docs": [
+    "15_COMPONENT_SUBSTITUTION_POLICY.md",
+    "16_DIRECT_WIRE_SOLDER_CONNECTION_RULES.md",
+    "17_PROGRAMMING_CALIBRATION_RULES.md",
+    "18_CURRENT_BUILD_AUDIT_FIX.md"
+  ],
+  "version": "1.3",
+  "external_connectors_forbidden": true,
+  "direct_wire_solder_required": true,
+  "board_max_target_mm": [
+    59.9,
+    59.9
+  ],
+  "wire_landing_policy": "external battery/pump/fan/sensor/RPM/ignition/service wiring is direct-soldered to dedicated PCB landings; no connector/socket/terminal/header footprints",
+  "required_docs": [
+    "15_COMPONENT_SUBSTITUTION_POLICY.md",
+    "16_DIRECT_WIRE_SOLDER_CONNECTION_RULES.md",
+    "17_PROGRAMMING_CALIBRATION_RULES.md",
+    "18_CURRENT_BUILD_AUDIT_FIX.md"
+  ],
+  "programming_method": "temporary external fixture contacting exposed PCB test pads; no onboard detachable programming connector",
+  "calibration_method": "factory calibration via exposed test/calibration pads; versioned CRC-protected nonvolatile calibration records",
+  "usb_receptacle_forbidden": true
+}

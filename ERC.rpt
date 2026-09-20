@@ -1,0 +1,1664 @@
+ERC report (2026-09-20T14:14:39, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12100 mils): Symbol U6 Pin 4 [AIN0/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12200 mils): Symbol U6 Pin 5 [AIN1/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12300 mils): Symbol U6 Pin 6 [AIN2/IOUT/VBIAS/P1, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12400 mils): Symbol U6 Pin 7 [AIN3/IOUT/VBIAS/P2, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12500 mils): Symbol U6 Pin 8 [AIN4/IOUT/VBIAS/P3, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12600 mils): Symbol U6 Pin 9 [AIN5/IOUT/VBIAS/P4, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12700 mils): Symbol U6 Pin 10 [AIN6/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12800 mils): Symbol U6 Pin 11 [AIN7/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 12900 mils): Symbol U6 Pin 12 [REFIN+, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 13000 mils): Symbol U6 Pin 13 [REFIN-, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 13100 mils): Symbol U6 Pin 14 [AIN8/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 13200 mils): Symbol U6 Pin 15 [AIN9/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(5550 mils, 13300 mils): Symbol U6 Pin 16 [AIN10/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 4550 mils): Symbol U1 Pin 79 [GPIO2, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 4650 mils): Symbol U1 Pin 80 [GPIO3, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 4750 mils): Symbol U1 Pin 1 [GPIO4, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 4850 mils): Symbol U1 Pin 2 [GPIO5, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 4950 mils): Symbol U1 Pin 3 [GPIO6, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 5050 mils): Symbol U1 Pin 4 [GPIO7, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 5150 mils): Symbol U1 Pin 6 [GPIO8, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 5250 mils): Symbol U1 Pin 7 [GPIO9, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 5850 mils): Symbol U1 Pin 14 [GPIO15, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 6650 mils): Symbol U1 Pin 23 [GPIO23, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 6750 mils): Symbol U1 Pin 25 [GPIO24, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 6850 mils): Symbol U1 Pin 26 [GPIO25, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 6950 mils): Symbol U1 Pin 27 [GPIO26, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 7050 mils): Symbol U1 Pin 28 [GPIO27, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8150 mils): Symbol U1 Pin 47 [GPIO38, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8250 mils): Symbol U1 Pin 48 [GPIO39, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8350 mils): Symbol U1 Pin 49 [GPIO40_ADC0, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8450 mils): Symbol U1 Pin 52 [GPIO41_ADC1, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8550 mils): Symbol U1 Pin 53 [GPIO42_ADC2, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8650 mils): Symbol U1 Pin 54 [GPIO43_ADC3, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8750 mils): Symbol U1 Pin 55 [GPIO44_ADC4, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8850 mils): Symbol U1 Pin 56 [GPIO45_ADC5, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 8950 mils): Symbol U1 Pin 57 [GPIO46_ADC6, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8000 mils, 9050 mils): Symbol U1 Pin 58 [GPIO47_ADC7, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8050 mils, 16250 mils): Symbol C35 Pin 1 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8050 mils, 16550 mils): Symbol C35 Pin 2 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8150 mils, 11900 mils): Symbol U6 Pin 31 [CLK, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8150 mils, 12500 mils): Symbol U6 Pin 25 [PSW, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8150 mils, 12800 mils): Symbol U6 Pin 22 [REFOUT, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8150 mils, 12900 mils): Symbol U6 Pin 21 [AIN15/IOUT/VBIAS/REFIN2(–), Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8150 mils, 13000 mils): Symbol U6 Pin 20 [AIN14/IOUT/VBIAS/REFIN2(+), Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8150 mils, 13100 mils): Symbol U6 Pin 19 [AIN13/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8150 mils, 13200 mils): Symbol U6 Pin 18 [AIN12/IOUT/VBIAS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(8150 mils, 13300 mils): Symbol U6 Pin 17 [AIN11/IOUT/VBIAS, Unspecified, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(9050 mils, 3900 mils): Symbol #GND8 Hidden pin 1 [GND, Power input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(14550 mils, 3700 mils): Symbol D1 Pin 2 [A, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(15450 mils, 17850 mils): Symbol C39 Pin 1 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(15450 mils, 18150 mils): Symbol C39 Pin 2 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(15850 mils, 13200 mils): Symbol U11 Pin 4 [~{RST}, Bidirectional, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 3300 mils): Symbol U2 Pin 1 [LNA_IN, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 3800 mils): Symbol U2 Pin 6 [GPIO1, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 3900 mils): Symbol U2 Pin 7 [GPIO2, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4000 mils): Symbol U2 Pin 8 [GPIO3, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4100 mils): Symbol U2 Pin 9 [GPIO4, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4200 mils): Symbol U2 Pin 10 [GPIO5, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4300 mils): Symbol U2 Pin 11 [GPIO6, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4400 mils): Symbol U2 Pin 12 [GPIO7, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4500 mils): Symbol U2 Pin 13 [GPIO8, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4600 mils): Symbol U2 Pin 14 [GPIO9, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4700 mils): Symbol U2 Pin 15 [GPIO10, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4800 mils): Symbol U2 Pin 16 [GPIO11, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 4900 mils): Symbol U2 Pin 17 [GPIO12, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5000 mils): Symbol U2 Pin 18 [GPIO13, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5100 mils): Symbol U2 Pin 19 [GPIO14, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5300 mils): Symbol U2 Pin 21 [XTAL_32K_P, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5400 mils): Symbol U2 Pin 22 [XTAL_32K_N, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5500 mils): Symbol U2 Pin 23 [GPIO17, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5600 mils): Symbol U2 Pin 24 [GPIO18, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5700 mils): Symbol U2 Pin 25 [GPIO19, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5800 mils): Symbol U2 Pin 26 [GPIO20, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 5900 mils): Symbol U2 Pin 27 [GPIO21, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(16500 mils, 6000 mils): Symbol U2 Pin 28 [SPICS1, Unspecified, Line]
+[power_pin_not_driven]: Input Power pin not driven by any Output Power pins
+    ; error
+    @(16900 mils, 16500 mils): Symbol #PWR44 Hidden pin 1 [VBAT, Power input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(17050 mils, 12850 mils): Symbol U11 Pin 1 [32kHz, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 3700 mils): Symbol U2 Pin 52 [GPIO46, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 3800 mils): Symbol U2 Pin 51 [GPIO45, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 4100 mils): Symbol U2 Pin 48 [MTMS, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 4200 mils): Symbol U2 Pin 47 [MTDI, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 4400 mils): Symbol U2 Pin 45 [MTDO, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 4500 mils): Symbol U2 Pin 44 [MTCK, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 4600 mils): Symbol U2 Pin 43 [GPIO38, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 4700 mils): Symbol U2 Pin 42 [GPIO37, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 4800 mils): Symbol U2 Pin 41 [GPIO36, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 4900 mils): Symbol U2 Pin 40 [GPIO35, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5000 mils): Symbol U2 Pin 39 [GPIO34, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5100 mils): Symbol U2 Pin 38 [GPIO33, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5200 mils): Symbol U2 Pin 37 [SPICLK_P, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5300 mils): Symbol U2 Pin 36 [SPICLK_N, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5400 mils): Symbol U2 Pin 35 [SPID, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5500 mils): Symbol U2 Pin 34 [SPIQ, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5600 mils): Symbol U2 Pin 33 [SPICLK, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5700 mils): Symbol U2 Pin 32 [SPICS0, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5800 mils): Symbol U2 Pin 31 [SPIWP, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18200 mils, 5900 mils): Symbol U2 Pin 30 [SPIHD, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18300 mils, 17850 mils): Symbol C41 Pin 1 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(18300 mils, 18150 mils): Symbol C41 Pin 2 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(20800 mils, 3000 mils): Symbol X2 Pin 1 [OSC1, Input, Line]
+[pin_not_driven]: Input pin not driven by any Output pins
+    ; error
+    @(20800 mils, 3000 mils): Symbol X2 Pin 1 [OSC1, Input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(21200 mils, 3000 mils): Symbol X2 Pin 2 [OSC2, Input, Line]
+[pin_not_driven]: Input pin not driven by any Output pins
+    ; error
+    @(21200 mils, 3000 mils): Symbol X2 Pin 2 [OSC2, Input, Line]
+[pin_not_driven]: Input pin not driven by any Output pins
+    ; error
+    @(22550 mils, 3050 mils): Symbol X4 Pin 3 [3, Input, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(24950 mils, 4950 mils): Symbol Card1 Pin 11 [11, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(24950 mils, 6550 mils): Symbol Card1 Pin 12 [12, Unspecified, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(27450 mils, 12850 mils): Symbol R5 Pin 1 [Passive, Line]
+[pin_not_connected]: Pin not connected
+    ; error
+    @(27600 mils, 11650 mils): Symbol C26 Pin 1 [Passive, Line]
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(3450 mils, 16600 mils): Vertical Wire, length 100 mils
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(3550 mils, 11800 mils): Symbol #GND26 [GND]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(3550 mils, 17600 mils): Pin 1 [???, ?]
+    @(3700 mils, 17600 mils): Symbol R13 Pin 2 [Passive, Line]
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(3700 mils, 17600 mils): Horizontal Wire, length 150 mils
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(3650 mils, 3900 mils): Symbol #GND12 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(3650 mils, 14450 mils): Symbol #GND39 [GND]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(3850 mils, 7050 mils): Symbol L2 Pin 2 [2, Unspecified, Line]
+    @(6300 mils, 6950 mils): Symbol U1 Pin 65 [VREG_FB, Unspecified, Line]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(4000 mils, 11675 mils): Vertical Wire, length 125 mils
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(4050 mils, 7050 mils): Symbol L2 [LSQPB201214T2R2MD]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(4050 mils, 14850 mils): Symbol #GND37 [GND]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(4250 mils, 7050 mils): Symbol L2 Pin 1 [1, Unspecified, Line]
+    @(6300 mils, 7050 mils): Symbol U1 Pin 63 [VREG_LX, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(4450 mils, 14400 mils): Symbol #GND36 [GND]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(4450 mils, 17600 mils): Symbol Q1 Pin 4 [G, Unspecified, Line]
+    @(4000 mils, 17600 mils): Symbol R13 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(4500 mils, 12250 mils): Symbol #GND25 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(4550 mils, 16400 mils): Symbol #GND68 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(4600 mils, 14100 mils): Symbol #PWR40 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(4600 mils, 14500 mils): Symbol #PWR39 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(4700 mils, 14100 mils): Symbol U7 Pin 1 [VREF, Unspecified, Line]
+    @(4600 mils, 14100 mils): Symbol #PWR40 Hidden pin 1 [+3V3, Power input, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(4700 mils, 14300 mils): Global Label 'DAC_OUTA'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(4700 mils, 14400 mils): Symbol U7 Pin 4 [GND, Unspecified, Line]
+    @(4700 mils, 14500 mils): Symbol #PWR81 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(4700 mils, 14500 mils): Symbol #PWR81 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(4700 mils, 14500 mils): Symbol U7 Pin 5 [VDD, Unspecified, Line]
+    @(4700 mils, 14500 mils): Symbol #PWR81 Hidden pin 1 [+3V3, Power input, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(4700 mils, 14700 mils): Global Label 'DAC_OUTB'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(4700 mils, 14800 mils): Symbol U7 Pin 8 [SDO, Unspecified, Line]
+    @(4700 mils, 14500 mils): Symbol #PWR81 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(4700 mils, 17600 mils): Symbol Q1 [SQJ411EP-T1_GE3]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(4750 mils, 17400 mils): Global Label 'VIN'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(4750 mils, 17800 mils): Symbol Q1 Pin 1 [S, Unspecified, Line]
+    @(4850 mils, 17800 mils): Symbol Q1 Pin 2 [S, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(4850 mils, 17800 mils): Symbol Q1 Pin 2 [S, Unspecified, Line]
+    @(4950 mils, 17800 mils): Symbol Q1 Pin 3 [S, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(4950 mils, 17800 mils): Symbol Q1 Pin 3 [S, Unspecified, Line]
+    @(5000 mils, 16400 mils): Symbol C32 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(5050 mils, 5450 mils): Symbol #PWR28 [+3V3]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(5250 mils, 14450 mils): Symbol U7 [AD5689RBRUZ]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(5300 mils, 12000 mils): Symbol #GND21 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(5450 mils, 11900 mils): Symbol #PWR30 [+3V3]
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(5550 mils, 11675 mils): Horizontal Wire, length 1550 mils
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(5550 mils, 11800 mils): Vertical Wire, length 125 mils
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(5550 mils, 11800 mils): Symbol U6 Pin 1 [REGCAPD, Unspecified, Line]
+    @(4000 mils, 11800 mils): Symbol C13 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(5550 mils, 11900 mils): Symbol #PWR80 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(5550 mils, 11900 mils): Symbol U6 Pin 2 [IOVDD, Unspecified, Line]
+    @(5550 mils, 11900 mils): Symbol #PWR80 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(5550 mils, 12000 mils): Symbol U6 Pin 3 [DGND, Unspecified, Line]
+    @(5550 mils, 11900 mils): Symbol #PWR80 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(5600 mils, 16500 mils): Symbol #GND67 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(5800 mils, 14100 mils): Symbol #GND33 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(5800 mils, 14100 mils): Symbol U7 Pin 16 [RSTSEL, Unspecified, Line]
+    @(5800 mils, 14100 mils): Symbol #GND33 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(5800 mils, 14200 mils): Symbol #PWR35 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(5800 mils, 14200 mils): Symbol U7 Pin 15 [~{RESET}, Unspecified, Line]
+    @(5800 mils, 14200 mils): Symbol #PWR35 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(5800 mils, 14300 mils): Symbol #PWR58 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(5800 mils, 14300 mils): Symbol U7 Pin 14 [SDIN, Unspecified, Line]
+    @(5800 mils, 14300 mils): Symbol #PWR58 Hidden pin 1 [+3V3, Power input, Line]
+[multiple_net_names]: Both DAC_SCLK and DAC_SYNC are attached to the same items; DAC_SCLK will be used in the netlist
+    ; warning
+    @(5800 mils, 14400 mils): Global Label 'DAC_SCLK'
+    @(5800 mils, 14500 mils): Global Label 'DAC_SYNC'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(5800 mils, 14500 mils): Symbol U7 Pin 12 [SCLK, Unspecified, Line]
+    @(5800 mils, 14400 mils): Symbol U7 Pin 13 [~{SYNC}, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(5800 mils, 14600 mils): Symbol U7 Pin 11 [VLOGIC, Unspecified, Line]
+    @(5800 mils, 14700 mils): Symbol #PWR36 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(5800 mils, 14700 mils): Symbol #PWR36 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(5800 mils, 14700 mils): Symbol U7 Pin 10 [GAIN, Unspecified, Line]
+    @(5800 mils, 14700 mils): Symbol #PWR36 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(5800 mils, 14800 mils): Symbol #GND34 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(5800 mils, 14800 mils): Symbol U7 Pin 9 [~{LDAC}, Unspecified, Line]
+    @(5800 mils, 14800 mils): Symbol #GND34 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(5850 mils, 5650 mils): Symbol #PWR1 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6000 mils, 14600 mils): Symbol #PWR38 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(6100 mils, 16400 mils): Symbol U9 Pin 1 [IN, Unspecified, Line]
+    @(5000 mils, 16400 mils): Symbol C32 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(6100 mils, 16500 mils): Symbol U9 Pin 2 [GND, Unspecified, Line]
+    @(5600 mils, 16500 mils): Symbol #GND67 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(6100 mils, 16600 mils): Symbol U9 Pin 3 [EN, Unspecified, Line]
+    @(4050 mils, 16600 mils): Symbol R14 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(6300 mils, 5450 mils): Symbol U1 Pin 35 [RUN, Unspecified, Line]
+    @(5850 mils, 5450 mils): Symbol R1 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(6300 mils, 5750 mils): Symbol U1 Pin 33 [SWCLK, Unspecified, Line]
+    @(26700 mils, 5050 mils): Symbol U3 Pin 3 [IO2, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(6300 mils, 5850 mils): Symbol U1 Pin 34 [SWDIO, Unspecified, Line]
+    @(6300 mils, 5450 mils): Symbol U1 Pin 35 [RUN, Unspecified, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(6300 mils, 6150 mils): Global Label 'USB_D_N'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(6300 mils, 6250 mils): Symbol U1 Pin 67 [USB_DP, Unspecified, Line]
+    @(5850 mils, 5650 mils): Symbol #PWR1 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Input are connected
+    ; warning
+    @(6300 mils, 6550 mils): Symbol U1 Pin 30 [XIN, Unspecified, Line]
+    @(11550 mils, 3050 mils): Symbol X3 Pin 3 [OUT, Input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(6300 mils, 6650 mils): Symbol U1 Pin 31 [XOUT, Unspecified, Line]
+    @(5200 mils, 6650 mils): Symbol C9 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(6300 mils, 6950 mils): Symbol U1 Pin 65 [VREG_FB, Unspecified, Line]
+    @(3650 mils, 3600 mils): Symbol C7 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6300 mils, 7150 mils): Symbol #PWR27 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6300 mils, 7150 mils): Symbol #PWR7 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(6300 mils, 7150 mils): Symbol U1 Pin 64 [VREG_VIN, Unspecified, Line]
+    @(6300 mils, 7150 mils): Symbol #PWR7 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(6300 mils, 7450 mils): Symbol U1 Pin 71 [QSPI_SCLK, Unspecified, Line]
+    @(27700 mils, 4950 mils): Symbol U3 Pin 7 [IO3, Unspecified, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(6300 mils, 7550 mils): Global Label 'RP_SWDIO'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(6300 mils, 7650 mils): Global Label 'RP_SWCLK'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(6300 mils, 7750 mils): Symbol U1 Pin 73 [QSPI_SD2, Unspecified, Line]
+    @(26700 mils, 4950 mils): Symbol U3 Pin 2 [DO, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(6300 mils, 7850 mils): Symbol U1 Pin 70 [QSPI_SD3, Unspecified, Line]
+    @(27700 mils, 5050 mils): Symbol U3 Pin 6 [CLK, Unspecified, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(6300 mils, 7950 mils): Global Label 'RP_RUN'
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6450 mils, 3450 mils): Symbol #PWR12 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(6450 mils, 3450 mils): Symbol U1 Pin 59 [ADC_AVDD, Unspecified, Line]
+    @(6450 mils, 3450 mils): Symbol #PWR12 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(6450 mils, 14950 mils): Symbol #GND38 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(6450 mils, 16500 mils): Symbol U9 [TLV75533PDBVR]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6550 mils, 3250 mils): Symbol #PWR6 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(6550 mils, 3450 mils): Symbol U1 Pin 10 [DVDD, Unspecified, Line]
+    @(6450 mils, 3450 mils): Symbol #PWR12 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(6650 mils, 3450 mils): Symbol U1 Pin 32 [DVDD, Unspecified, Line]
+    @(6750 mils, 3450 mils): Symbol U1 Pin 51 [DVDD, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(6750 mils, 3450 mils): Symbol U1 Pin 51 [DVDD, Unspecified, Line]
+    @(3650 mils, 3600 mils): Symbol C7 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(6800 mils, 16400 mils): Symbol U9 Pin 5 [OUT, Unspecified, Line]
+    @(7450 mils, 16450 mils): Symbol C33 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6850 mils, 3050 mils): Symbol #PWR5 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6850 mils, 3450 mils): Symbol #PWR59 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(6850 mils, 3450 mils): Symbol U1 Pin 5 [IOVDD, Unspecified, Line]
+    @(6850 mils, 3450 mils): Symbol #PWR59 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(6850 mils, 12600 mils): Symbol U6 [AD7124-8BCPZ]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6900 mils, 16400 mils): Symbol #PWR57 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(6950 mils, 3450 mils): Symbol #PWR16 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(6950 mils, 3450 mils): Symbol U1 Pin 15 [IOVDD, Unspecified, Line]
+    @(6950 mils, 3450 mils): Symbol #PWR16 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7050 mils, 3450 mils): Symbol #PWR10 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7050 mils, 3450 mils): Symbol U1 Pin 24 [IOVDD, Unspecified, Line]
+    @(7050 mils, 3450 mils): Symbol #PWR10 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7100 mils, 9950 mils): Symbol U1 Pin 81 [GND, Unspecified, Line]
+    @(5550 mils, 11900 mils): Symbol #PWR80 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7150 mils, 3050 mils): Symbol #PWR4 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7150 mils, 3450 mils): Symbol #PWR62 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7150 mils, 3450 mils): Symbol U1 Pin 29 [IOVDD, Unspecified, Line]
+    @(7150 mils, 3450 mils): Symbol #PWR62 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(7150 mils, 6700 mils): Symbol U1 [RP2350B_C42415655]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(7200 mils, 9950 mils): Symbol U1 Pin 62 [VREG_PGND, Unspecified, Line]
+    @(7100 mils, 9950 mils): Symbol U1 Pin 81 [GND, Unspecified, Line]
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(7200 mils, 9950 mils): Vertical Wire, length 200 mils
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7250 mils, 3450 mils): Symbol #PWR63 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7250 mils, 3450 mils): Symbol #PWR15 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7250 mils, 3450 mils): Symbol U1 Pin 41 [IOVDD, Unspecified, Line]
+    @(7250 mils, 3450 mils): Symbol #PWR15 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7350 mils, 3450 mils): Symbol #PWR9 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7350 mils, 3450 mils): Symbol #PWR64 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7350 mils, 3450 mils): Symbol U1 Pin 50 [IOVDD, Unspecified, Line]
+    @(7350 mils, 3450 mils): Symbol #PWR9 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7450 mils, 3050 mils): Symbol #PWR3 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7450 mils, 3450 mils): Symbol #PWR65 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7450 mils, 3450 mils): Symbol U1 Pin 60 [IOVDD, Unspecified, Line]
+    @(7450 mils, 3450 mils): Symbol #PWR65 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(7450 mils, 16750 mils): Symbol #GND69 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7550 mils, 3450 mils): Symbol #PWR14 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7550 mils, 3450 mils): Symbol #PWR66 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7550 mils, 3450 mils): Symbol U1 Pin 76 [IOVDD, Unspecified, Line]
+    @(7550 mils, 3450 mils): Symbol #PWR14 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7650 mils, 3450 mils): Symbol #PWR67 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7650 mils, 3450 mils): Symbol U1 Pin 69 [QSPI_IOVDD, Unspecified, Line]
+    @(7650 mils, 3450 mils): Symbol #PWR67 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7750 mils, 3050 mils): Symbol #PWR2 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7750 mils, 3450 mils): Symbol #PWR68 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7750 mils, 3450 mils): Symbol U1 Pin 68 [USB_OTP_VDD, Unspecified, Line]
+    @(7750 mils, 3450 mils): Symbol #PWR68 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(7850 mils, 3450 mils): Symbol #PWR13 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(7850 mils, 3450 mils): Symbol U1 Pin 61 [VREG_AVDD, Unspecified, Line]
+    @(7850 mils, 3450 mils): Symbol #PWR13 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 4350 mils): Symbol U1 Pin 77 [GPIO0, Unspecified, Line]
+    @(18200 mils, 3900 mils): Symbol U2 Pin 50 [U0RXD, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 4450 mils): Symbol U1 Pin 78 [GPIO1, Unspecified, Line]
+    @(18200 mils, 4000 mils): Symbol U2 Pin 49 [U0TXD, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(8000 mils, 5350 mils): Symbol U1 Pin 8 [GPIO10, Unspecified, Line]
+    @(8650 mils, 3900 mils): Symbol C2 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 5450 mils): Symbol U1 Pin 9 [GPIO11, Unspecified, Line]
+    @(27600 mils, 3050 mils): Symbol U4 Pin 1 [DQ3/~{HOLD}, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 5550 mils): Symbol U1 Pin 11 [GPIO12, Unspecified, Line]
+    @(27600 mils, 3750 mils): Symbol U4 Pin 8 [DQ1, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 5650 mils): Symbol U1 Pin 12 [GPIO13, Unspecified, Line]
+    @(29000 mils, 3750 mils): Symbol U4 Pin 9 [~{W}/DQ2, Unspecified, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(8000 mils, 5750 mils): Global Label 'QSPI1_CS'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 6050 mils): Symbol U1 Pin 17 [GPIO17, Unspecified, Line]
+    @(22350 mils, 16850 mils): Symbol U13 Pin 4 [DONE, Unspecified, Line]
+[multiple_net_names]: Both MCU_WDT_WAKE and SD_CLK are attached to the same items; MCU_WDT_WAKE will be used in the netlist
+    ; warning
+    @(8000 mils, 6150 mils): Global Label 'MCU_WDT_WAKE'
+    @(8000 mils, 6150 mils): Global Label 'SD_CLK'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 6150 mils): Symbol U1 Pin 18 [GPIO18, Unspecified, Line]
+    @(22350 mils, 16750 mils): Symbol U13 Pin 5 [WAKE, Unspecified, Line]
+[multiple_net_names]: Both HS_SW2_EN and SD_DAT3 are attached to the same items; HS_SW2_EN will be used in the netlist
+    ; warning
+    @(8000 mils, 6450 mils): Global Label 'HS_SW2_EN'
+    @(8000 mils, 6450 mils): Global Label 'SD_DAT3'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 6450 mils): Symbol U1 Pin 21 [GPIO21, Unspecified, Line]
+    @(20750 mils, 18500 mils): Symbol U15 Pin 6 [OUT, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(8000 mils, 6550 mils): Symbol U1 Pin 22 [GPIO22, Unspecified, Line]
+    @(23250 mils, 6150 mils): Symbol R3 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 7150 mils): Symbol U1 Pin 36 [GPIO28, Unspecified, Line]
+    @(8000 mils, 7450 mils): Symbol U1 Pin 39 [GPIO31, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 7250 mils): Symbol U1 Pin 37 [GPIO29, Unspecified, Line]
+    @(24900 mils, 3650 mils): Symbol U5 Pin D4 [ADQ3, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 7350 mils): Symbol U1 Pin 38 [GPIO30, Unspecified, Line]
+    @(24900 mils, 3550 mils): Symbol U5 Pin D5 [ADQ4, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(8000 mils, 7450 mils): Symbol U1 Pin 39 [GPIO31, Unspecified, Line]
+    @(6300 mils, 7150 mils): Symbol #PWR7 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 7550 mils): Symbol U1 Pin 40 [GPIO32, Unspecified, Line]
+    @(24900 mils, 3850 mils): Symbol U5 Pin D2 [ADQ1, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 7650 mils): Symbol U1 Pin 42 [GPIO33, Unspecified, Line]
+    @(24900 mils, 3750 mils): Symbol U5 Pin D3 [ADQ0, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 7750 mils): Symbol U1 Pin 43 [GPIO34, Unspecified, Line]
+    @(23900 mils, 3550 mils): Symbol U5 Pin B2 [CLK, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(8000 mils, 7850 mils): Symbol U1 Pin 44 [GPIO35, Unspecified, Line]
+    @(23850 mils, 7350 mils): Symbol R18 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 7950 mils): Symbol U1 Pin 45 [GPIO36, Unspecified, Line]
+    @(23900 mils, 4150 mils): Symbol U5 Pin C3 [DQS/DM, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(8000 mils, 8050 mils): Symbol U1 Pin 46 [GPIO37, Unspecified, Line]
+    @(23900 mils, 3250 mils): Symbol U5 Pin A4 [~{RST}, Unspecified, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(8150 mils, 11800 mils): Global Label 'ADC_CS'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(8150 mils, 12000 mils): Global Label 'ADC_SCLK'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(8150 mils, 12100 mils): Global Label 'ADC_MOSI'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(8150 mils, 12200 mils): Global Label 'ADC_MISO'
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(8150 mils, 12300 mils): Symbol #PWR29 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(8150 mils, 12300 mils): Symbol U6 Pin 27 [~{SYNC}, Unspecified, Line]
+    @(8150 mils, 12300 mils): Symbol #PWR29 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(8150 mils, 12400 mils): Symbol #PWR78 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(8150 mils, 12400 mils): Symbol U6 Pin 26 [AVDD, Unspecified, Line]
+    @(8150 mils, 12400 mils): Symbol #PWR78 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(8150 mils, 12600 mils): Symbol U6 Pin 24 [REGCAPA, Unspecified, Line]
+    @(9250 mils, 12600 mils): Symbol C12 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(8150 mils, 12700 mils): Symbol U6 Pin 23 [AVSS, Unspecified, Line]
+    @(8250 mils, 12700 mils): Symbol #GND22 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(8150 mils, 13400 mils): Symbol U6 Pin 33 [EXP, Unspecified, Line]
+    @(8250 mils, 13400 mils): Symbol #GND23 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(8250 mils, 12700 mils): Symbol #GND22 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(8250 mils, 13400 mils): Symbol #GND23 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(8800 mils, 12050 mils): Symbol #GND71 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(8800 mils, 12750 mils): Symbol #GND24 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(9050 mils, 3900 mils): Symbol #GND8 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(9450 mils, 3900 mils): Symbol #GND9 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(9700 mils, 12600 mils): Symbol #GND27 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(9850 mils, 3900 mils): Symbol #GND10 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(9900 mils, 11400 mils): Symbol #PWR37 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(10250 mils, 3900 mils): Symbol #GND11 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(10350 mils, 12050 mils): Symbol #GND35 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(10850 mils, 3050 mils): Symbol #PWR18 [+3V3]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(11250 mils, 3150 mils): Symbol X3 [HSO531S12MHZ1_6_3_6V]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(11550 mils, 3250 mils): Symbol #GND13 [GND]
+[multiple_net_names]: Both +3.3V and GND are attached to the same items; +3.3V will be used in the netlist
+    ; warning
+    @(20950 mils, 16650 mils): Global Label '+3.3V'
+    @(12000 mils, 3050 mils): Global Label 'GND'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(12750 mils, 3000 mils): Symbol L1 Pin 1 [1, Unspecified, Line]
+    @(6300 mils, 7050 mils): Symbol U1 Pin 63 [VREG_LX, Unspecified, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(12950 mils, 3000 mils): Symbol L1 [SMNR4020-2_2UH]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(13150 mils, 3000 mils): Symbol L1 Pin 2 [2, Unspecified, Line]
+    @(6750 mils, 3450 mils): Symbol U1 Pin 51 [DVDD, Unspecified, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(14200 mils, 3000 mils): Symbol X1 [X49SM12MSD2SI]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(14750 mils, 3700 mils): Symbol D1 [MBR0520L-TP]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(14950 mils, 3700 mils): Symbol D1 Pin 1 [K, Unspecified, Line]
+    @(16500 mils, 3700 mils): Symbol U2 Pin 5 [GPIO0, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(15250 mils, 16500 mils): Symbol #GND61 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(15450 mils, 3750 mils): Symbol #GND17 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(15450 mils, 12050 mils): Symbol #GND86 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(15600 mils, 13950 mils): Symbol #GND58 [GND]
+[lib_symbol_issues]: Symbol 'VBAT' not found in symbol library 'power'
+    ; warning
+    @(15700 mils, 13400 mils): Symbol #PWR51 [VBAT]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(15750 mils, 13600 mils): Symbol #PWR50 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(15850 mils, 3050 mils): Symbol #GND20 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(15850 mils, 12050 mils): Symbol #GND56 [GND]
+[pin_to_pin]: Pins of type Unspecified and Bidirectional are connected
+    ; warning
+    @(15850 mils, 12800 mils): Symbol U11 Pin 8 [SCL, Unspecified, Line]
+    @(15850 mils, 13000 mils): Symbol U11 Pin 7 [SDA, Bidirectional, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(15900 mils, 16300 mils): Symbol #GND42 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(15900 mils, 16300 mils): Symbol U12 Pin 1 [A1, Unspecified, Line]
+    @(15900 mils, 16300 mils): Symbol #GND42 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(15900 mils, 16400 mils): Symbol #GND43 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(15900 mils, 16400 mils): Symbol U12 Pin 2 [A0, Unspecified, Line]
+    @(15900 mils, 16400 mils): Symbol #GND43 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(15900 mils, 16500 mils): Symbol U12 Pin 3 [Alert, Unspecified, Line]
+    @(18450 mils, 19300 mils): Symbol R16 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(15900 mils, 16600 mils): Symbol U12 Pin 4 [SDA, Unspecified, Line]
+    @(15900 mils, 16700 mils): Symbol U12 Pin 5 [SCL, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(15900 mils, 16700 mils): Symbol U12 Pin 5 [SCL, Unspecified, Line]
+    @(15700 mils, 16500 mils): Symbol R10 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(16100 mils, 11700 mils): Symbol #PWR49 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(16200 mils, 14650 mils): Symbol #PWR88 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(16250 mils, 19200 mils): Symbol #GND72 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(16250 mils, 19850 mils): Symbol #GND87 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(16400 mils, 3400 mils): Symbol #PWR20 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(16400 mils, 5200 mils): Symbol #PWR21 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(16400 mils, 11800 mils): Symbol #GND54 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(16400 mils, 16500 mils): Symbol U12 [INA226AIDGSR]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(16450 mils, 13250 mils): Symbol U11 [DS3231MZ_]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(16500 mils, 3400 mils): Symbol #PWR72 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16500 mils, 3400 mils): Symbol U2 Pin 2 [VDD3P3, Unspecified, Line]
+    @(16500 mils, 3400 mils): Symbol #PWR72 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(16500 mils, 3500 mils): Symbol #PWR26 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16500 mils, 3500 mils): Symbol U2 Pin 3 [VDD3P3, Unspecified, Line]
+    @(16500 mils, 3500 mils): Symbol #PWR26 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(16500 mils, 3600 mils): Symbol U2 Pin 4 [CHIP_PU, Unspecified, Line]
+    @(19500 mils, 3200 mils): Symbol R2 Pin 2 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(16500 mils, 5200 mils): Symbol #PWR74 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16500 mils, 5200 mils): Symbol U2 Pin 20 [VDD3P3_RTC, Unspecified, Line]
+    @(16500 mils, 5200 mils): Symbol #PWR74 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16500 mils, 11700 mils): Symbol U10 Pin 8 [VDD, Unspecified, Line]
+    @(16400 mils, 11800 mils): Symbol #GND54 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16500 mils, 11800 mils): Symbol U10 Pin 7 [GND, Unspecified, Line]
+    @(16400 mils, 11800 mils): Symbol #GND54 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(16500 mils, 11900 mils): Symbol #PWR79 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16500 mils, 11900 mils): Symbol U10 Pin 6 [VDDIO, Unspecified, Line]
+    @(16500 mils, 11900 mils): Symbol #PWR79 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16500 mils, 12000 mils): Symbol U10 Pin 5 [SDO, Unspecified, Line]
+    @(16500 mils, 11900 mils): Symbol #PWR79 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16900 mils, 16300 mils): Symbol U12 Pin 10 [VIN+, Unspecified, Line]
+    @(17000 mils, 16700 mils): Symbol #PWR45 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(16900 mils, 16400 mils): Symbol U12 Pin 9 [VIN-, Unspecified, Line]
+    @(16900 mils, 16300 mils): Symbol U12 Pin 10 [VIN+, Unspecified, Line]
+[lib_symbol_issues]: Symbol 'VBAT' not found in symbol library 'power'
+    ; warning
+    @(16900 mils, 16500 mils): Symbol #PWR44 [VBAT]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16900 mils, 16500 mils): Symbol U12 Pin 8 [VBUS, Unspecified, Line]
+    @(16900 mils, 16500 mils): Symbol #PWR44 Hidden pin 1 [VBAT, Power input, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(16900 mils, 16600 mils): Global Label 'SHUNT_N'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(16900 mils, 16700 mils): Symbol U12 Pin 6 [VS+, Unspecified, Line]
+    @(17000 mils, 16700 mils): Symbol #PWR45 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(17000 mils, 11850 mils): Symbol U10 [BME280]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(17000 mils, 16700 mils): Symbol #PWR45 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(17150 mils, 13600 mils): Symbol #GND57 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(17150 mils, 17050 mils): Symbol #GND44 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(17350 mils, 4700 mils): Symbol U2 [ESP32-S3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(17350 mils, 6200 mils): Symbol U2 Pin 57 [EP, Unspecified, Line]
+    @(17350 mils, 6350 mils): Symbol #GND16 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(17350 mils, 6350 mils): Symbol #GND16 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(17500 mils, 11700 mils): Symbol #GND55 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(17500 mils, 11700 mils): Symbol U10 Pin 1 [GND, Unspecified, Line]
+    @(17500 mils, 11700 mils): Symbol #GND55 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(17500 mils, 11800 mils): Symbol U10 Pin 2 [CSB, Unspecified, Line]
+    @(17500 mils, 11700 mils): Symbol #GND55 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(17500 mils, 11900 mils): Symbol U10 Pin 3 [SDI, Unspecified, Line]
+    @(17500 mils, 12000 mils): Symbol U10 Pin 4 [SCK, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(17500 mils, 12000 mils): Symbol U10 Pin 4 [SCK, Unspecified, Line]
+    @(17500 mils, 11700 mils): Symbol #GND55 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(17550 mils, 17050 mils): Symbol #GND74 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(17950 mils, 13100 mils): Symbol #PWR89 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(17950 mils, 17050 mils): Symbol #GND84 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(18000 mils, 19300 mils): Symbol #PWR84 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(18200 mils, 3300 mils): Symbol #PWR77 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(18200 mils, 3300 mils): Symbol U2 Pin 56 [VDDA, Unspecified, Line]
+    @(18200 mils, 3300 mils): Symbol #PWR77 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(18200 mils, 3400 mils): Symbol #PWR76 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(18200 mils, 3400 mils): Symbol U2 Pin 55 [VDDA, Unspecified, Line]
+    @(18200 mils, 3400 mils): Symbol #PWR76 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(18200 mils, 3500 mils): Symbol U2 Pin 54 [XTAL_P, Unspecified, Line]
+    @(18200 mils, 3400 mils): Symbol #PWR76 Hidden pin 1 [+3V3, Power input, Line]
+[multiple_net_names]: Both U2_XTAL_N and XTAL_N are attached to the same items; U2_XTAL_N will be used in the netlist
+    ; warning
+    @(22550 mils, 3050 mils): Global Label 'U2_XTAL_N'
+    @(18200 mils, 3600 mils): Global Label 'XTAL_N'
+[pin_to_pin]: Pins of type Unspecified and Input are connected
+    ; warning
+    @(18200 mils, 3600 mils): Symbol U2 Pin 53 [XTAL_N, Unspecified, Line]
+    @(22550 mils, 3050 mils): Symbol X4 Pin 3 [3, Input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(18200 mils, 4300 mils): Symbol #PWR75 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(18200 mils, 4300 mils): Symbol U2 Pin 46 [VDD3P3_CPU, Unspecified, Line]
+    @(18200 mils, 4300 mils): Symbol #PWR75 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(18200 mils, 6000 mils): Symbol U2 Pin 29 [VDD_SPI, Unspecified, Line]
+    @(18300 mils, 6000 mils): Symbol #PWR22 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(18300 mils, 3400 mils): Symbol #PWR24 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(18300 mils, 6000 mils): Symbol #PWR22 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(18400 mils, 11800 mils): Symbol #PWR48 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(18650 mils, 16300 mils): Symbol #GND63 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(18750 mils, 16300 mils): Symbol U14 Pin 1 [GND, Unspecified, Line]
+    @(18650 mils, 16300 mils): Symbol #GND63 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(18750 mils, 16400 mils): Symbol U14 Pin 2 [IN, Unspecified, Line]
+    @(18750 mils, 16500 mils): Symbol U14 Pin 3 [IS, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(18750 mils, 16500 mils): Symbol U14 Pin 3 [IS, Unspecified, Line]
+    @(18650 mils, 16300 mils): Symbol #GND63 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(18750 mils, 16700 mils): Symbol U14 Pin 5 [OUT, Unspecified, Line]
+    @(15800 mils, 19200 mils): Symbol R15 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(18750 mils, 16800 mils): Symbol U14 Pin 6 [OUT, Unspecified, Line]
+    @(15800 mils, 19850 mils): Symbol R22 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(18750 mils, 16900 mils): Symbol U14 Pin 7 [OUT, Unspecified, Line]
+    @(18650 mils, 16300 mils): Symbol #GND63 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(19100 mils, 16600 mils): Symbol U14 [BTS50015-1TAD]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(19100 mils, 19850 mils): Symbol #GND88 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(19200 mils, 3200 mils): Symbol #PWR19 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(19450 mils, 16600 mils): Symbol U14 Pin 8 [VS, Unspecified, Line]
+    @(19550 mils, 16600 mils): Symbol #PWR53 Hidden pin 1 [VBAT, Power input, Line]
+[lib_symbol_issues]: Symbol 'VBAT' not found in symbol library 'power'
+    ; warning
+    @(19550 mils, 16600 mils): Symbol #PWR53 [VBAT]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(19650 mils, 3200 mils): Symbol SW1 Pin 1 [1, Unspecified, Line]
+    @(19500 mils, 3200 mils): Symbol R2 Pin 2 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(19650 mils, 3400 mils): Symbol #GND14 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(19650 mils, 3400 mils): Symbol SW1 Pin 3 [3, Unspecified, Line]
+    @(19650 mils, 3400 mils): Symbol #GND14 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(19650 mils, 18200 mils): Symbol #GND62 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(19700 mils, 16950 mils): Symbol #GND73 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(19850 mils, 3250 mils): Symbol SW1 [HX3X4X2_5-PA-4NPUSHBUTTONSWITCH]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(20050 mils, 3200 mils): Symbol SW1 Pin 2 [2, Unspecified, Line]
+    @(19500 mils, 3200 mils): Symbol R2 Pin 2 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(20050 mils, 3400 mils): Symbol #GND15 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(20050 mils, 3400 mils): Symbol SW1 Pin 4 [4, Unspecified, Line]
+    @(20050 mils, 3400 mils): Symbol #GND15 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(20300 mils, 16300 mils): Symbol #GND89 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(20300 mils, 17000 mils): Symbol #GND76 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(20500 mils, 16850 mils): Symbol #GND65 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(20500 mils, 17250 mils): Symbol #GND75 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(20650 mils, 18000 mils): Symbol #GND64 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(20750 mils, 18000 mils): Symbol U15 Pin 1 [GND, Unspecified, Line]
+    @(20650 mils, 18000 mils): Symbol #GND64 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(20750 mils, 18100 mils): Symbol U15 Pin 2 [IN, Unspecified, Line]
+    @(20750 mils, 18200 mils): Symbol U15 Pin 3 [IS, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(20750 mils, 18200 mils): Symbol U15 Pin 3 [IS, Unspecified, Line]
+    @(20650 mils, 18000 mils): Symbol #GND64 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(20750 mils, 18400 mils): Symbol U15 Pin 5 [OUT, Unspecified, Line]
+    @(18650 mils, 19850 mils): Symbol R23 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(20750 mils, 18600 mils): Symbol U15 Pin 7 [OUT, Unspecified, Line]
+    @(20650 mils, 18000 mils): Symbol #GND64 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(20850 mils, 16650 mils): Symbol #PWR55 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(20950 mils, 16650 mils): Symbol U13 Pin 1 [VDD, Unspecified, Line]
+    @(20950 mils, 16750 mils): Symbol #GND66 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(20950 mils, 16750 mils): Symbol #GND66 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(20950 mils, 16750 mils): Symbol U13 Pin 2 [GND, Unspecified, Line]
+    @(20950 mils, 16750 mils): Symbol #GND66 Hidden pin 1 [GND, Power input, Line]
+[multiple_net_names]: Both 3V3_TARGET_SENSE and WDT_DELAY are attached to the same items; 3V3_TARGET_SENSE will be used in the netlist
+    ; warning
+    @(20950 mils, 16850 mils): Global Label '3V3_TARGET_SENSE'
+    @(20950 mils, 16850 mils): Global Label 'WDT_DELAY'
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(20950 mils, 16850 mils): Symbol U13 Pin 3 [DELAY/M_RST, Unspecified, Line]
+    @(20800 mils, 16850 mils): Symbol R12 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(21000 mils, 3000 mils): Symbol X2 [X49SM12MSD2SI]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(21100 mils, 18300 mils): Symbol U15 [BTS50015-1TAD]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(21100 mils, 19300 mils): Symbol #PWR87 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(21450 mils, 18300 mils): Symbol U15 Pin 8 [VS, Unspecified, Line]
+    @(21550 mils, 18300 mils): Symbol #PWR54 Hidden pin 1 [VBAT, Power input, Line]
+[lib_symbol_issues]: Symbol 'VBAT' not found in symbol library 'power'
+    ; warning
+    @(21550 mils, 18300 mils): Symbol #PWR54 [VBAT]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(21650 mils, 16750 mils): Symbol U13 [TPL5010DDCR]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(21950 mils, 3050 mils): Symbol #GND19 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(21950 mils, 3250 mils): Symbol #PWR85 [+3V3]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(22250 mils, 3150 mils): Symbol X4 [40MHZ_3225_12PF_10PPM]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(22350 mils, 16650 mils): Symbol U13 Pin 6 [RSTn, Unspecified, Line]
+    @(19500 mils, 3200 mils): Symbol R2 Pin 2 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(22550 mils, 3250 mils): Symbol #GND18 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(22800 mils, 6150 mils): Symbol #PWR42 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(22800 mils, 12000 mils): Pin 1 [???, ?]
+    @(22950 mils, 12000 mils): Symbol R4 Pin 2 [Passive, Line]
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(22950 mils, 12000 mils): Horizontal Wire, length 150 mils
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(23400 mils, 7350 mils): Symbol #PWR86 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(23700 mils, 5900 mils): Symbol #GND41 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(23700 mils, 12250 mils): Symbol #GND52 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(23800 mils, 3950 mils): Symbol #GND29 [GND]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(23900 mils, 3150 mils): Symbol U5 Pin A3 [~{CE}, Unspecified, Line]
+    @(23850 mils, 7350 mils): Symbol R18 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(23900 mils, 3950 mils): Symbol U5 Pin C1 [VSS, Unspecified, Line]
+    @(23800 mils, 3950 mils): Symbol #GND29 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(23950 mils, 5550 mils): Symbol #PWR43 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(24250 mils, 5750 mils): Symbol #GND40 [GND]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24350 mils, 5250 mils): Symbol Card1 Pin 1 [DAT2, Unspecified, Line]
+    @(8000 mils, 6350 mils): Symbol U1 Pin 20 [GPIO20, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24350 mils, 5350 mils): Symbol Card1 Pin 2 [CD/DAT3, Unspecified, Line]
+    @(20750 mils, 18500 mils): Symbol U15 Pin 6 [OUT, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24350 mils, 5450 mils): Symbol Card1 Pin 3 [CMD, Unspecified, Line]
+    @(8000 mils, 6250 mils): Symbol U1 Pin 19 [GPIO19, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24350 mils, 5550 mils): Symbol Card1 Pin 4 [VDD, Unspecified, Line]
+    @(24350 mils, 5750 mils): Symbol Card1 Pin 6 [VSS, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24350 mils, 5650 mils): Symbol Card1 Pin 5 [CLK, Unspecified, Line]
+    @(22350 mils, 16750 mils): Symbol U13 Pin 5 [WAKE, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(24350 mils, 5750 mils): Symbol Card1 Pin 6 [VSS, Unspecified, Line]
+    @(24250 mils, 5750 mils): Symbol #GND40 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24350 mils, 5850 mils): Symbol Card1 Pin 7 [DAT0, Unspecified, Line]
+    @(8000 mils, 5950 mils): Symbol U1 Pin 16 [GPIO16, Unspecified, Line]
+[multiple_net_names]: Both MCU_WDT_DONE and SD_DAT1 are attached to the same items; MCU_WDT_DONE will be used in the netlist
+    ; warning
+    @(8000 mils, 6050 mils): Global Label 'MCU_WDT_DONE'
+    @(24350 mils, 5950 mils): Global Label 'SD_DAT1'
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24350 mils, 5950 mils): Symbol Card1 Pin 8 [DAT1, Unspecified, Line]
+    @(22350 mils, 16850 mils): Symbol U13 Pin 4 [DONE, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(24350 mils, 6150 mils): Symbol Card1 Pin SW1 [SW1, Unspecified, Line]
+    @(23250 mils, 6150 mils): Symbol R3 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(24350 mils, 6250 mils): Symbol #PWR41 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(24350 mils, 6250 mils): Symbol Card1 Pin SW2 [SW2, Unspecified, Line]
+    @(24350 mils, 6250 mils): Symbol #PWR41 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(24350 mils, 11800 mils): Symbol U8 Pin 1 [BOOT, Unspecified, Line]
+    @(26600 mils, 11650 mils): Symbol C25 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24350 mils, 11900 mils): Pin 1 [???, ?]
+    @(24350 mils, 11900 mils): Symbol U8 Pin 2 [VIN, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(24350 mils, 11900 mils): Symbol U8 Pin 2 [VIN, Unspecified, Line]
+    @(23700 mils, 11950 mils): Symbol C24 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(24350 mils, 12000 mils): Symbol U8 Pin 3 [EN, Unspecified, Line]
+    @(23250 mils, 12000 mils): Symbol R4 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(24350 mils, 12100 mils): Symbol U8 Pin 4 [RT/CLK, Unspecified, Line]
+    @(26700 mils, 13500 mils): Symbol R7 Pin 1 [Passive, Line]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(24400 mils, 3600 mils): Symbol U5 [APS51208N-OBR-BD]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(24450 mils, 13500 mils): Symbol #GND46 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(24650 mils, 5750 mils): Symbol Card1 [SD-01A]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(24850 mils, 11900 mils): Symbol U8 [TPS54540DDAR]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(24900 mils, 3050 mils): Symbol U5 Pin E5 [VSS, Unspecified, Line]
+    @(25000 mils, 3050 mils): Symbol #GND28 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24900 mils, 3150 mils): Symbol U5 Pin E4 [VDD, Unspecified, Line]
+    @(24900 mils, 3050 mils): Symbol U5 Pin E5 [VSS, Unspecified, Line]
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(24900 mils, 3350 mils): Global Label 'PSRAM_DQ6'
+[isolated_pin_label]: Label connected to only one pin
+    ; warning
+    @(24900 mils, 3450 mils): Global Label 'PSRAM_DQ7'
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(24900 mils, 3950 mils): Symbol U5 Pin D1 [VDD, Unspecified, Line]
+    @(25000 mils, 3950 mils): Symbol #PWR32 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24900 mils, 4050 mils): Symbol U5 Pin C5 [NC, Unspecified, Line]
+    @(24900 mils, 3250 mils): Symbol U5 Pin E3 [ADQ5, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(24900 mils, 4150 mils): Symbol U5 Pin C4 [ADQ2, Unspecified, Line]
+    @(24900 mils, 3950 mils): Symbol U5 Pin D1 [VDD, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(25000 mils, 3050 mils): Symbol #GND28 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(25000 mils, 3950 mils): Symbol #PWR32 [+3V3]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(25300 mils, 3150 mils): Symbol #PWR31 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(25350 mils, 11700 mils): Symbol U8 Pin 9 [EP, Unspecified, Line]
+    @(25400 mils, 11700 mils): Symbol #GND51 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(25350 mils, 11800 mils): Symbol U8 Pin 8 [SW, Unspecified, Line]
+    @(26900 mils, 11650 mils): Symbol C25 Pin 2 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(25350 mils, 11900 mils): Symbol U8 Pin 7 [GND, Unspecified, Line]
+    @(25450 mils, 11900 mils): Symbol #GND50 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(25350 mils, 12000 mils): Symbol U8 Pin 6 [COMP, Unspecified, Line]
+    @(26750 mils, 12900 mils): Symbol C28 Pin 1 [Passive, Line]
+[pin_to_pin]: Pins of type Unspecified and Passive are connected
+    ; warning
+    @(25350 mils, 12100 mils): Symbol U8 Pin 5 [FB, Unspecified, Line]
+    @(24000 mils, 13500 mils): Symbol R6 Pin 1 [Passive, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(25400 mils, 11700 mils): Symbol #GND51 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(25450 mils, 11900 mils): Symbol #GND50 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(25550 mils, 3500 mils): Symbol #GND30 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(25950 mils, 3500 mils): Symbol #GND83 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(26550 mils, 3500 mils): Symbol #GND32 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(26600 mils, 5150 mils): Symbol #GND59 [GND]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(26700 mils, 4850 mils): Symbol U3 Pin 1 [~{CS}, Unspecified, Line]
+    @(26700 mils, 5150 mils): Symbol U3 Pin 4 [GND, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(26700 mils, 5150 mils): Symbol U3 Pin 4 [GND, Unspecified, Line]
+    @(26600 mils, 5150 mils): Symbol #GND59 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(27150 mils, 13500 mils): Symbol #GND45 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(27200 mils, 5000 mils): Symbol U3 [W25Q128JVSIQTR]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(27300 mils, 3550 mils): Symbol #GND78 [GND]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(27400 mils, 3150 mils): Symbol #PWR34 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(27500 mils, 3450 mils): Symbol #GND77 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(27600 mils, 3150 mils): Symbol U4 Pin 2 [VCC, Unspecified, Line]
+    @(27600 mils, 3250 mils): Symbol #PWR33 Hidden pin 1 [+3V3, Power input, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(27600 mils, 3250 mils): Symbol #PWR33 [+3V3]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(27600 mils, 3250 mils): Symbol U4 Pin 3 [~{RESET}, Unspecified, Line]
+    @(27600 mils, 3250 mils): Symbol #PWR33 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(27600 mils, 3450 mils): Symbol U4 Pin 5 [DNU, Unspecified, Line]
+    @(27500 mils, 3450 mils): Symbol #GND77 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(27600 mils, 3550 mils): Symbol U4 Pin 6 [DNU, Unspecified, Line]
+    @(27600 mils, 3650 mils): Symbol U4 Pin 7 [~{S}, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(27600 mils, 3650 mils): Symbol U4 Pin 7 [~{S}, Unspecified, Line]
+    @(27500 mils, 3450 mils): Symbol #GND77 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(27700 mils, 4850 mils): Symbol U3 Pin 8 [VCC, Unspecified, Line]
+    @(27800 mils, 4850 mils): Symbol #PWR52 Hidden pin 1 [+3V3, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(27700 mils, 5150 mils): Symbol U3 Pin 5 [DI, Unspecified, Line]
+    @(27700 mils, 4850 mils): Symbol U3 Pin 8 [VCC, Unspecified, Line]
+[lib_symbol_mismatch]: Symbol '+3V3' doesn't match copy in library 'power'
+    ; warning
+    @(27800 mils, 4850 mils): Symbol #PWR52 [+3V3]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(28050 mils, 11650 mils): Symbol #GND47 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(28150 mils, 12900 mils): Symbol #GND49 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Protoflow'
+    ; warning
+    @(28300 mils, 3400 mils): Symbol U4 [MT25QL01GBBB8ESF-0SITTR]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(28350 mils, 5200 mils): Symbol #GND60 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(28400 mils, 13500 mils): Symbol #GND48 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(28750 mils, 5200 mils): Symbol #GND85 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(29000 mils, 3050 mils): Symbol U4 Pin 16 [C, Unspecified, Line]
+    @(29100 mils, 3350 mils): Symbol #GND80 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(29000 mils, 3150 mils): Symbol U4 Pin 15 [DQ0, Unspecified, Line]
+    @(29000 mils, 3050 mils): Symbol U4 Pin 16 [C, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Unspecified are connected
+    ; warning
+    @(29000 mils, 3250 mils): Symbol U4 Pin 14 [DNU, Unspecified, Line]
+    @(29000 mils, 3150 mils): Symbol U4 Pin 15 [DQ0, Unspecified, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(29000 mils, 3350 mils): Symbol U4 Pin 13 [DNU, Unspecified, Line]
+    @(29100 mils, 3350 mils): Symbol #GND80 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(29000 mils, 3450 mils): Symbol #GND82 [GND]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(29000 mils, 3450 mils): Symbol U4 Pin 12 [DNU, Unspecified, Line]
+    @(29000 mils, 3450 mils): Symbol #GND82 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(29000 mils, 3550 mils): Symbol U4 Pin 11 [DNU, Unspecified, Line]
+    @(29000 mils, 3450 mils): Symbol #GND82 Hidden pin 1 [GND, Power input, Line]
+[pin_to_pin]: Pins of type Unspecified and Power input are connected
+    ; warning
+    @(29000 mils, 3650 mils): Symbol U4 Pin 10 [VSS, Unspecified, Line]
+    @(29100 mils, 3650 mils): Symbol #GND31 Hidden pin 1 [GND, Power input, Line]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(29100 mils, 3350 mils): Symbol #GND80 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(29100 mils, 3650 mils): Symbol #GND31 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(29300 mils, 3250 mils): Symbol #GND81 [GND]
+[lib_symbol_mismatch]: Symbol 'GND' doesn't match copy in library 'power'
+    ; warning
+    @(29300 mils, 3550 mils): Symbol #GND79 [GND]
+
+ ** ERC messages: 490  Errors 108  Warnings 382
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters
