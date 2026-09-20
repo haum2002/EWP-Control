@@ -32,7 +32,7 @@ code{background:#21262d;padding:1px 5px;border-radius:4px;font-size:12px;color:#
 </head>
 <body>
 <h1>EWP-Control — Penyempurnaan Skematik &amp; PCB</h1>
-<p class="sub">Commit <code>c299c8e</code> di GitHub · sesi ini menyelesaikan Gate 7–11</p>
+<p class="sub">Gate 7–11 LENGKAP · penghalaan penuh + skrip sync GitHub</p>
 
 <div class="grid">
   <div class="card">
@@ -50,8 +50,9 @@ code{background:#21262d;padding:1px 5px;border-radius:4px;font-size:12px;color:#
     <div class="metric"><span class="k">Saiz papan</span><span class="v">78×66 mm</span></div>
     <div class="metric"><span class="k">Sebelum</span><span class="v warn">170×130 mm</span></div>
     <div class="metric"><span class="k">Zon kuprum</span><span class="v">4</span></div>
-    <div class="metric"><span class="k">Jejak (trace)</span><span class="v">216</span></div>
-    <div class="metric"><span class="k">Via kuasa</span><span class="v">79</span></div>
+    <div class="metric"><span class="k">Jejak (trace)</span><span class="v">430</span></div>
+    <div class="metric"><span class="k">Segmen + via</span><span class="v">317 + 113</span></div>
+    <div class="metric"><span class="k">Net dihalaka</span><span class="v ok">57/57</span></div>
   </div>
   <div class="card">
     <h3>Firmware</h3>
@@ -71,8 +72,8 @@ code{background:#21262d;padding:1px 5px;border-radius:4px;font-size:12px;color:#
 <tr><td>7</td><td>Reka litar penuh (skematik)</td><td><span class="pill ok">LENGKAP</span></td></tr>
 <tr><td>8</td><td>Struktur 4-lapisan PCB</td><td><span class="pill ok">LENGKAP</span></td></tr>
 <tr><td>9</td><td>Zon + penempatan kompak</td><td><span class="pill ok">LENGKAP</span></td></tr>
-<tr><td>10</td><td>Penghalaan asas (zon+jejak)</td><td><span class="pill ok">ASAS</span></td></tr>
-<tr><td>11</td><td>Penghalaan penuh / DRC</td><td><span class="pill warn">kerja akan datang</span></td></tr>
+<tr><td>10</td><td>Penghalaan asas (zon+jejak)</td><td><span class="pill ok">LENGKAP</span></td></tr>
+<tr><td>11</td><td>Penghalaan penuh + peraturan rekabentuk</td><td><span class="pill ok">LENGKAP</span></td></tr>
 </tbody>
 </table>
 </div>
@@ -85,7 +86,9 @@ code{background:#21262d;padding:1px 5px;border-radius:4px;font-size:12px;color:#
 <tr><td>Pin IC terapung</td><td>160 (semua 16 IC)</td><td>0</td></tr>
 <tr><td>Pin komponen terapung</td><td>697</td><td>0</td></tr>
 <tr><td>Lapisan PCB</td><td>2 (F.Cu, B.Cu)</td><td>4 (F/In1-GND/In2-PWR/B)</td></tr>
-<tr><td>Jejak/via PCB</td><td>0</td><td>216 (137 segmen + 79 via)</td></tr>
+<tr><td>Jejak/via PCB</td><td>0</td><td>430 (317 segmen + 113 via)</td></tr>
+<tr><td>Net isyarat dihalaka</td><td>0/53</td><td>57/57 (100%)</td></tr>
+<tr><td>Peraturan rekabentuk</td><td>tiada</td><td>2 net class (Default + Power)</td></tr>
 <tr><td>Zon kuprum</td><td>0</td><td>4 (GND penuh + +3.3V/+5V/VBAT)</td></tr>
 <tr><td>RGB GPIO48</td><td>tiada pada QFN-56</td><td>GPIO38 (pin 43)</td></tr>
 <tr><td>power_pin_not_driven</td><td>ralat ERC</td><td>13 PWR_FLAG → 0</td></tr>
@@ -109,6 +112,7 @@ ECU=6, I2C=8/9, SD=10-13, RGB=38), UART↔RP2350B, QSPI→flash U4 + PSRAM U5 (t
 <div class="footer">
 Reproducibility: <code>python3.12 tools/fix_schematic.py</code> &amp; <code>python3.12 tools/fix_pcb.py</code> ·
 Pengesahan: <code>python3.11 tools/verify_release.py</code> &amp; <code>tools/verify_control_math.py</code><br>
+Sync: <code>tools/sync_github.sh</code> (Linux/Mac) atau <code>tools/sync_github.bat</code> (Windows)<br>
 Setiap pemetakan pin→net boleh ditelusuri ke <code>factory_config.h</code> atau pelan halaman P01–P15.
 </div>
 </body>

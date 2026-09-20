@@ -219,13 +219,10 @@ def route_power_vias(b, all_net, netnum):
     return vias, segs
 
 def route_signals(b, all_net, netnum):
-    """Route critical signal buses as F.Cu segments pad-to-pad."""
-    buses={
-        'SPI':[('ADC_SCLK'),('ADC_MOSI'),('ADC_MISO'),('ADC_CS')],
-        'I2C':['I2C_SDA','I2C_SCL'],
-        'UART':['MCU_UART_TX','MCU_UART_RX'],
-    }
-    # collect pad positions per net
+    """Route ALL signal nets (non-power, multi-pad) using L-shaped Manhattan routing.
+    Alternates F.Cu/B.Cu per net to reduce crossover congestion."""
+    power_nets={P3V3,P3V3A,P5V,VBAT,GND,DVDD,VBUS}
+    # Collect pad positions per signal net
     netpads={}
     for f in b.footprints:
         r=ref_of(f)
@@ -233,28 +230,121 @@ def route_signals(b, all_net, netnum):
             key=(r,str(pad.number))
             if key in all_net:
                 net=all_net[key]
-                if net in ('ADC_SCLK','ADC_MOSI','ADC_MISO','ADC_CS','I2C_SDA','I2C_SCL',
-                           'MCU_UART_TX','MCU_UART_RX','QSPI_SCLK','QSPI_SD0','QSPI_SD1',
-                           'QSPI_SD2','QSPI_SD3','QSPI_SS','ESP_QSPI_CLK','ESP_QSPI_CS',
-                           'ESP_QSPI_D0','ESP_QSPI_D1'):
+                if net not in power_nets:
+                    netpads.setdefault(net,[]).append((r,pad_abspos(f,pad)))
+    routed=0; vias_added=0
+    layer_idx=0
+    for net in sorted(netpads):
+        pads=netpads[net]
+        if len(pads)<2: continue
+        # Nearest-neighbor chain sort (greedy TSP)
+        chain=[pads[0]]; remaining=list(pads[1:])
+        while remaining:
+            last=chain[-1]
+            nearest=min(remaining, key=lambda p:(p[1][0]-last[1][0])**2+(p[1][1]-last[1][1])**2)
+            chain.append(nearest); remaining.remove(nearest)
+        # Alternate layers: even nets on F.Cu, odd on B.Cu
+        layer='B.Cu' if (layer_idx%3==2) else 'F.Cu'
+        layer_idx+=1
+        nn=netnum.get(net,0)
+        need_via = (layer!='F.Cu')
+        for i in range(len(chain)-1):
+            x1,y1=chain[i][1]; x2,y2=chain[i+1][1]
+            # L-route: decide bend point to minimise overlap (horizontal-then-vertical)
+            # Use mid-Y = y1 for first segment, then vertical to y2
+            mid_y=y1
+            # If horizontal distance < 0.3mm, route straight vertical
+            if abs(x2-x1)<0.3:
+                b.traceItems.append(Segment(
+                    start=Position(X=round(x1,3),Y=round(y1,3),angle=None),
+                    end=Position(X=round(x2,3),Y=round(y2,3),angle=None),
+                    width=0.2, layer=layer, net=nn, tstamp=U()))
+                routed+=1
+            elif abs(y2-y1)<0.3:
+                b.traceItems.append(Segment(
+                    start=Position(X=round(x1,3),Y=round(y1,3),angle=None),
+                    end=Position(X=round(x2,3),Y=round(y2,3),angle=None),
+                    width=0.2, layer=layer, net=nn, tstamp=U()))
+                routed+=1
+            else:
+                # L-shape: horizontal to x2 at y1, then vertical to y2
+                b.traceItems.append(Segment(
+                    start=Position(X=round(x1,3),Y=round(y1,3),angle=None),
+                    end=Position(X=round(x2,3),Y=round(mid_y,3),angle=None),
+                    width=0.2, layer=layer, net=nn, tstamp=U()))
+                b.traceItems.append(Segment(
+                    start=Position(X=round(x2,3),Y=round(mid_y,3),angle=None),
+                    end=Position(X=round(x2,3),Y=round(y2,3),angle=None),
+                    width=0.2, layer=layer, net=nn, tstamp=U()))
+                routed+=2
+            # Vias at pad endpoints for B.Cu nets
+            if need_via:
+                for px,py in [(x1,y1),(x2,y2)]:
+                    b.traceItems.append(Via(type='through',
+                        position=Position(X=round(px,3),Y=round(py,3),angle=None),
+                        size=0.6, drill=0.3, layers=['F.Cu','In1.Cu','In2.Cu','B.Cu'],
+                        net=nn, tstamp=U()))
+                    vias_added+=1
+                need_via=False  # only add vias at first transition
+    return routed, vias_added
+
+def route_power_rails(b, all_net, netnum):
+    """Route short F.Cu stubs for power nets that connect adjacent ICs."""
+    power_nets={P3V3,P3V3A,P5V,VBAT,DVDD}
+    netpads={}
+    for f in b.footprints:
+        r=ref_of(f)
+        for pad in f.pads:
+            key=(r,str(pad.number))
+            if key in all_net:
+                net=all_net[key]
+                if net in power_nets:
                     netpads.setdefault(net,[]).append((r,pad_abspos(f,pad)))
     routed=0
     for net,pads in netpads.items():
         if len(pads)<2: continue
-        # chain pads in order
-        pts=[p[1] for p in pads]
-        for i in range(len(pts)-1):
-            x1,y1=pts[i]; x2,y2=pts[i+1]
-            # L-route (horizontal then vertical)
-            mid=(x1,y2)
-            b.traceItems.append(Segment(start=Position(X=round(x1,3),Y=round(y1,3),angle=None),
-                                         end=Position(X=round(mid[0],3),Y=round(mid[1],3),angle=None),
-                                         width=0.2, layer='F.Cu', net=netnum.get(net,0), tstamp=U()))
-            b.traceItems.append(Segment(start=Position(X=round(mid[0],3),Y=round(mid[1],3),angle=None),
-                                         end=Position(X=round(x2,3),Y=round(y2,3),angle=None),
-                                         width=0.2, layer='F.Cu', net=netnum.get(net,0), tstamp=U()))
-            routed+=2
+        nn=netnum.get(net,0)
+        chain=[pads[0]]; remaining=list(pads[1:])
+        while remaining:
+            last=chain[-1]
+            nearest=min(remaining, key=lambda p:(p[1][0]-last[1][0])**2+(p[1][1]-last[1][1])**2)
+            chain.append(nearest); remaining.remove(nearest)
+        for i in range(len(chain)-1):
+            x1,y1=chain[i][1]; x2,y2=chain[i+1][1]
+            d=((x2-x1)**2+(y2-y1)**2)**0.5
+            if d<25:  # only route short hops between nearby pads
+                b.traceItems.append(Segment(
+                    start=Position(X=round(x1,3),Y=round(y1,3),angle=None),
+                    end=Position(X=round(x2,3),Y=round(y2,3),angle=None),
+                    width=0.4, layer='F.Cu', net=nn, tstamp=U()))
+                routed+=1
     return routed
+
+def add_design_rules(b, netnum):
+    """Inject net class + design rules via setup attributes and text post-fix."""
+    b.setup.packToMaskClearance=0.2
+    b.setup.solderMaskMinWidth=0.0
+    b.setup.gridOrigin=Position(X=0,Y=0,angle=None)
+    b.setup.auxAxisOrigin=Position(X=0,Y=0,angle=None)
+
+def inject_net_classes(filepath, netnum):
+    """Inject (net_class ...) + design rules block before (setup ...)."""
+    txt=open(filepath,'r').read()
+    if '(net_class' in txt:
+        return  # already has net classes
+    nc_block = '''  (net_class "Default" "Default routing rules"
+    (clearance 0.2) (track_width 0.2) (via_dia 0.6) (via_drill 0.3)
+    (uvia_dia 0.3) (uvia_drill 0.15) (diff_pair_gap 0.25)
+    (diff_pair_width 0.2))
+  (net_class "Power" "Power rails"
+    (clearance 0.3) (track_width 0.4) (via_dia 0.8) (via_drill 0.4)
+    (uvia_dia 0.4) (uvia_drill 0.2) (diff_pair_gap 0.3)
+    (diff_pair_width 0.4))
+'''
+    idx=txt.find('  (setup')
+    if idx<0: return
+    txt=txt[:idx]+nc_block+txt[idx:]
+    open(filepath,'w').write(txt)
 
 # ============================================================
 #  MAIN
@@ -271,16 +361,18 @@ def main():
     add_4layers(b)
     add_gnd_zone(b, w, h, netnum)
     add_pwr_zones(b, w, h, netnum)
+    add_design_rules(b, netnum)
     vp,_=route_power_vias(b, all_net, netnum)
-    rs=route_signals(b, all_net, netnum)
-    print(f"Power vias: {vp}; signal segments: {rs}")
-    # design rules
-    b.setup.packToMaskClearance=0.2
+    pr=route_power_rails(b, all_net, netnum)
+    rs,via_sig=route_signals(b, all_net, netnum)
+    print(f"Power vias: {vp}; power stubs: {pr}; signal segs: {rs}; signal vias: {via_sig}")
     b.to_file(PCB)
-    # report copper layers
+    inject_net_classes(PCB, netnum)
     cu=[l.name for l in b.layers if l.type in('signal','power','mixed')]
+    segs=sum(1 for t in b.traceItems if type(t).__name__=='Segment')
+    vias=sum(1 for t in b.traceItems if type(t).__name__=='Via')
     print(f"Final layers: {cu}")
-    print(f"Final: {len(b.footprints)} fps, {len(b.traceItems)} traces, {len(b.zones)} zones, outline {w}x{h}mm")
+    print(f"Final: {len(b.footprints)} fps, {segs} segs + {vias} vias = {segs+vias} traces, {len(b.zones)} zones, {w}x{h}mm")
 
 if __name__=='__main__':
     main()
