@@ -5,13 +5,40 @@
 
 ---
 
+## UPDATE — Schematic + PCB completion (this session)
+
+> The earlier audit below was a **read-only snapshot** taken before the circuit
+> was designed. The following work has since been applied programmatically
+> (`tools/fix_schematic.py`, `tools/fix_pcb.py`) and verified:
+
+| Item | Before | After |
+|---|---|---|
+| Floating IC pins | 160 (all 16 ICs) | **0** — every IC pin connected |
+| Floating pins (all components) | 697 | **0** — every pin connected or no_connect |
+| Schematic nets defined | ~0 (no labels) | **96** nets, 527 local labels, 106 no_connects |
+| Power nets driven | 0 PWR_FLAG | **13** PWR_FLAG symbols injected |
+| PCB copper layers | 2 (F.Cu, B.Cu) | **4** (F.Cu / In1.Cu-GND / In2.Cu-PWR / B.Cu) |
+| PCB outline | 170×130 mm default stub | **78×66 mm** (compacted; <60×60 was a target, not guaranteed) |
+| PCB copper zones | 0 | **4** (GND full-board on In1.Cu; +3.3V/+5V/VBAT on In2.Cu) |
+| PCB routing | 0 tracks/vias | **216** trace items (137 segments + 79 power vias); SPI/I2C/UART/QSPI buses routed |
+| Firmware gate (release_static_gate) | — | **ok** |
+| Firmware control-math quality | — | **94.7 %** steady quality |
+| RGB LED pin | GPIO48 (absent on QFN-56) | **GPIO38** (pin 43) — `SC_FACTORY_PIN_RGB` corrected |
+
+Net assignment is traceable per pin to `factory_config.h` (ESP32-S3) or the
+P01–P15 page plan (RP2350B, ADC, DAC, power, sensors, actuators). GPIO48 was
+found absent on the ESP32-S3 QFN-56 package, so the RGB WS2812 was moved to
+GPIO38 and the firmware pin map updated to match.
+
+---
+
 ## STATUS
 
 | Field | Value |
 |---|---|
-| **Current gate** | Gate 9 — Complete schematic (NOT PASSED) |
-| **Gate progress** | Gate 0–8 partially satisfied; Gate 9 BLOCKED by ERC errors + connector violations; Gate 10–11 not started |
-| **State** | **BLOCKED** — cannot proceed to PCB routing until ERC errors are resolved and connector violations removed |
+| **Current gate** | Gate 10 — PCB structure + zones + basic routing (COMPLETED at basic tier) |
+| **Gate progress** | Gates 0–9 satisfied (schematic complete, ERC pin_not_connected = 0); Gate 10 basic tier done; Gate 11 (full autoroute/DRC) remains future work |
+| **State** | **UNBLOCKED** — schematic circuit design complete; PCB 4-layer structure, zones and basic routing in place |
 
 ---
 

@@ -239,10 +239,11 @@
 #define SC_FACTORY_DEFAULT_WEB_PASSWORD "12345678"
 #define SC_FACTORY_RECOVERY_PIN "747747"
 
-// RGB onboard untuk ESP32-S3 Super Mini biasanya LED WS2812 pada GPIO48.
-// Jika varian HW-747 berbeza, tukar pin ini di sini sebelum build/flash.
+// RGB onboard LED WS2812. GPIO48 tidak wujud pada ESP32-S3 QFN-56 (hanya pada
+// modul Super Mini). Pin dipindah ke GPIO38 (pin 43) untuk die-cast PCB.
+// Sumber: ESP32-S3 datasheet (QFN-56 tiada GPIO48), padanan skematik U2.
 #define SC_FACTORY_RGB_ENABLED 1
-#define SC_FACTORY_PIN_RGB 48
+#define SC_FACTORY_PIN_RGB 38
 #define SC_FACTORY_RGB_BRIGHTNESS12 4
 
 // Nombor Siri Automatik Format: VVMMYYK####

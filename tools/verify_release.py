@@ -192,7 +192,7 @@ def verify_factory_config():
         '#define SC_FACTORY_DEFAULT_WEB_PASSWORD "12345678"',
         '#define SC_FACTORY_RECOVERY_PIN "747747"',
         "#define SC_FACTORY_RGB_ENABLED 1",
-        "#define SC_FACTORY_PIN_RGB 48",
+        "#define SC_FACTORY_PIN_RGB 38",
         "#define SC_FACTORY_RGB_BRIGHTNESS12 4",
         "#define SC_FACTORY_PUMP_TYPE_NONE 0",
         "#define SC_FACTORY_PUMP_TYPE_SSR 1",
