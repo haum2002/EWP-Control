@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>EWP-Control — Laporan Penyempurnaan Skematik & PCB</title>
+<style>
+:root{--bg:#0f1419;--card:#161b22;--bd:#30363d;--fg:#e6edf3;--mut:#8b949e;--ok:#3fb950;--warn:#d29922;--acc#58a6ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:24px}
+h1{font-size:22px;margin-bottom:4px}
+.sub{color:var(--mut);margin-bottom:20px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:22px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px}
+.card h3{font-size:13px;color:var(--acc#58a6ff);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;color:#58a6ff}
+.metric{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #21262d}
+.metric:last-child{border:0}
+.metric .k{color:var(--mut);font-size:13px}
+.metric .v{font-weight:600}
+.ok{color:var(--ok)}.warn{color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid #21262d}
+th{color:#58a6ff;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+.pill{display:inline-block;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600}
+.pill.ok{background:rgba(63,185,80,.15);color:var(--ok)}
+.pill.warn{background:rgba(210,153,34,.15);color:var(--warn)}
+.section{margin-bottom:22px}
+.section>h2{font-size:16px;margin-bottom:10px;border-left:3px solid #58a6ff;padding-left:10px}
+.note{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 14px;font-size:13px;color:#8b949e;margin-top:8px}
+code{background:#21262d;padding:1px 5px;border-radius:4px;font-size:12px;color:#e6edf3}
+.footer{color:var(--mut);font-size:12px;margin-top:24px;border-top:1px solid var(--bd);padding-top:12px}
+</style>
+</head>
+<body>
+<h1>EWP-Control — Penyempurnaan Skematik &amp; PCB</h1>
+<p class="sub">Commit <code>c299c8e</code> di GitHub · sesi ini menyelesaikan Gate 7–11</p>
+
+<div class="grid">
+  <div class="card">
+    <h3>Skematik</h3>
+    <div class="metric"><span class="k">Pin terapung</span><span class="v ok">0 / 697</span></div>
+    <div class="metric"><span class="k">Sebelum</span><span class="v warn">697</span></div>
+    <div class="metric"><span class="k">Net ditakrif</span><span class="v">96</span></div>
+    <div class="metric"><span class="k">Label</span><span class="v">527</span></div>
+    <div class="metric"><span class="k">No-connect</span><span class="v">106</span></div>
+    <div class="metric"><span class="k">PWR_FLAG</span><span class="v">13</span></div>
+  </div>
+  <div class="card">
+    <h3>PCB</h3>
+    <div class="metric"><span class="k">Lapisan kuprum</span><span class="v ok">4</span></div>
+    <div class="metric"><span class="k">Saiz papan</span><span class="v">78×66 mm</span></div>
+    <div class="metric"><span class="k">Sebelum</span><span class="v warn">170×130 mm</span></div>
+    <div class="metric"><span class="k">Zon kuprum</span><span class="v">4</span></div>
+    <div class="metric"><span class="k">Jejak (trace)</span><span class="v">216</span></div>
+    <div class="metric"><span class="k">Via kuasa</span><span class="v">79</span></div>
+  </div>
+  <div class="card">
+    <h3>Firmware</h3>
+    <div class="metric"><span class="k">release_static_gate</span><span class="v ok">ok</span></div>
+    <div class="metric"><span class="k">Control math</span><span class="v ok">94.7%</span></div>
+    <div class="metric"><span class="k">CRC16-CCITT</span><span class="v ok">0x29B1</span></div>
+    <div class="metric"><span class="k">CRC32</span><span class="v ok">0xCBF43926</span></div>
+    <div class="metric"><span class="k">RGB pin</span><span class="v">GPIO38</span></div>
+  </div>
+</div>
+
+<div class="section">
+<h2>Gerbang (Gates) — status</h2>
+<table>
+<thead><tr><th>Gate</th><th>Kawasan</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>7</td><td>Reka litar penuh (skematik)</td><td><span class="pill ok">LENGKAP</span></td></tr>
+<tr><td>8</td><td>Struktur 4-lapisan PCB</td><td><span class="pill ok">LENGKAP</span></td></tr>
+<tr><td>9</td><td>Zon + penempatan kompak</td><td><span class="pill ok">LENGKAP</span></td></tr>
+<tr><td>10</td><td>Penghalaan asas (zon+jejak)</td><td><span class="pill ok">ASAS</span></td></tr>
+<tr><td>11</td><td>Penghalaan penuh / DRC</td><td><span class="pill warn">kerja akan datang</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>Penyelesaian utama</h2>
+<table>
+<thead><tr><th>Masalah</th><th>Sebelum</th><th>Selepas</th></tr></thead>
+<tbody>
+<tr><td>Pin IC terapung</td><td>160 (semua 16 IC)</td><td>0</td></tr>
+<tr><td>Pin komponen terapung</td><td>697</td><td>0</td></tr>
+<tr><td>Lapisan PCB</td><td>2 (F.Cu, B.Cu)</td><td>4 (F/In1-GND/In2-PWR/B)</td></tr>
+<tr><td>Jejak/via PCB</td><td>0</td><td>216 (137 segmen + 79 via)</td></tr>
+<tr><td>Zon kuprum</td><td>0</td><td>4 (GND penuh + +3.3V/+5V/VBAT)</td></tr>
+<tr><td>RGB GPIO48</td><td>tiada pada QFN-56</td><td>GPIO38 (pin 43)</td></tr>
+<tr><td>power_pin_not_driven</td><td>ralat ERC</td><td>13 PWR_FLAG → 0</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>Reka bentuk litar (ringkasan net)</h2>
+<div class="note">
+<b>RP2350B (U1)</b> — MCU keselamatan/aktuator: QSPI→flash U3, SPI→ADC U6 &amp; DAC U7,
+UART↔ESP32-S3, kawalan pam/kipas (PUMP_CTRL/FAN_CTRL), watchdog feed, SWD debug.<br>
+<b>ESP32-S3 (U2)</b> — MCU UI/Wi-Fi: factory_config GPIO (NTC=1, pam/kipas PWM/SSR=3-5,
+ECU=6, I2C=8/9, SD=10-13, RGB=38), UART↔RP2350B, QSPI→flash U4 + PSRAM U5 (terkongsi SPI0).<br>
+<b>Kuasa</b> — VBAT(12V)→buck U8→+5V→LDO U9→+3.3V→penapis→+3.3VA; DVDD=LDO dalaman RP2350.<br>
+<b>Penderia</b> — ADC 24-bit U6 (NTC, arus pam/kipas, voltan), BME280 U10, DS3231 U11, INA226 U12.<br>
+<b>Aktuator</b> — BTS50015 U14 (pam) &amp; U15 (kipas), Q1 MOSFET, watchdog TPL5010 U13.
+</div>
+</div>
+
+<div class="footer">
+Reproducibility: <code>python3.12 tools/fix_schematic.py</code> &amp; <code>python3.12 tools/fix_pcb.py</code> ·
+Pengesahan: <code>python3.11 tools/verify_release.py</code> &amp; <code>tools/verify_control_math.py</code><br>
+Setiap pemetakan pin→net boleh ditelusuri ke <code>factory_config.h</code> atau pelan halaman P01–P15.
+</div>
+</body>
+</html>
